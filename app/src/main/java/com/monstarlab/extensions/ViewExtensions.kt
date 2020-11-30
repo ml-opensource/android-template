@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
 fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launch {
+    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         targetFlow.collect {
             collectBlock.invoke(it)
         }
@@ -17,7 +17,7 @@ fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
 }
 
 fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launch {
+    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         flow1.combine(flow2) { v1, v2 ->
             collectBlock.invoke(v1, v2)
         }.collect {
@@ -27,7 +27,7 @@ fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBloc
 }
 
 fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>,  collectBlock: ((T1, T2, T3) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launch {
+    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         combine(flow1, flow2, flow3) { v1, v2, v3 ->
             collectBlock.invoke(v1, v2, v3)
         }.collect {
@@ -37,7 +37,7 @@ fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: 
 }
 
 fun <T1, T2, T3, T4> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, flow4: Flow<T4>, collectBlock: ((T1, T2, T3, T4) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launch {
+    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
             collectBlock.invoke(v1, v2, v3, v4)
         }.collect {
@@ -47,7 +47,7 @@ fun <T1, T2, T3, T4> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flo
 }
 
 fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>,  collectBlock: ((T1, T2) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launch {
+    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         flow1.zip(flow2) { v1, v2 ->
             collectBlock.invoke(v1, v2)
         }.collect {
