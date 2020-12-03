@@ -7,6 +7,8 @@ import com.monstarlab.base.BaseFragment
 import com.monstarlab.databinding.FragmentSampleBinding
 import com.monstarlab.extensions.collectFlow
 import com.monstarlab.extensions.viewBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.combine
 
 class SampleFragment : BaseFragment(R.layout.fragment_sample) {
 
@@ -21,8 +23,14 @@ class SampleFragment : BaseFragment(R.layout.fragment_sample) {
             binding.valueTextView.text = "Clicked $clicks times"
         }
 
+        collectFlow(viewModel.textFlow) { newText ->
+            binding.asyncTextView.text = newText
+        }
+
         binding.theButton.setOnClickListener {
             viewModel.clickedButton()
         }
+
+        viewModel.fetchString()
     }
 }
