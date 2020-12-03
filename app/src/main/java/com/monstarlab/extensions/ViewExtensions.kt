@@ -1,6 +1,8 @@
 package com.monstarlab.extensions
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -9,11 +11,25 @@ import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
 fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-        targetFlow.collect {
-            collectBlock.invoke(it)
+    safeViewCollect {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            targetFlow.collect {
+                collectBlock.invoke(it)
+            }
         }
     }
+}
+
+private inline fun Fragment.safeViewCollect(crossinline viewOwner: LifecycleOwner.() -> Unit) {
+    lifecycle.addObserver(object : DefaultLifecycleObserver {
+        override fun onCreate(owner: LifecycleOwner) {
+            viewLifecycleOwnerLiveData.observe(
+                this@safeViewCollect,
+                { viewLifecycleOwner ->
+                    viewLifecycleOwner.viewOwner()
+                })
+        }
+    })
 }
 
 fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
