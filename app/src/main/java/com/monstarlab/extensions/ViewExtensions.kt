@@ -33,41 +33,49 @@ private inline fun Fragment.safeViewCollect(crossinline viewOwner: LifecycleOwne
 }
 
 fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-        flow1.combine(flow2) { v1, v2 ->
-            collectBlock.invoke(v1, v2)
-        }.collect {
-            // Empty collect block to trigger ^
+    safeViewCollect {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            flow1.combine(flow2) { v1, v2 ->
+                collectBlock.invoke(v1, v2)
+            }.collect {
+                // Empty collect block to trigger ^
+            }
         }
     }
 }
 
 fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>,  collectBlock: ((T1, T2, T3) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-        combine(flow1, flow2, flow3) { v1, v2, v3 ->
-            collectBlock.invoke(v1, v2, v3)
-        }.collect {
-            // Empty collect block to trigger ^
+    safeViewCollect {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            combine(flow1, flow2, flow3) { v1, v2, v3 ->
+                collectBlock.invoke(v1, v2, v3)
+            }.collect {
+                // Empty collect block to trigger ^
+            }
         }
     }
 }
 
 fun <T1, T2, T3, T4> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, flow4: Flow<T4>, collectBlock: ((T1, T2, T3, T4) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-        combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
-            collectBlock.invoke(v1, v2, v3, v4)
-        }.collect {
-            // Empty collect block to trigger ^
+    safeViewCollect {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
+                collectBlock.invoke(v1, v2, v3, v4)
+            }.collect {
+                // Empty collect block to trigger ^
+            }
         }
     }
 }
 
 fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>,  collectBlock: ((T1, T2) -> Unit)) {
-    viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-        flow1.zip(flow2) { v1, v2 ->
-            collectBlock.invoke(v1, v2)
-        }.collect {
-            // Empty collect block to trigger ^
+    safeViewCollect {
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            flow1.zip(flow2) { v1, v2 ->
+                collectBlock.invoke(v1, v2)
+            }.collect {
+                // Empty collect block to trigger ^
+            }
         }
     }
 }
