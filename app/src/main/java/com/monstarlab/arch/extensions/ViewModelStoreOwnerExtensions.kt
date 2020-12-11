@@ -1,4 +1,4 @@
-package com.monstarlab.extensions
+package com.monstarlab.arch.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle

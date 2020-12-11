@@ -1,4 +1,4 @@
-package com.monstarlab.mock
+package com.monstarlab.core.domain.mock
 
 import kotlinx.coroutines.delay
 

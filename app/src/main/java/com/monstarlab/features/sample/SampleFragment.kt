@@ -2,13 +2,12 @@ package com.monstarlab.features.sample
 
 import android.os.Bundle
 import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
-import com.monstarlab.base.BaseFragment
+import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.databinding.FragmentSampleBinding
-import com.monstarlab.extensions.collectFlow
-import com.monstarlab.extensions.viewBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
+import com.monstarlab.arch.extensions.collectFlow
+import com.monstarlab.arch.extensions.viewBinding
 
 class SampleFragment : BaseFragment(R.layout.fragment_sample) {
 
@@ -27,8 +26,13 @@ class SampleFragment : BaseFragment(R.layout.fragment_sample) {
             binding.asyncTextView.text = newText
         }
 
+        collectFlow(viewModel.errorFlow) { errorMessage ->
+            Snackbar.make(view, errorMessage, Snackbar.LENGTH_SHORT).show()
+        }
+
         binding.theButton.setOnClickListener {
-            viewModel.clickedButton()
+            //viewModel.clickedButton()
+            viewModel.fetchString()
         }
 
         viewModel.fetchString()

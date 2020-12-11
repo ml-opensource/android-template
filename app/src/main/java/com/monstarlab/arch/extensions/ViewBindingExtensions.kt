@@ -1,4 +1,4 @@
-package com.monstarlab.extensions
+package com.monstarlab.arch.extensions
 
 import android.app.Activity
 import android.os.Looper

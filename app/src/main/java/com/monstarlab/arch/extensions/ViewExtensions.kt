@@ -1,4 +1,4 @@
-package com.monstarlab.extensions
+package com.monstarlab.arch.extensions
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.zip
-import kotlinx.coroutines.launch
 
 fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
     safeViewCollect {

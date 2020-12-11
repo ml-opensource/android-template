@@ -15,7 +15,8 @@ import javax.inject.Singleton
         PresentationModule::class,
         AppModule::class,
         InteractorModule::class,
-        RestModule::class
+        RestModule::class,
+        DataModule::class
     ]
 )
 @Singleton

@@ -1,4 +1,4 @@
-package com.monstarlab.base
+package com.monstarlab.arch.base
 
 import android.content.Context
 import android.os.Bundle
@@ -10,9 +10,9 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import com.google.android.material.transition.MaterialFadeThrough
-import com.monstarlab.extensions.getSharedViewModel
-import com.monstarlab.extensions.getViewModel
-import com.monstarlab.extensions.lifecycleAwareLazy
+import com.monstarlab.arch.extensions.getSharedViewModel
+import com.monstarlab.arch.extensions.getViewModel
+import com.monstarlab.arch.extensions.lifecycleAwareLazy
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment, HasAndroidInjector {

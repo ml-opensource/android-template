@@ -1,12 +1,12 @@
-package com.monstarlab.base
+package com.monstarlab.arch.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.monstarlab.extensions.getViewModel
-import com.monstarlab.extensions.lifecycleAwareLazy
+import com.monstarlab.arch.extensions.getViewModel
+import com.monstarlab.arch.extensions.lifecycleAwareLazy
 import dagger.android.AndroidInjection
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
