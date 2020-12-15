@@ -24,6 +24,6 @@ sealed class ErrorModel {
         object UnknownHost: Connection()
     }
 
-    object Unknown: ErrorModel()
+    data class Unknown(val throwable: Throwable): ErrorModel()
 
 }

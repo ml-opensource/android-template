@@ -26,6 +26,6 @@ fun Throwable.toError(): ErrorModel {
         is SocketTimeoutException -> ErrorModel.Connection.Timeout
         is UnknownHostException -> ErrorModel.Connection.UnknownHost
         is IOException -> ErrorModel.Connection.IOError
-        else -> ErrorModel.Unknown
+        else -> ErrorModel.Unknown(this)
     }
 }
