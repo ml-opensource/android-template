@@ -1,6 +1,6 @@
 package com.monstarlab.core.data.repositories
 
-import com.monstarlab.arch.data.Repository
+import com.monstarlab.arch.data.*
 import com.monstarlab.core.data.mappers.toEntity
 import com.monstarlab.core.data.network.Api
 import com.monstarlab.core.data.storage.PostPreferenceStore
@@ -14,19 +14,17 @@ class PostRepository @Inject constructor(
     private val postPreferenceStore: PostPreferenceStore
 ): Repository() {
 
-    fun getPosts(): Flow<List<Post>> = flow {
-        if(shouldFetch) {
-            val response = api.getPosts()
-            if(!response.isSuccessful) {
-                emit(emptyList<Post>())
+    suspend fun getPosts(): RepositoryResult<List<Post>> {
+        onShouldFetch {
+            val result = api.getPosts().toResultAndMap { list -> list.map { it.toEntity() } }
+
+            result.onSuccess { list ->
+                postPreferenceStore.addAll(list)
             }
-            val entries = response.body()?.map { it.toEntity() }
-            fetched()
-            //postPreferenceStore.addAll(entries)
-            //emit(entries)
-        } else {
-            emit(postPreferenceStore.getAll())
+
+            if(result.isError()) return result
         }
+        return RepositoryResult.Success(postPreferenceStore.getAll())
     }
 
 }

@@ -8,14 +8,18 @@ abstract class Repository constructor(
 
     private var lastFetch = 0L
 
-    protected val shouldFetch: Boolean
-        get() {
-            return TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - lastFetch) >= expirationInSeconds
-        }
-
-    protected fun fetched() {
-        lastFetch = System.currentTimeMillis()
+    protected suspend inline fun onShouldFetch(block: suspend () -> Unit) {
+        if(shouldFetch) block.invoke()
     }
 
+    protected val shouldFetch: Boolean
+        get() {
+            val shouldFetch = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - lastFetch) >= expirationInSeconds
+            // Automatically update this value, since we're running API code in an if() and most likely updating local store
+            if(shouldFetch) {
+                lastFetch = System.currentTimeMillis()
+            }
+            return shouldFetch
+        }
 
 }

@@ -2,12 +2,14 @@ package com.monstarlab.features.sample
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
 import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.databinding.FragmentSampleBinding
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.viewBinding
+import kotlinx.coroutines.launch
 
 class SampleFragment : BaseFragment(R.layout.fragment_sample) {
 

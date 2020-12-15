@@ -1,5 +1,6 @@
 package com.monstarlab.features.sample
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.arch.extensions.combineFlows
@@ -14,7 +15,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 class SampleViewModel @Inject constructor(
-    private val postRepository: PostRepository
+        private val postRepository: PostRepository
 ): ViewModel() {
 
     val clickFlow: MutableStateFlow<Int> = MutableStateFlow(0)
@@ -28,8 +29,11 @@ class SampleViewModel @Inject constructor(
     fun fetchBlogPosts() {
         postRepository
             .getPosts()
+            .onStart { /* start loading */  }
             .onEach { blogEntries -> textFlow.value = "Found ${blogEntries.size}" }
+            .retryWhen { cause, attempt -> cause is IOException && attempt <= 2 }
             .catch { _ -> errorFlow.emit("Something went wrong") }
+            .onCompletion { /* stop loading */ }
             .launchIn(viewModelScope)
     }
 
