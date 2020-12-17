@@ -1,25 +1,20 @@
 package com.monstarlab.arch.data
 
 import android.content.SharedPreferences
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
-import java.lang.Exception
 
 abstract class SharedPreferenceDataStore<T> constructor(
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences,
+    private val serializer: KSerializer<T>
 ): DataSource<T> {
 
     private val key = this.javaClass.simpleName
 
     override fun getAll(): List<T> {
-        return try {
-            val json = sharedPreferences.getString(key, "") ?: ""
-            val entries = Json.decodeFromString<List<T>>(json)
-            entries
-        } catch (e: Exception) {
-            emptyList()
-        }
+        val json = sharedPreferences.getString(key, "") ?: ""
+        return Json.decodeFromString(ListSerializer(serializer), json)
     }
 
     override fun add(item: T) {
@@ -29,12 +24,8 @@ abstract class SharedPreferenceDataStore<T> constructor(
     }
 
     override fun addAll(items: List<T>) {
-        try {
-            val json = Json.encodeToString(items)
-            sharedPreferences.edit().putString(key, json).apply()
-        } catch (e: Exception) {
-
-        }
+        val json = Json.encodeToString(ListSerializer(serializer), items)
+        sharedPreferences.edit().putString(key, json).apply()
     }
 
     override fun clear() {

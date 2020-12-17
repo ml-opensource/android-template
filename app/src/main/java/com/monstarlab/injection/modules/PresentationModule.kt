@@ -1,11 +1,13 @@
 package com.monstarlab.injection.modules
 
+import com.monstarlab.injection.builders.LoginBuilder
 import com.monstarlab.injection.builders.MainActivityBuilder
-import com.monstarlab.injection.builders.SampleBuilder
+import com.monstarlab.injection.builders.ResourceBuilder
 import dagger.Module
 
 @Module(includes = [
     MainActivityBuilder::class,
-    SampleBuilder::class
+    ResourceBuilder::class,
+    LoginBuilder::class
 ])
 class PresentationModule

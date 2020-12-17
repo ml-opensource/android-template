@@ -36,7 +36,7 @@ android {
             manifestPlaceholders = [
                     APP_NAME: "MonstarlabDev"
             ]
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com\""
+            buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
         staging {
             dimension "default"
@@ -45,7 +45,7 @@ android {
             manifestPlaceholders = [
                     APP_NAME: "MonstarlabStaging"
             ]
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com\""
+            buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
         production {
             dimension "default"
@@ -53,7 +53,7 @@ android {
             manifestPlaceholders = [
                     APP_NAME: "Monstarlab",
             ]
-            buildConfigField "String", "API_URL", "\"https://jsonplaceholder.typicode.com\""
+            buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
     }
 

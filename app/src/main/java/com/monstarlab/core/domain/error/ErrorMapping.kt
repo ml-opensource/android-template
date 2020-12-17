@@ -1,5 +1,7 @@
 package com.monstarlab.core.domain.error
 
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.json.JsonDecoder
 import retrofit2.Response
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -26,6 +28,7 @@ fun Throwable.toError(): ErrorModel {
         is SocketTimeoutException -> ErrorModel.Connection.Timeout
         is UnknownHostException -> ErrorModel.Connection.UnknownHost
         is IOException -> ErrorModel.Connection.IOError
+        is SerializationException -> ErrorModel.DataError.ParseError(this)
         else -> ErrorModel.Unknown(this)
     }
 }

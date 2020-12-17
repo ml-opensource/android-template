@@ -5,7 +5,7 @@ import com.monstarlab.arch.extensions.RepositoryResult
 import com.monstarlab.arch.extensions.isError
 import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.arch.extensions.toResultAndMap
-import com.monstarlab.core.data.mappers.toEntity
+import com.monstarlab.core.data.network.dtos.toEntity
 import com.monstarlab.core.data.network.Api
 import com.monstarlab.core.data.storage.PostPreferenceStore
 import com.monstarlab.core.domain.model.Post

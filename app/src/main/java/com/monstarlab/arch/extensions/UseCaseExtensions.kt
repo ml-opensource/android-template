@@ -27,12 +27,13 @@ inline fun <T> safeFlow(
         crossinline block: suspend () -> RepositoryResult<T>
 ): Flow<UseCaseResult<T>> = flow {
     try {
-        when (val repoResult = block()) {
+        val res = when (val repoResult = block()) {
             is RepositoryResult.Success -> UseCaseResult.Success(repoResult.value)
             is RepositoryResult.Error -> UseCaseResult.Error(repoResult.error)
         }
+        emit(res)
     } catch (e: Exception) {
-        UseCaseResult.Error(e.toError())
+        emit(UseCaseResult.Error(e.toError()))
     }
 }
 

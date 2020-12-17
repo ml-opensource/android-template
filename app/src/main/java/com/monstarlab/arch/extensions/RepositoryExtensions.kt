@@ -39,7 +39,7 @@ fun <T, R> Response<out T>.toResultAndMap(transform: (T) -> R): RepositoryResult
 
 sealed class RepositoryResult<out T> {
     data class Success<T>(val value: T): RepositoryResult<T>()
-    data class Error(val error: ErrorModel.Http): RepositoryResult<Nothing>()
+    data class Error(val error: ErrorModel): RepositoryResult<Nothing>()
 }
 
 inline fun <T> RepositoryResult<T>.onSuccess(block: (T) -> Unit): RepositoryResult<T> {
@@ -47,7 +47,7 @@ inline fun <T> RepositoryResult<T>.onSuccess(block: (T) -> Unit): RepositoryResu
     return this
 }
 
-inline fun <T> RepositoryResult<T>.onError(block: (ErrorModel.Http) -> Unit): RepositoryResult<T> {
+inline fun <T> RepositoryResult<T>.onError(block: (ErrorModel) -> Unit): RepositoryResult<T> {
     if(this is RepositoryResult.Error) block.invoke(error)
     return this
 }
@@ -56,7 +56,7 @@ fun <T> RepositoryResult<T>.isError(): Boolean {
     return this is RepositoryResult.Error
 }
 
-val <T> RepositoryResult<T>.errorOrNull: ErrorModel.Http?
+val <T> RepositoryResult<T>.errorOrNull: ErrorModel?
     get() {
         return if(this is RepositoryResult.Error) error else null
     }

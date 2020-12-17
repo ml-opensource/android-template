@@ -18,6 +18,11 @@ sealed class ErrorModel {
         ): Http()
     }
 
+    sealed class DataError: ErrorModel() {
+        object NoData: DataError()
+        data class ParseError(val throwable: Throwable): DataError()
+    }
+
     sealed class Connection: ErrorModel() {
         object Timeout: Connection()
         object IOError: Connection()
