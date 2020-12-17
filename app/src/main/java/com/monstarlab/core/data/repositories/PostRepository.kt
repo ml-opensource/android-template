@@ -1,12 +1,14 @@
 package com.monstarlab.core.data.repositories
 
 import com.monstarlab.arch.data.*
+import com.monstarlab.arch.extensions.RepositoryResult
+import com.monstarlab.arch.extensions.isError
+import com.monstarlab.arch.extensions.onSuccess
+import com.monstarlab.arch.extensions.toResultAndMap
 import com.monstarlab.core.data.mappers.toEntity
 import com.monstarlab.core.data.network.Api
 import com.monstarlab.core.data.storage.PostPreferenceStore
 import com.monstarlab.core.domain.model.Post
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PostRepository @Inject constructor(

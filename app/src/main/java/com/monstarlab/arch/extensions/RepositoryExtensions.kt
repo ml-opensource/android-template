@@ -42,12 +42,12 @@ sealed class RepositoryResult<out T> {
     data class Error(val error: ErrorModel.Http): RepositoryResult<Nothing>()
 }
 
-fun <T> RepositoryResult<T>.onSuccess(block: (T) -> Unit): RepositoryResult<T> {
+inline fun <T> RepositoryResult<T>.onSuccess(block: (T) -> Unit): RepositoryResult<T> {
     if(this is RepositoryResult.Success) block.invoke(value)
     return this
 }
 
-fun <T> RepositoryResult<T>.onError(block: (ErrorModel.Http) -> Unit): RepositoryResult<T> {
+inline fun <T> RepositoryResult<T>.onError(block: (ErrorModel.Http) -> Unit): RepositoryResult<T> {
     if(this is RepositoryResult.Error) block.invoke(error)
     return this
 }
