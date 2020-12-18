@@ -3,7 +3,8 @@ package com.monstarlab.features.login
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.loadingFlow
+import androidx.lifecycle.viewErrorFlow
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +16,6 @@ import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.databinding.FragmentLoginBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
@@ -36,7 +36,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.resourceFragment)
         }
 
-        collectFlow(viewModel.errorFlow) { viewError ->
+        collectFlow(viewModel.viewErrorFlow) { viewError ->
             Snackbar.make(view, viewError.message, Snackbar.LENGTH_SHORT).show()
         }
 
