@@ -27,7 +27,13 @@ buildscript {
             leak_canary         : '2.5',
             desugaring          : '1.0.9',
             nodes_nstack_kotlin : '3.2.5',
-            nstack_gradle_plugin: '3.0.3',
+            nstack_gradle_plugin: '3.2.5',
+    ]
+
+    ext.keys = [
+            appId       : 'IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0',
+            apiKey      : 'LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r',
+            acceptHeader: "en-GB"
     ]
 
     repositories {

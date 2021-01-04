@@ -7,5 +7,6 @@ import com.monstarlab.arch.base.BaseActivity
 class MainActivity : BaseActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setupNStack()
     }
 }

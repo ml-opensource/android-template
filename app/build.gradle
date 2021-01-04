@@ -2,7 +2,14 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.20'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.21'
+    id 'dk.nstack.translation.plugin'
+}
+
+translation {
+    appId = keys.appId
+    apiKey = keys.apiKey
+    acceptHeader = keys.acceptHeader
 }
 
 android {
@@ -16,6 +23,11 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        manifestPlaceholders = [
+                appId : keys.appId,
+                apiKey: keys.apiKey
+        ]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,7 +46,8 @@ android {
             dimension "default"
             applicationIdSuffix ".dev"
             manifestPlaceholders = [
-                    APP_NAME: "MonstarlabDev"
+                    APP_NAME: "MonstarlabDev",
+                    env     : "staging"
             ]
             buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
@@ -43,7 +56,8 @@ android {
             applicationIdSuffix ".staging"
             //signingConfig signingConfigs.staging
             manifestPlaceholders = [
-                    APP_NAME: "MonstarlabStaging"
+                    APP_NAME: "MonstarlabStaging",
+                    env     : "staging"
             ]
             buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
@@ -52,6 +66,7 @@ android {
             //signingConfig signingConfigs.production
             manifestPlaceholders = [
                     APP_NAME: "Monstarlab",
+                    env     : "production"
             ]
             buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
@@ -93,7 +108,7 @@ dependencies {
 
     implementation("androidx.navigation:navigation-fragment-ktx:2.3.2")
     implementation("androidx.navigation:navigation-ui-ktx:2.3.2")
-    
+
     implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}")
