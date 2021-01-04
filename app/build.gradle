@@ -117,5 +117,6 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}")
 
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
 
 }
