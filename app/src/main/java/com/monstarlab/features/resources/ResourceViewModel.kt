@@ -15,7 +15,7 @@ class ResourceViewModel @Inject constructor(
         private val getResourcesUseCase: GetResourcesUseCase
 ): ViewModel() {
 
-    val loadingFlow = MutableStateFlow<Boolean>(false)
+    val loadingFlow = MutableStateFlow(false)
     val errorFlow = MutableSharedFlow<ViewError>()
     val resourcesFlow: MutableStateFlow<List<Resource>> = MutableStateFlow(emptyList())
 

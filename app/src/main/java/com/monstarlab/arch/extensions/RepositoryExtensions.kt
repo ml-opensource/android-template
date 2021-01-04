@@ -35,8 +35,6 @@ fun <T, R> Response<out T>.toResultAndMap(transform: (T) -> R): RepositoryResult
     }
 }
 
-
-
 sealed class RepositoryResult<out T> {
     data class Success<T>(val value: T): RepositoryResult<T>()
     data class Error(val error: ErrorModel): RepositoryResult<Nothing>()

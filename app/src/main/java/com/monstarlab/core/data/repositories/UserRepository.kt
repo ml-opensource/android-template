@@ -2,15 +2,13 @@ package com.monstarlab.core.data.repositories
 
 import com.monstarlab.arch.data.Repository
 import com.monstarlab.arch.extensions.*
-import com.monstarlab.core.data.mappers.toUser
+import com.monstarlab.core.data.network.dtos.toUser
 import com.monstarlab.core.data.network.Api
 import com.monstarlab.core.data.network.responses.TokenResponse
 import com.monstarlab.core.data.storage.UserPreferenceStore
 import com.monstarlab.core.domain.error.ErrorModel
 import com.monstarlab.core.domain.model.User
-import java.lang.RuntimeException
 import javax.inject.Inject
-import kotlin.onSuccess
 
 class UserRepository @Inject constructor(
         private val api: Api,

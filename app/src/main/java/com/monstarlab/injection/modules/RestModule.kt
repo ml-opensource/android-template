@@ -51,6 +51,6 @@ class RestModule {
     @Provides
     @Singleton
     fun provideApi(retrofit: Retrofit): Api {
-        return retrofit.create<Api>(Api::class.java)
+        return retrofit.create(Api::class.java)
     }
 }
