@@ -35,7 +35,7 @@ val ViewModel.loadingFlow: StateFlow<Boolean>
 
 private fun ViewModel.getLoadingMutableStateFlow(): MutableStateFlow<Boolean> {
     val flow: MutableStateFlow<Boolean>? = getTag(LOADING_FLOW_KEY)
-    return flow ?: setTagIfAbsent(ERROR_FLOW_KEY, MutableStateFlow(false))
+    return flow ?: setTagIfAbsent(LOADING_FLOW_KEY, MutableStateFlow(false))
 }
 
 private fun ViewModel.getErrorMutableSharedFlow(): MutableSharedFlow<ViewError> {
