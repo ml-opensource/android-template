@@ -2,7 +2,9 @@
 
 package androidx.lifecycle
 
+import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.UseCaseResult
+import com.monstarlab.arch.extensions.ViewErrorAware
 import com.monstarlab.arch.extensions.onError
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
@@ -12,49 +14,53 @@ import kotlinx.coroutines.launch
 private const val ERROR_FLOW_KEY = "androidx.lifecycle.ErrorFlow"
 private const val LOADING_FLOW_KEY = "androidx.lifecycle.LoadingFlow"
 
-fun ViewModel.sendViewError(viewError: ViewError) {
+fun <T> T.sendViewError(viewError: ViewError) where T : ViewErrorAware, T : ViewModel {
     viewModelScope.launch {
         getErrorMutableSharedFlow().emit(viewError)
     }
 }
 
-suspend fun ViewModel.emitViewError(viewError: ViewError) {
+suspend fun <T> T.emitViewError(viewError: ViewError) where T : ViewErrorAware, T : ViewModel {
     getErrorMutableSharedFlow().emit(viewError)
 }
 
-val ViewModel.viewErrorFlow: SharedFlow<ViewError>
+val <T> T.viewErrorFlow: SharedFlow<ViewError> where T : ViewErrorAware, T : ViewModel
     get() {
         return getErrorMutableSharedFlow()
     }
 
-val ViewModel.loadingFlow: StateFlow<Boolean>
+
+val <T> T.loadingFlow: StateFlow<Boolean> where T : LoadingAware, T : ViewModel
     get() {
         return getLoadingMutableStateFlow()
     }
 
-
-private fun ViewModel.getLoadingMutableStateFlow(): MutableStateFlow<Boolean> {
+private fun <T> T.getLoadingMutableStateFlow(): MutableStateFlow<Boolean> where T : LoadingAware, T : ViewModel {
     val flow: MutableStateFlow<Boolean>? = getTag(LOADING_FLOW_KEY)
     return flow ?: setTagIfAbsent(LOADING_FLOW_KEY, MutableStateFlow(false))
 }
 
-private fun ViewModel.getErrorMutableSharedFlow(): MutableSharedFlow<ViewError> {
+private fun <T> T.getErrorMutableSharedFlow(): MutableSharedFlow<ViewError> where T : ViewErrorAware, T : ViewModel {
     val flow: MutableSharedFlow<ViewError>? = getTag(ERROR_FLOW_KEY)
     return flow ?: setTagIfAbsent(ERROR_FLOW_KEY, MutableSharedFlow())
 }
 
-fun <T> Flow<T>.bindLoading(viewModel: ViewModel): Flow<T> {
+fun <F, T> Flow<F>.bindLoading(t: T): Flow<F> where T : LoadingAware, T : ViewModel {
     return this
             .onStart {
-                viewModel.getLoadingMutableStateFlow().value = true
+                t.getLoadingMutableStateFlow().value = true
             }
             .onCompletion {
-                viewModel.getLoadingMutableStateFlow().value = false
+                t.getLoadingMutableStateFlow().value = false
             }
 }
-fun <T> Flow<UseCaseResult<T>>.bindError(viewModel: ViewModel): Flow<UseCaseResult<T>> {
+
+fun <F, T> Flow<UseCaseResult<F>>.bindError(t: T): Flow<UseCaseResult<F>> where T : ViewErrorAware, T : ViewModel {
     return this
             .onError {
-                viewModel.emitViewError(it.mapToViewError())
+                t.emitViewError(it.mapToViewError())
             }
 }
+
+
+
