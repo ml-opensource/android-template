@@ -13,25 +13,21 @@ sealed class UseCaseResult<out T> {
 }
 
 suspend inline fun <T> safeUseCase(
-        crossinline block: suspend () -> RepositoryResult<T>
+        crossinline block: suspend () -> T
 ): UseCaseResult<T> = try {
-    when (val repoResult = block()) {
-        is RepositoryResult.Success -> UseCaseResult.Success(repoResult.value)
-        is RepositoryResult.Error -> UseCaseResult.Error(repoResult.error)
-    }
-} catch (e: Exception) {
+    UseCaseResult.Success(block())
+} catch (e: ErrorModel) {
     UseCaseResult.Error(e.toError())
 }
 
 inline fun <T> safeFlow(
-        crossinline block: suspend () -> RepositoryResult<T>
+        crossinline block: suspend () -> T
 ): Flow<UseCaseResult<T>> = flow {
     try {
-        val res = when (val repoResult = block()) {
-            is RepositoryResult.Success -> UseCaseResult.Success(repoResult.value)
-            is RepositoryResult.Error -> UseCaseResult.Error(repoResult.error)
-        }
-        emit(res)
+        val repoResult = block()
+        emit(UseCaseResult.Success(repoResult))
+    } catch (e: ErrorModel) {
+        emit(UseCaseResult.Error(e))
     } catch (e: Exception) {
         emit(UseCaseResult.Error(e.toError()))
     }
