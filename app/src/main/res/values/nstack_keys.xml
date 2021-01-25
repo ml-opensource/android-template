@@ -1,0 +1,24 @@
+<resources>
+  <string name='nstack_default_cancel' formatted='false'>{default_cancel}</string>
+  <string name='nstack_default_ok' formatted='false'>{default_ok}</string>
+  <string name='nstack_default_no' formatted='false'>{default_no}</string>
+  <string name='nstack_default_yes' formatted='false'>{default_yes}</string>
+  <string name='nstack_default_retry' formatted='false'>{default_retry}</string>
+  <string name='nstack_default_edit' formatted='false'>{default_edit}</string>
+  <string name='nstack_default_save' formatted='false'>{default_save}</string>
+  <string name='nstack_default_back' formatted='false'>{default_back}</string>
+  <string name='nstack_default_settings' formatted='false'>{default_settings}</string>
+  <string name='nstack_default_later' formatted='false'>{default_later}</string>
+  <string name='nstack_default_next' formatted='false'>{default_next}</string>
+  <string name='nstack_default_previous' formatted='false'>{default_previous}</string>
+  <string name='nstack_default_skip' formatted='false'>{default_skip}</string>
+  <string name='nstack_default_testtest' formatted='false'>{default_testtest}</string>
+  <string name='nstack_donate_donateButton' formatted='false'>{donate_donateButton}</string>
+  <string name='nstack_donate_donateAgainButton' formatted='false'>{donate_donateAgainButton}</string>
+  <string name='nstack_donate_title' formatted='false'>{donate_title}</string>
+  <string name='nstack_error_authenticationError' formatted='false'>{error_authenticationError}</string>
+  <string name='nstack_error_connectionError' formatted='false'>{error_connectionError}</string>
+  <string name='nstack_error_errorTitle' formatted='false'>{error_errorTitle}</string>
+  <string name='nstack_error_unknownError' formatted='false'>{error_unknownError}</string>
+  <string name='nstack_error_errorRandom' formatted='false'>{error_errorRandom}</string>
+</resources>

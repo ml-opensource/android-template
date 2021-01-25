@@ -1,4 +1,4 @@
-package com.monstarlab.core.data.mappers
+package com.monstarlab.core.data.network.dtos
 
 import com.monstarlab.core.data.network.dtos.UserDto
 import com.monstarlab.core.domain.model.User

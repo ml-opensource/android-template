@@ -9,7 +9,7 @@ data class RepositoryException(
 ) : RuntimeException(msg)
 
 fun <T> Response<T>.mapToRepositoryException(): RepositoryException {
-    return com.monstarlab.core.data.repositories.RepositoryException(
+    return RepositoryException(
             code = code(),
             errorBody = errorBody()?.string(),
             msg = message()

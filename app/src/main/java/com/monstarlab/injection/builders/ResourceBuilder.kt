@@ -7,7 +7,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.multibindings.IntoMap
-import dk.nodes.template.injection.modules.ViewModelKey
+import com.monstarlab.injection.modules.ViewModelKey
 
 @Module
 internal abstract class ResourceBuilder {

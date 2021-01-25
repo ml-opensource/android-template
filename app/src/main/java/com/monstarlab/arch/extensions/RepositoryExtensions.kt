@@ -28,4 +28,3 @@ inline fun <T, R> Response<T>.mapSuccess(
         throw toError()
     }
 }
-
