@@ -28,27 +28,3 @@ inline fun <T, R> Response<T>.mapSuccess(
         throw toError()
     }
 }
-
-sealed class RepositoryResult<out T> {
-    data class Success<T>(val value: T): RepositoryResult<T>()
-    data class Error(val error: ErrorModel): RepositoryResult<Nothing>()
-}
-
-inline fun <T> RepositoryResult<T>.onSuccess(block: (T) -> Unit): RepositoryResult<T> {
-    if(this is RepositoryResult.Success) block.invoke(value)
-    return this
-}
-
-inline fun <T> RepositoryResult<T>.onError(block: (ErrorModel) -> Unit): RepositoryResult<T> {
-    if(this is RepositoryResult.Error) block.invoke(error)
-    return this
-}
-
-fun <T> RepositoryResult<T>.isError(): Boolean {
-    return this is RepositoryResult.Error
-}
-
-val <T> RepositoryResult<T>.errorOrNull: ErrorModel?
-    get() {
-        return if(this is RepositoryResult.Error) error else null
-    }
