@@ -7,31 +7,25 @@ import java.io.IOException
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.contract
 
-
-inline fun <T> safeCall(
-        block: () -> Response<T>
-): RepositoryResult<T>  {
+inline fun <T> repoCall(
+    block: () -> Response<T>
+): T {
     val response = block()
     val body = response.body()
     return when (response.isSuccessful && body != null) {
-        true -> RepositoryResult.Success(body)
-        false -> RepositoryResult.Error(response.toError())
+        true -> body
+        false -> throw response.toError()
     }
 }
 
-fun <T> Response<out T>.toResult(): RepositoryResult<T>  {
-    val body = this.body()
-    return when (this.isSuccessful && body != null) {
-        true -> RepositoryResult.Success(body)
-        false -> RepositoryResult.Error(this.toError())
-    }
-}
-
-fun <T, R> Response<out T>.toResultAndMap(transform: (T) -> R): RepositoryResult<R>  {
-    val body = this.body()
-    return when (this.isSuccessful && body != null) {
-        true -> RepositoryResult.Success(transform(body))
-        false -> RepositoryResult.Error(this.toError())
+inline fun <T, R> Response<T>.mapSuccess(
+    crossinline block: (T) -> R
+): R {
+    val safeBody = body()
+    if(this.isSuccessful && safeBody != null) {
+        return block(safeBody)
+    } else {
+        throw toError()
     }
 }
 
