@@ -1,7 +1,6 @@
 package com.monstarlab.core.usecases.resources
 
-import com.monstarlab.arch.extensions.Result
-import com.monstarlab.arch.extensions.safeFlow
+import com.monstarlab.arch.extensions.SealedResult
 import com.monstarlab.core.data.repositories.ResourceRepository
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
@@ -13,7 +12,7 @@ class GetResourcesUseCase @Inject constructor(
 
     fun getResources() = flow {
         delay(2000)
-        emit(Result { resourceRepository.getResources() })
+        emit(SealedResult { resourceRepository.getResources() })
     }
 
 }
