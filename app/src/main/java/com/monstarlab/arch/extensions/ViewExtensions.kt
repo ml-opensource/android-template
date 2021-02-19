@@ -1,13 +1,12 @@
 package com.monstarlab.arch.extensions
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.zip
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.*
 
 fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
     safeViewCollect {
@@ -78,3 +77,13 @@ fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>,  collectBlock: 
         }
     }
 }
+
+fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
+    this@clicks.setOnClickListener {
+        offer(Unit)
+    }
+    awaitClose { this@clicks.setOnClickListener(null) }
+}.throttleFirst(throttleTime)
+
+fun View.onClick(listenerBlock: (View) -> Unit) =
+    setOnClickListener(DebounceOnClickListener(listenerBlock =  listenerBlock))

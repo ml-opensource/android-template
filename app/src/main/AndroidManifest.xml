@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.monstarlab">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Androidtemplate">
@@ -17,6 +20,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- nstack app id and key from build.gradle manifest placeholder -->
+        <meta-data
+            android:name="dk.nodes.nstack.appId"
+            android:value="${appId}"
+            tools:replace="android:value" />
+        <meta-data
+            android:name="dk.nodes.nstack.apiKey"
+            android:value="${apiKey}"
+            tools:replace="android:value" />
+
+        <meta-data
+            android:name="dk.nodes.nstack.env"
+            android:value="${env}"
+            tools:replace="android:value" />
+
     </application>
 
 </manifest>

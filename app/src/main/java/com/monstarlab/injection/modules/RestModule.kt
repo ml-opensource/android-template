@@ -42,13 +42,15 @@ class RestModule {
         return Retrofit.Builder()
                 .client(client)
                 .baseUrl(BuildConfig.API_URL)
-                .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+                .addConverterFactory(Json {
+                    ignoreUnknownKeys = true
+                }.asConverterFactory("application/json".toMediaType()))
                 .build()
     }
 
     @Provides
     @Singleton
     fun provideApi(retrofit: Retrofit): Api {
-        return retrofit.create<Api>(Api::class.java)
+        return retrofit.create(Api::class.java)
     }
 }

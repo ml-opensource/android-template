@@ -1,4 +1,4 @@
-package dk.nodes.template.injection.modules
+package com.monstarlab.injection.modules
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

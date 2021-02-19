@@ -7,6 +7,6 @@ import javax.inject.Inject
 
 class PostPreferenceStore @Inject constructor(
     sharedPreferences: SharedPreferences
-): SharedPreferenceDataStore<Post>(sharedPreferences) {
+): SharedPreferenceDataStore<Post>(sharedPreferences, Post.serializer()) {
 
 }
