@@ -33,6 +33,15 @@ inline fun <T> safeFlow(
     }
 }
 
+fun <T> observableFlow(block: suspend FlowCollector<T>.() -> Unit): Flow<UseCaseResult<T>> = flow(block)
+    .catch { exception ->
+        Timber.e(exception)
+        UseCaseResult.Error(exception.toError())
+    }
+    .map {
+        UseCaseResult.Success(it)
+    }
+
 fun <T> Flow<UseCaseResult<T>>.onSuccess(action: suspend (T) -> Unit): Flow<UseCaseResult<T>> = transform { result ->
     if(result is UseCaseResult.Success<T>) {
         action(result.value)
