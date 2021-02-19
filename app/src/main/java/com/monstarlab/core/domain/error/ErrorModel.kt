@@ -1,6 +1,6 @@
 package com.monstarlab.core.domain.error
 
-sealed class ErrorModel {
+sealed class ErrorModel: Throwable() {
 
     sealed class Http: ErrorModel() {
         object BadRequest: Http()
@@ -13,7 +13,7 @@ sealed class ErrorModel {
 
         data class Custom(
                 val code: Int?,
-                val message: String?,
+                override val message: String?,
                 val errorBody: String?
         ): Http()
     }

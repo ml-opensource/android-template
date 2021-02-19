@@ -12,6 +12,7 @@ import com.monstarlab.R
 import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.arch.extensions.clicks
 import com.monstarlab.arch.extensions.collectFlow
+import com.monstarlab.arch.extensions.combineFlows
 import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.databinding.FragmentLoginBinding
 import kotlinx.coroutines.flow.launchIn
@@ -41,7 +42,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
 
         collectFlow(viewModel.loadingFlow) { loading ->
-            TransitionManager.beginDelayedTransition(binding.loginRootView)
+            TransitionManager.beginDelayedTransition(binding.root)
             binding.loginEmailEditText.isEnabled = !loading
             binding.loginPasswordEditText.isEnabled = !loading
             binding.loginButton.visibility = if(loading) View.GONE else View.VISIBLE
