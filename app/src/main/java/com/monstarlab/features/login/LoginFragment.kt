@@ -12,6 +12,7 @@ import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.arch.extensions.clicks
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.combineFlows
+import com.monstarlab.arch.extensions.snackErrorFlow
 import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.databinding.FragmentLoginBinding
 import kotlinx.coroutines.flow.launchIn
@@ -37,9 +38,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.resourceFragment)
         }
 
-        collectFlow(viewModel.errorFlow) { viewError ->
-            Snackbar.make(view, viewError.message, Snackbar.LENGTH_SHORT).show()
-        }
+        snackErrorFlow(viewModel.errorFlow, view)
 
         collectFlow(viewModel.loadingFlow) { loading ->
             TransitionManager.beginDelayedTransition(binding.root)
