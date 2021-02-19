@@ -5,7 +5,6 @@ import com.monstarlab.injection.modules.*
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
-import dk.nodes.template.injection.modules.*
 import javax.inject.Singleton
 
 @Component(
