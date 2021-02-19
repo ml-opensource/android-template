@@ -32,13 +32,22 @@ val <T> T.viewErrorFlow: SharedFlow<ViewError> where T : ViewErrorAware, T : Vie
 
 val <T> T.loadingFlow: StateFlow<Boolean> where T : LoadingAware, T : ViewModel
     get() {
-        return getLoadingMutableStateFlow()
+        return loadingMutableStateFlow
     }
 
-private fun <T> T.getLoadingMutableStateFlow(): MutableStateFlow<Boolean> where T : LoadingAware, T : ViewModel {
-    val flow: MutableStateFlow<Boolean>? = getTag(LOADING_FLOW_KEY)
-    return flow ?: setTagIfAbsent(LOADING_FLOW_KEY, MutableStateFlow(false))
-}
+var <T> T.isLoading: Boolean where T : LoadingAware, T : ViewModel
+    get() {
+        return loadingMutableStateFlow.value
+    }
+    set(value) {
+        loadingMutableStateFlow.tryEmit(value)
+    }
+
+private val <T> T.loadingMutableStateFlow: MutableStateFlow<Boolean> where T : LoadingAware, T : ViewModel
+    get() {
+        val flow: MutableStateFlow<Boolean>? = getTag(LOADING_FLOW_KEY)
+        return flow ?: setTagIfAbsent(LOADING_FLOW_KEY, MutableStateFlow(false))
+    }
 
 private fun <T> T.getErrorMutableSharedFlow(): MutableSharedFlow<ViewError> where T : ViewErrorAware, T : ViewModel {
     val flow: MutableSharedFlow<ViewError>? = getTag(ERROR_FLOW_KEY)
@@ -48,10 +57,10 @@ private fun <T> T.getErrorMutableSharedFlow(): MutableSharedFlow<ViewError> wher
 fun <F, T> Flow<F>.bindLoading(t: T): Flow<F> where T : LoadingAware, T : ViewModel {
     return this
             .onStart {
-                t.getLoadingMutableStateFlow().value = true
+                t.loadingMutableStateFlow.value = true
             }
             .onCompletion {
-                t.getLoadingMutableStateFlow().value = false
+                t.loadingMutableStateFlow.value = false
             }
 }
 
