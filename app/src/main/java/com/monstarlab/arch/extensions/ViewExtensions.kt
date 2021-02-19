@@ -1,12 +1,19 @@
 package com.monstarlab.arch.extensions
 
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
+
+fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
+    collectFlow(targetFlow) { loading ->
+        view.forEach { it.isVisible = loading }
+    }
+}
 
 fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
     safeViewCollect {
