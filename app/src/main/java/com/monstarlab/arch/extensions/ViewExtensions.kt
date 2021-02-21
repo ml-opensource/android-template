@@ -92,5 +92,5 @@ fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
     awaitClose { this@clicks.setOnClickListener(null) }
 }.throttleFirst(throttleTime)
 
-fun View.onClick(listenerBlock: (View) -> Unit) =
-    setOnClickListener(DebounceOnClickListener(listenerBlock =  listenerBlock))
+fun View.onClick(interval: Long = 400L, listenerBlock: (View) -> Unit) =
+    setOnClickListener(DebounceOnClickListener(interval, listenerBlock))
