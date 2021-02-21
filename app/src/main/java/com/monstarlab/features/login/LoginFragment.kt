@@ -2,6 +2,8 @@ package com.monstarlab.features.login
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
@@ -10,6 +12,7 @@ import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.onClick
 import com.monstarlab.arch.extensions.viewBinding
+import com.monstarlab.arch.extensions.visibilityFlow
 import com.monstarlab.databinding.FragmentLoginBinding
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
@@ -35,12 +38,13 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             Snackbar.make(view, viewError.message, Snackbar.LENGTH_SHORT).show()
         }
 
+        visibilityFlow(viewModel.loadingFlow, binding.loginProgressBar)
+
         collectFlow(viewModel.loadingFlow) { loading ->
             TransitionManager.beginDelayedTransition(binding.root)
             binding.loginEmailEditText.isEnabled = !loading
             binding.loginPasswordEditText.isEnabled = !loading
-            binding.loginButton.visibility = if(loading) View.GONE else View.VISIBLE
-            binding.loginProgressBar.visibility = if(loading) View.VISIBLE else View.GONE
+            binding.loginButton.isVisible = !loading
         }
     }
 }
