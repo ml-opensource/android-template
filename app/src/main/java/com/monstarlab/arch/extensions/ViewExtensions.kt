@@ -6,8 +6,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.snackbar.Snackbar
+import com.monstarlab.core.sharedui.errorhandling.ViewError
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
+
+fun Fragment.snackErrorFlow(targetFlow: SharedFlow<ViewError>, root: View, length: Int = Snackbar.LENGTH_SHORT) {
+    collectFlow(targetFlow) { viewError ->
+        Snackbar.make(root, viewError.message, length).show()
+    }
+}
 
 fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
     collectFlow(targetFlow) { loading ->
