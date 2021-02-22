@@ -10,7 +10,7 @@ class LoginUseCase @Inject constructor(
         private val userRepository: UserRepository
 ) {
 
-    fun login(email: String, password: String): Flow<UseCaseResult<User>> = safeFlow {
+    fun login(email: String, password: String): Flow<UseCaseResult<User>> = useCaseFlow {
         userRepository.login(email, password)
         userRepository.getUser()
     }
