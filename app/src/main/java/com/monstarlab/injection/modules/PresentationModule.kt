@@ -5,9 +5,11 @@ import com.monstarlab.injection.builders.MainActivityBuilder
 import com.monstarlab.injection.builders.ResourceBuilder
 import dagger.Module
 
-@Module(includes = [
-    MainActivityBuilder::class,
-    ResourceBuilder::class,
-    LoginBuilder::class
-])
+@Module(
+    includes = [
+        MainActivityBuilder::class,
+        ResourceBuilder::class,
+        LoginBuilder::class
+    ]
+)
 class PresentationModule

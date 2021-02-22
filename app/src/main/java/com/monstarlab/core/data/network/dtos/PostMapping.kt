@@ -1,6 +1,5 @@
 package com.monstarlab.core.data.network.dtos
 
-import com.monstarlab.core.data.network.dtos.PostDto
 import com.monstarlab.core.domain.model.Post
 
 fun PostDto.toEntity(): Post {

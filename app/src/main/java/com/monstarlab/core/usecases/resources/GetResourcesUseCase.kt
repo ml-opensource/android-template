@@ -13,5 +13,4 @@ class GetResourcesUseCase @Inject constructor(
         delay(2000)
         resourceRepository.getResources()
     }
-
 }

@@ -8,12 +8,16 @@ import com.monstarlab.core.domain.model.Resource
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
 import com.monstarlab.core.usecases.resources.GetResourcesUseCase
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class ResourceViewModel @Inject constructor(
-        private val getResourcesUseCase: GetResourcesUseCase
-): ViewModel() {
+    private val getResourcesUseCase: GetResourcesUseCase
+) : ViewModel() {
 
     val loadingFlow = MutableStateFlow(false)
     val errorFlow = MutableSharedFlow<ViewError>()
@@ -32,5 +36,4 @@ class ResourceViewModel @Inject constructor(
                 loadingFlow.emit(false)
             }.launchIn(viewModelScope)
     }
-
 }

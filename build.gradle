@@ -2,12 +2,12 @@
 buildscript {
 
     ext.versions = [
-            kotlin              : '1.4.21',
+            kotlin              : '1.4.30',
             appcompat           : '1.2.0',
             coroutines          : '1.4.2',
             constraint_layout   : '2.0.1',
             dagger              : '2.30.1',
-            lifecycle           : '2.2.0',
+            lifecycle           : '2.3.0',
             timber              : "4.7.1",
             junit               : '4.13.1',
             espresso            : '3.3.0',
@@ -41,7 +41,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
         // NOTE: Do not place your application dependencies here; they belong
@@ -65,7 +65,8 @@ subprojects {
     spotless {
         kotlin {
             target "**/*.kt"
-            ktlint('0.40.0')
+            ktlint('0.40.0').userData(["disabled_rules" : "no-wildcard-imports"])
+            targetExclude("**/RateReminderActions.kt")
         }
     }
 }

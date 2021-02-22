@@ -10,8 +10,8 @@ data class RepositoryException(
 
 fun <T> Response<T>.mapToRepositoryException(): RepositoryException {
     return RepositoryException(
-            code = code(),
-            errorBody = errorBody()?.string(),
-            msg = message()
+        code = code(),
+        errorBody = errorBody()?.string(),
+        msg = message()
     )
 }

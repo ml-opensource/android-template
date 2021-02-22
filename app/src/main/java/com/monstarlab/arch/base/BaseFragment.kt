@@ -6,13 +6,13 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import dagger.android.support.AndroidSupportInjection
 import com.google.android.material.transition.MaterialFadeThrough
 import com.monstarlab.arch.extensions.getSharedViewModel
 import com.monstarlab.arch.extensions.getViewModel
 import com.monstarlab.arch.extensions.lifecycleAwareLazy
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment, HasAndroidInjector {

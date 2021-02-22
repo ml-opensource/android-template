@@ -5,5 +5,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserResponse(
-        val data: UserDto
+    val data: UserDto
 )

@@ -3,18 +3,15 @@ package com.monstarlab.features.login
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.loadingFlow
 import androidx.lifecycle.viewErrorFlow
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionManager
-import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
 import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.arch.extensions.combineFlows
-import com.monstarlab.arch.extensions.snackErrorFlow
 import com.monstarlab.arch.extensions.onClick
+import com.monstarlab.arch.extensions.snackErrorFlow
 import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.arch.extensions.visibilityFlow
 import com.monstarlab.databinding.FragmentLoginBinding
@@ -38,7 +35,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             findNavController().navigate(R.id.resourceFragment)
         }
 
-        snackErrorFlow(viewModel.errorFlow, view)
+        snackErrorFlow(viewModel.viewErrorFlow, view)
         visibilityFlow(viewModel.loadingFlow, binding.loginProgressBar)
 
         collectFlow(viewModel.loadingFlow) { loading ->

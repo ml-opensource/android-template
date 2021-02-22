@@ -42,8 +42,7 @@ fun <T> Flow<T>.throttleFirst(windowDuration: Long): Flow<T> = flow {
     collect { upstream ->
         val currentTime = System.currentTimeMillis()
         val mayEmit = currentTime - lastEmissionTime > windowDuration
-        if (mayEmit)
-        {
+        if (mayEmit) {
             lastEmissionTime = currentTime
             emit(upstream)
         }

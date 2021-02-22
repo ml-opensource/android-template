@@ -20,7 +20,8 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
                     this@observeLifecycleOwnerThroughLifecycleCreation,
                     Observer { viewLifecycleOwner ->
                         viewLifecycleOwner.viewOwner()
-                    })
+                    }
+                )
             }
         })
     }
