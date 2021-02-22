@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.loadingFlow
+import androidx.lifecycle.viewErrorFlow
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
@@ -37,7 +39,6 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
 
         snackErrorFlow(viewModel.errorFlow, view)
-
         visibilityFlow(viewModel.loadingFlow, binding.loginProgressBar)
 
         collectFlow(viewModel.loadingFlow) { loading ->
