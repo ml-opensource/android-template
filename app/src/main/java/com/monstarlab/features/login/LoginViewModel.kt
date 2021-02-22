@@ -1,6 +1,9 @@
 package com.monstarlab.features.login
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.bindError
+import androidx.lifecycle.bindLoading
+import androidx.lifecycle.viewModelScope
 import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.ViewErrorAware
 import com.monstarlab.arch.extensions.onSuccess
@@ -17,12 +20,12 @@ class LoginViewModel @Inject constructor(
 
     fun login(email: String, password: String) {
         loginUseCase
-                .login(email, password)
-                .bindLoading(this)
-                .bindError(this)
-                .onSuccess {
-                    loginResultFlow.emit(true)
-                }
-                .launchIn(viewModelScope)
+            .login(email, password)
+            .bindLoading(this)
+            .bindError(this)
+            .onSuccess {
+                loginResultFlow.emit(true)
+            }
+            .launchIn(viewModelScope)
     }
 }

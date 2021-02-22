@@ -2,7 +2,6 @@ package com.monstarlab.injection.modules
 
 import android.content.Context
 import com.monstarlab.App
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 

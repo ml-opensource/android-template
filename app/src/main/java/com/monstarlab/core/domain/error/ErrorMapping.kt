@@ -1,7 +1,6 @@
 package com.monstarlab.core.domain.error
 
 import kotlinx.serialization.SerializationException
-import kotlinx.serialization.json.JsonDecoder
 import retrofit2.Response
 import java.io.IOException
 import java.net.SocketTimeoutException
@@ -16,15 +15,15 @@ fun <T> Response<T>.toError(): ErrorModel.Http {
         code() == 405 -> ErrorModel.Http.MethodNotAllowed
         code() in 500..600 -> ErrorModel.Http.ServerError
         else -> ErrorModel.Http.Custom(
-                code(),
-                message(),
-                errorBody()?.string()
+            code(),
+            message(),
+            errorBody()?.string()
         )
     }
 }
 
 fun Throwable.toError(): ErrorModel {
-    return when(this) {
+    return when (this) {
         is SocketTimeoutException -> ErrorModel.Connection.Timeout
         is UnknownHostException -> ErrorModel.Connection.UnknownHost
         is IOException -> ErrorModel.Connection.IOError

@@ -8,5 +8,4 @@ object MockSuspends {
         delay(5000)
         return "Hello world from suspend"
     }
-
 }

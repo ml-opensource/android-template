@@ -40,7 +40,8 @@ private inline fun Fragment.safeViewCollect(crossinline viewOwner: LifecycleOwne
                 this@safeViewCollect,
                 { viewLifecycleOwner ->
                     viewLifecycleOwner.viewOwner()
-                })
+                }
+            )
         }
     })
 }
@@ -57,7 +58,7 @@ fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBloc
     }
 }
 
-fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>,  collectBlock: ((T1, T2, T3) -> Unit)) {
+fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, collectBlock: ((T1, T2, T3) -> Unit)) {
     safeViewCollect {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             combine(flow1, flow2, flow3) { v1, v2, v3 ->
@@ -81,7 +82,7 @@ fun <T1, T2, T3, T4> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flo
     }
 }
 
-fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>,  collectBlock: ((T1, T2) -> Unit)) {
+fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
     safeViewCollect {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             flow1.zip(flow2) { v1, v2 ->

@@ -1,11 +1,7 @@
 package com.monstarlab.arch.extensions
 
-import com.monstarlab.core.domain.error.ErrorModel
 import com.monstarlab.core.domain.error.toError
 import retrofit2.Response
-import java.io.IOException
-import kotlin.contracts.ExperimentalContracts
-import kotlin.contracts.contract
 
 inline fun <T> repoCall(
     block: () -> Response<T>
@@ -22,7 +18,7 @@ inline fun <T, R> Response<T>.mapSuccess(
     crossinline block: (T) -> R
 ): R {
     val safeBody = body()
-    if(this.isSuccessful && safeBody != null) {
+    if (this.isSuccessful && safeBody != null) {
         return block(safeBody)
     } else {
         throw toError()

@@ -46,14 +46,14 @@ fun <T> observableFlow(block: suspend FlowCollector<T>.() -> Unit): Flow<UseCase
     }
 
 fun <T> Flow<UseCaseResult<T>>.onSuccess(action: suspend (T) -> Unit): Flow<UseCaseResult<T>> = transform { result ->
-    if(result is UseCaseResult.Success<T>) {
+    if (result is UseCaseResult.Success<T>) {
         action(result.value)
     }
     return@transform emit(result)
 }
 
 fun <T> Flow<UseCaseResult<T>>.onError(action: suspend (ErrorModel) -> Unit): Flow<UseCaseResult<T>> = transform { result ->
-    if(result is UseCaseResult.Error) {
+    if (result is UseCaseResult.Error) {
         action(result.error)
     }
     return@transform emit(result)

@@ -11,7 +11,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -40,12 +39,14 @@ class RestModule {
         client: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-                .client(client)
-                .baseUrl(BuildConfig.API_URL)
-                .addConverterFactory(Json {
+            .client(client)
+            .baseUrl(BuildConfig.API_URL)
+            .addConverterFactory(
+                Json {
                     ignoreUnknownKeys = true
-                }.asConverterFactory("application/json".toMediaType()))
-                .build()
+                }.asConverterFactory("application/json".toMediaType())
+            )
+            .build()
     }
 
     @Provides

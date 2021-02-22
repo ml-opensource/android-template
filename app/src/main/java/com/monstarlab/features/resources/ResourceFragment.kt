@@ -34,8 +34,8 @@ class ResourceFragment : BaseFragment(R.layout.fragment_resource) {
 
         collectFlow(viewModel.loadingFlow) { loading ->
             TransitionManager.beginDelayedTransition(binding.root)
-            binding.resourceRecyclerView.visibility = if(loading) View.GONE else View.VISIBLE
-            binding.resourceProgressBar.visibility = if(loading) View.VISIBLE else View.GONE
+            binding.resourceRecyclerView.visibility = if (loading) View.GONE else View.VISIBLE
+            binding.resourceProgressBar.visibility = if (loading) View.VISIBLE else View.GONE
         }
 
         viewModel.fetchResources()

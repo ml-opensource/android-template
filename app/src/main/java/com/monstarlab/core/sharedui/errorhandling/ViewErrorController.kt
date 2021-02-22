@@ -1,11 +1,9 @@
 package com.monstarlab.core.sharedui.errorhandling
 
-import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import com.monstarlab.core.data.repositories.RepositoryException
 import com.monstarlab.core.domain.error.ErrorModel
 import javax.inject.Inject
 
@@ -48,32 +46,32 @@ fun ErrorModel.mapToViewError(): ViewError {
         is ErrorModel.Http.Forbidden,
         is ErrorModel.Http.Unauthorized -> {
             ViewError(
-                    title = "Translation.error.errorTitle",
-                    message = "Translation.error.authenticationError",
+                title = "Translation.error.errorTitle",
+                message = "Translation.error.authenticationError",
             )
         }
         is ErrorModel.Http.ServerError -> {
             ViewError(
-                    title = "Translation.error.errorTitle",
-                    message = "Translation.error.unknownError",
+                title = "Translation.error.errorTitle",
+                message = "Translation.error.unknownError",
             )
         }
         is ErrorModel.Http -> {
             ViewError(
-                    title = "Translation.error.errorTitle",
-                    message = "Translation.error.unknownError",
+                title = "Translation.error.errorTitle",
+                message = "Translation.error.unknownError",
             )
         }
         is ErrorModel.Connection -> {
             ViewError(
-                    title = "Translation.error.errorTitle",
-                    message = "Translation.error.unknownError",
+                title = "Translation.error.errorTitle",
+                message = "Translation.error.unknownError",
             )
         }
         else -> {
             ViewError(
-                    title = "Translation.error.errorTitle",
-                    message = "Translation.error.unknownError",
+                title = "Translation.error.errorTitle",
+                message = "Translation.error.unknownError",
             )
         }
     }

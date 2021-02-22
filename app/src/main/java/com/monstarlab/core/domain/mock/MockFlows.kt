@@ -3,7 +3,6 @@ package com.monstarlab.core.domain.mock
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.lang.RuntimeException
 
 object MockFlows {
 
@@ -19,5 +18,4 @@ object MockFlows {
         delay(2000)
         emit(true)
     }
-
 }

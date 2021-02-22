@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class GetPostsUseCase @Inject constructor(
     private val postRepository: PostRepository
-){
+) {
     fun getPosts(): Flow<UseCaseResult<List<Post>>> = useCaseFlow {
         postRepository.getPosts()
     }
