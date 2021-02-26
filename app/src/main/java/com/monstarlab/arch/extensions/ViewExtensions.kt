@@ -11,7 +11,11 @@ import com.monstarlab.core.sharedui.errorhandling.ViewError
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 
-fun Fragment.snackErrorFlow(targetFlow: SharedFlow<ViewError>, root: View, length: Int = Snackbar.LENGTH_SHORT) {
+fun Fragment.snackErrorFlow(
+    targetFlow: SharedFlow<ViewError>,
+    root: View,
+    length: Int = Snackbar.LENGTH_SHORT
+) {
     collectFlow(targetFlow) { viewError ->
         Snackbar.make(root, viewError.message, length).show()
     }
@@ -24,13 +28,7 @@ fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
 }
 
 fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
-    safeViewCollect {
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
-            targetFlow.collect {
-                collectBlock.invoke(it)
-            }
-        }
-    }
+    targetFlow.observeIn(viewLifecycleOwner, collectBlock::invoke)
 }
 
 private inline fun Fragment.safeViewCollect(crossinline viewOwner: LifecycleOwner.() -> Unit) {
@@ -46,7 +44,11 @@ private inline fun Fragment.safeViewCollect(crossinline viewOwner: LifecycleOwne
     })
 }
 
-fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
+fun <T1, T2> Fragment.combineFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    collectBlock: ((T1, T2) -> Unit)
+) {
     safeViewCollect {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             flow1.combine(flow2) { v1, v2 ->
@@ -58,7 +60,12 @@ fun <T1, T2> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBloc
     }
 }
 
-fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, collectBlock: ((T1, T2, T3) -> Unit)) {
+fun <T1, T2, T3> Fragment.combineFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    flow3: Flow<T3>,
+    collectBlock: ((T1, T2, T3) -> Unit)
+) {
     safeViewCollect {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             combine(flow1, flow2, flow3) { v1, v2, v3 ->
@@ -70,7 +77,13 @@ fun <T1, T2, T3> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: 
     }
 }
 
-fun <T1, T2, T3, T4> Fragment.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, flow4: Flow<T4>, collectBlock: ((T1, T2, T3, T4) -> Unit)) {
+fun <T1, T2, T3, T4> Fragment.combineFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    flow3: Flow<T3>,
+    flow4: Flow<T4>,
+    collectBlock: ((T1, T2, T3, T4) -> Unit)
+) {
     safeViewCollect {
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->

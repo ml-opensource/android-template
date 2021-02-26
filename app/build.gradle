@@ -114,6 +114,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}")
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:${versions.lifecycle}"
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}")
 
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"

@@ -1,7 +1,9 @@
 package com.monstarlab.features.resources
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.monstarlab.arch.extensions.getStateFlow
 import com.monstarlab.arch.extensions.onError
 import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.core.domain.model.Resource
@@ -18,12 +20,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResourceViewModel @Inject constructor(
-    private val getResourcesUseCase: GetResourcesUseCase
+    private val getResourcesUseCase: GetResourcesUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val loadingFlow = MutableStateFlow(false)
+    val loadingFlow = savedStateHandle.getStateFlow(viewModelScope, "isLoading", false)
+    val resourcesFlow = savedStateHandle.getStateFlow(viewModelScope, "resource", emptyList<Resource>())
+
     val errorFlow = MutableSharedFlow<ViewError>()
-    val resourcesFlow: MutableStateFlow<List<Resource>> = MutableStateFlow(emptyList())
 
     fun fetchResources() {
         getResourcesUseCase
