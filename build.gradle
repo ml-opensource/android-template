@@ -6,7 +6,8 @@ buildscript {
             appcompat           : '1.2.0',
             coroutines          : '1.4.2',
             constraint_layout   : '2.0.1',
-            dagger              : '2.30.1',
+            dagger              : '2.33',
+            hilt : '2.33-beta',
             lifecycle           : '2.3.0',
             timber              : "4.7.1",
             junit               : '4.13.1',
@@ -44,6 +45,7 @@ buildscript {
         classpath "com.android.tools.build:gradle:4.1.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

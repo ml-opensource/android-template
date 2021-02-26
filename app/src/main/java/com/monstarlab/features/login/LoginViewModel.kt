@@ -8,10 +8,12 @@ import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.ViewErrorAware
 import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.core.usecases.user.LoginUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
 
+@HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
