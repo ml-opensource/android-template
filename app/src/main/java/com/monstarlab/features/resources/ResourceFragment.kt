@@ -2,17 +2,20 @@ package com.monstarlab.features.resources
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
-import com.monstarlab.arch.base.BaseFragment
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.databinding.FragmentResourceBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class ResourceFragment : BaseFragment(R.layout.fragment_resource) {
+@AndroidEntryPoint
+class ResourceFragment : Fragment(R.layout.fragment_resource) {
 
-    private val viewModel by viewModel<ResourceViewModel>()
+    private val viewModel by viewModels<ResourceViewModel>()
     private val binding by viewBinding(FragmentResourceBinding::bind)
     private val resourceAdapter = ResourceAdapter()
 
