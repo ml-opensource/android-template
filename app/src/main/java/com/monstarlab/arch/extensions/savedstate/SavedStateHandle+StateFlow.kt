@@ -1,7 +1,8 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.arch.extensions.savedstate
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
+import com.monstarlab.arch.extensions.collectIn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,3 +51,4 @@ fun <T> SavedStateHandle.getStateFlow(
 
     return stateFlow
 }
+

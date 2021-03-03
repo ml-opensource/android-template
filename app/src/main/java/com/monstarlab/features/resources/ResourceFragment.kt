@@ -8,7 +8,8 @@ import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.arch.extensions.viewBinding
+import com.monstarlab.arch.extensions.observeIn
+import com.monstarlab.arch.extensions.viewbinding.viewBinding
 import com.monstarlab.databinding.FragmentResourceBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,6 +26,13 @@ class ResourceFragment : Fragment(R.layout.fragment_resource) {
         with(binding.resourceRecyclerView) {
             adapter = resourceAdapter
         }
+        binding.toggleBtn.setOnClickListener {
+            viewModel.countFlow.value = viewModel.countFlow.value +1
+        }
+        viewModel.mutableBla.observeIn(viewLifecycleOwner) {
+            Snackbar.make(view, "Value is $it", Snackbar.LENGTH_SHORT).show()
+        }
+
 
         collectFlow(viewModel.errorFlow) { errorMessage ->
             Snackbar.make(view, errorMessage.message, Snackbar.LENGTH_SHORT).show()

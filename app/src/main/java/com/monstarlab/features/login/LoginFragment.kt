@@ -13,7 +13,7 @@ import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.onClick
 import com.monstarlab.arch.extensions.snackErrorFlow
-import com.monstarlab.arch.extensions.viewBinding
+import com.monstarlab.arch.extensions.viewbinding.viewBinding
 import com.monstarlab.arch.extensions.visibilityFlow
 import com.monstarlab.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -7,7 +7,7 @@ buildscript {
             coroutines          : '1.4.2',
             constraint_layout   : '2.0.1',
             dagger              : '2.33',
-            hilt : '2.33-beta',
+            hilt                : '2.33-beta',
             lifecycle           : '2.3.0',
             timber              : "4.7.1",
             junit               : '4.13.1',
@@ -67,7 +67,7 @@ subprojects {
     spotless {
         kotlin {
             target "**/*.kt"
-            ktlint('0.40.0').userData(["disabled_rules" : "no-wildcard-imports"])
+            ktlint('0.40.0').userData(["disabled_rules": "no-wildcard-imports"])
             targetExclude("**/RateReminderActions.kt")
         }
     }

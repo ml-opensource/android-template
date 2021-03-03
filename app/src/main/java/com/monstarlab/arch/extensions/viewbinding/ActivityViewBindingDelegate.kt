@@ -1,4 +1,4 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.arch.extensions.viewbinding
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
