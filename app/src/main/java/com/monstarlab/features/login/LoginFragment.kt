@@ -15,8 +15,10 @@ import com.monstarlab.arch.extensions.onClick
 import com.monstarlab.arch.extensions.snackErrorFlow
 import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.arch.extensions.visibilityFlow
+import com.monstarlab.core.navigation.NavigationLifecycleDelegate
 import com.monstarlab.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.ref.WeakReference
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -26,6 +28,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycle.addObserver(NavigationLifecycleDelegate(WeakReference(this), viewModel))
 
         binding.loginButton.onClick {
             viewModel.login(

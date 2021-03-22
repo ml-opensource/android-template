@@ -9,12 +9,22 @@
         android:id="@+id/resourceFragment"
         android:name="com.monstarlab.features.resources.ResourceFragment"
         tools:layout="@layout/fragment_resource"
-        android:label="ResourceFragment" />
+        android:label="ResourceFragment" >
+
+        <argument
+            android:name="sampleMessage"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.monstarlab.features.login.LoginFragment"
         tools:layout="@layout/fragment_login"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+
+        <action
+            android:id="@+id/action_login_to_resource"
+            app:destination="@id/resourceFragment" />
+    </fragment>
 
 </navigation>
