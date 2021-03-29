@@ -3,6 +3,7 @@ package com.monstarlab.arch.extensions
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.core.sharedui.errorhandling.ViewError
@@ -25,9 +26,13 @@ fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
     }
 }
 
-fun <T> Fragment.collectFlow(targetFlow: Flow<T>, collectBlock: ((T) -> Unit)) {
+fun <T> Fragment.collectFlow(
+    targetFlow: Flow<T>,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    collectBlock: ((T) -> Unit)
+) {
     lifecycleScope.launchWhenStarted {
-        targetFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+        targetFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, minActiveState)
             .collect {
                 collectBlock(it)
             }
