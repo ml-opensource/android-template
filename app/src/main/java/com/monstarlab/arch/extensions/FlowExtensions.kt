@@ -1,170 +1,114 @@
 package com.monstarlab.arch.extensions
 
-import android.app.Activity
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleCoroutineScope
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenCreated
-import androidx.lifecycle.whenResumed
-import androidx.lifecycle.whenStarted
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 /**
- * Adds a given [observer] in a pair with a [LifecycleOwner], and this [observer] will be notified
- * about modifications of the wrapped data only if the paired [LifecycleOwner] is in active state.
+ * Copied from AOSP https://android.googlesource.com/platform/frameworks/support/+/67cbbea03d7036f3bd27aae897a3d44b2ee027f5/lifecycle/lifecycle-runtime-ktx/src/main/java/androidx/lifecycle/FlowExt.kt
+ * Flow operator that emits values from `this` upstream Flow when the [lifecycle] is
+ * at least at [minActiveState] state. The emissions will be stopped when the lifecycle state
+ * falls below [minActiveState] state.
  *
- * A [LifecycleOwner] is considered as active, if its state is [Lifecycle.State.STARTED] or
- * [Lifecycle.State.RESUMED].
+ * The flow will automatically start and cancel collecting from `this` upstream flow as the
+ * [lifecycle] moves in and out of the target state.
  *
- * If the [lifecycleOwner] moves to the [Lifecycle.State.DESTROYED] state, the observer will
- * automatically be removed.
+ * If [this] upstream Flow completes emitting items, `flowWithLifecycle` will trigger the flow
+ * collection again when the [minActiveState] state is reached.
  *
- * When data changes while the [lifecycleOwner] is not active, it will not receive any updates.
- * If it becomes active again, it will receive the last available data automatically.
+ * This is NOT a terminal operator. This operator is usually followed by [collect], or
+ * [onEach] and [launchIn] to process the emitted values.
  *
- * [observeIn] keeps a strong reference to the observer and the owner as long as the
- * given [LifecycleOwner] is not destroyed. When it is destroyed, [observeIn] removes references
- * to the observer and the owner.
+ * Note: this operator creates a hot flow that only closes when the [lifecycle] is destroyed or
+ * the coroutine that collects from the flow is cancelled.
  *
- * If the given [lifecycleOwner] is already in [Lifecycle.State.DESTROYED] state, [observeIn]
- * ignores the call. If the given [lifecycleOwner], [observer] tuple is already added, the call is
- * ignored. If the [observer] is already in the list with another [lifecycleOwner], [observeIn]
- * throws an [IllegalArgumentException].
+ * ```
+ * class MyActivity : AppCompatActivity() {
+ *     override fun onCreate(savedInstanceState: Bundle?) {
+ *         /* ... */
+ *         // Launches a coroutine that collects items from a flow when the Activity
+ *         // is at least started. It will automatically cancel when the activity is stopped and
+ *         // start collecting again whenever it's started again.
+ *         lifecycleScope.launch {
+ *             flow
+ *                 .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+ *                 .collect {
+ *                     // Consume flow emissions
+ *                  }
+ *         }
+ *     }
+ * }
+ * ```
  *
- * @param lifecycleOwner: the [LifecycleOwner] which controls the observer.
- * @param observer: the observer that will receive the events.
+ * Warning: [Lifecycle.State.INITIALIZED] is not allowed in this API. Passing it as a
+ * parameter will throw an [IllegalArgumentException].
+ *
+ * Tip: If multiple flows need to be collected using `flowWithLifecycle`, consider using
+ * the [LifecycleOwner.addRepeatingJob] API to collect from all of them using a different
+ * [launch] per flow instead. This will be more efficient as only one [LifecycleObserver] will be
+ * added to the [lifecycle] instead of one per flow.
+ *
+ * @param lifecycle The [Lifecycle] where the restarting collecting from `this` flow work will be
+ * kept alive.
+ * @param minActiveState [Lifecycle.State] in which the upstream flow gets collected. The
+ * collection will stop if the lifecycle falls below that state, and will restart if it's in that
+ * state again.
+ * @return [Flow] that only emits items from `this` upstream flow when the [lifecycle] is at
+ * least in the [minActiveState].
  */
-fun <T> Flow<T>.observeIn(lifecycleOwner: LifecycleOwner, observer: (T) -> Unit) {
-    asLiveData().observe(lifecycleOwner, observer)
+@OptIn(ExperimentalCoroutinesApi::class)
+public fun <T> Flow<T>.flowWithLifecycle(
+    lifecycle: Lifecycle,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED
+): Flow<T> = callbackFlow {
+    lifecycle.repeatOnLifecycle(minActiveState) {
+        this@flowWithLifecycle.collect {
+            send(it)
+        }
+    }
+    close()
 }
 
-/**
- * Launches and runs the given [Flow] associated with the scope of the [Lifecycle].
- *
- * The returned [Job] will be cancelled when the [Lifecycle] is [Lifecycle.State.DESTROYED].
- * @see launchIn
- */
-fun <T> Flow<T>.launchIn(lifecycleOwner: LifecycleOwner): Job {
-    return launchIn(lifecycleOwner.lifecycleScope)
+fun <T1, T2> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: (suspend (T1, T2) -> Unit)) {
+    launch {
+        flow1.combine(flow2) { v1, v2 ->
+            collectBlock.invoke(v1, v2)
+        }.collect {
+            // Empty collect block to trigger ^
+        }
+    }
 }
 
-/**
- * @see launchIn
- */
-inline fun <T> Flow<T>.collectIn(
-    scope: CoroutineScope,
-    crossinline action: suspend (value: T) -> Unit
-): Job {
-    return scope.launch { collect(action) }
+fun <T1, T2, T3> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, collectBlock: (suspend (T1, T2, T3) -> Unit)) {
+    launch {
+        combine(flow1, flow2, flow3) { v1, v2, v3 ->
+            collectBlock.invoke(v1, v2, v3)
+        }.collect {
+            // Empty collect block to trigger ^
+        }
+    }
 }
 
-/**
- * Launches and runs the given [Flow] when the [Lifecycle] controlling this
- * [LifecycleCoroutineScope] is at least in [Lifecycle.State.CREATED] state.
- *
- * For an [Activity], this state will be reached in two cases:
- * - after [Activity.onCreate] call;
- * - right before [Activity.onStop] call.
- *
- * The returned [Job] will be cancelled when the [Lifecycle] is [Lifecycle.State.DESTROYED].
- * @see launchIn
- * @see launchWhenCreatedIn
- * @see whenCreated
- * @see Lifecycle.State.CREATED
- */
-fun <T> Flow<T>.launchWhenCreatedIn(lifecycleOwner: LifecycleOwner): Job {
-    return lifecycleOwner.lifecycleScope.launchWhenCreated { collect() }
+fun <T1, T2, T3, T4> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, flow4: Flow<T4>, collectBlock: (suspend (T1, T2, T3, T4) -> Unit)) {
+    launch {
+        combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
+            collectBlock.invoke(v1, v2, v3, v4)
+        }.collect {
+            // Empty collect block to trigger ^
+        }
+    }
 }
 
-/**
- * @see launchWhenCreatedIn
- */
-inline fun <T> Flow<T>.collectWhenCreatedIn(
-    lifecycleOwner: LifecycleOwner,
-    crossinline action: suspend (value: T) -> Unit
-): Job {
-    return lifecycleOwner.lifecycleScope.launchWhenCreated { collect(action) }
-}
-
-/**
- * Launches and runs the given [Flow] when the [Lifecycle] controlling this
- * [LifecycleCoroutineScope] is at least in [Lifecycle.State.STARTED] state.
- *
- * For an [Activity], this state will be reached in two cases:
- * - after [Activity.onStart] call;
- * - right before [Activity.onPause] call.
- *
- * The returned [Job] will be cancelled when the [Lifecycle] is [Lifecycle.State.DESTROYED].
- * @see launchIn
- * @see launchWhenStartedIn
- * @see whenStarted
- * @see Lifecycle.State.STARTED
- */
-fun <T> Flow<T>.launchWhenStartedIn(lifecycleOwner: LifecycleOwner): Job {
-    return lifecycleOwner.lifecycleScope.launchWhenStarted { collect() }
-}
-
-/**
- * @see launchWhenStartedIn
- */
-inline fun <T> Flow<T>.collectWhenStartedIn(
-    lifecycleOwner: LifecycleOwner,
-    crossinline action: suspend (value: T) -> Unit
-): Job {
-    return lifecycleOwner.lifecycleScope.launchWhenStarted { collect(action) }
-}
-
-/**
- * Launches and runs the given [Flow] when the [Lifecycle] controlling this
- * [LifecycleCoroutineScope] is at least in [Lifecycle.State.RESUMED] state.
- *
- * For an [Activity], this state will be reached in one case:
- * - after [Activity.onResume] is called.
- *
- * The returned [Job] will be cancelled when the [Lifecycle] is [Lifecycle.State.DESTROYED].
- * @see launchIn
- * @see launchWhenResumedIn
- * @see whenResumed
- * @see Lifecycle.State.RESUMED
- */
-fun <T> Flow<T>.launchWhenResumedIn(lifecycleOwner: LifecycleOwner): Job {
-    return lifecycleOwner.lifecycleScope.launchWhenResumed { collect() }
-}
-
-/**
- * @see launchWhenResumedIn
- */
-inline fun <T> Flow<T>.collectWhenResumedIn(
-    lifecycleOwner: LifecycleOwner,
-    crossinline action: suspend (value: T) -> Unit
-): Job {
-    return lifecycleOwner.lifecycleScope.launchWhenResumed { collect(action) }
-}
-
-fun <T> Flow<T>.throttleFirst(windowDuration: Long): Flow<T> {
-    var job: Job = Job().apply { complete() }
-
-    return onCompletion { job.cancel() }.run {
-        flow {
-            coroutineScope {
-                collect { value ->
-                    if (!job.isActive) {
-                        emit(value)
-                        job = launch { delay(windowDuration) }
-                    }
-                }
-            }
+fun <T> Flow<T>.throttleFirst(windowDuration: Long): Flow<T> = flow {
+    var lastEmissionTime = 0L
+    collect { upstream ->
+        val currentTime = System.currentTimeMillis()
+        val mayEmit = currentTime - lastEmissionTime > windowDuration
+        if (mayEmit) {
+            lastEmissionTime = currentTime
+            emit(upstream)
         }
     }
 }
