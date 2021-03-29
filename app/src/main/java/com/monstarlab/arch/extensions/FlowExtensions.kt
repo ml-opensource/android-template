@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 /**
+ * Copied from AOSP https://android.googlesource.com/platform/frameworks/support/+/67cbbea03d7036f3bd27aae897a3d44b2ee027f5/lifecycle/lifecycle-runtime-ktx/src/main/java/androidx/lifecycle/FlowExt.kt
  * Flow operator that emits values from `this` upstream Flow when the [lifecycle] is
  * at least at [minActiveState] state. The emissions will be stopped when the lifecycle state
  * falls below [minActiveState] state.

@@ -31,6 +31,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.coroutines.resume
 /**
+ * Copied from AOSP https://android.googlesource.com/platform/frameworks/support/+/67cbbea03d7036f3bd27aae897a3d44b2ee027f5/lifecycle/lifecycle-runtime-ktx/src/main/java/androidx/lifecycle/RepeatOnLifecycle.kt
  * Launches and runs the given [block] in a coroutine when `this` [LifecycleOwner]'s [Lifecycle]
  * is at least at [state]. The launched coroutine will be cancelled when the lifecycle state falls
  * below [state].
