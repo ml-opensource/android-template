@@ -3,8 +3,8 @@ package com.monstarlab.features.login
 import androidx.lifecycle.*
 import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.ViewErrorAware
-import com.monstarlab.arch.extensions.savedstate.getStateFlow
 import com.monstarlab.arch.extensions.onSuccess
+import com.monstarlab.arch.extensions.savedstate.getStateFlow
 import com.monstarlab.core.usecases.user.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

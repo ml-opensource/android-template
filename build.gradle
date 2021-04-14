@@ -52,7 +52,7 @@ buildscript {
 }
 
 plugins {
-    id "com.diffplug.spotless" version "5.9.0"
+    id "com.diffplug.spotless" version "5.11.0"
 }
 
 allprojects {
@@ -69,6 +69,15 @@ subprojects {
             target "**/*.kt"
             ktlint('0.40.0').userData(["disabled_rules": "no-wildcard-imports"])
             targetExclude("**/RateReminderActions.kt")
+        }
+    }
+
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            // Set JVM target to 1.8
+            jvmTarget = "1.8"
+            languageVersion = "1.4"
+            apiVersion = "1.4"
         }
     }
 }

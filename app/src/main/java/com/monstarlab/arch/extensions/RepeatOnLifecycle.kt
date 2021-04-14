@@ -20,16 +20,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 import kotlin.coroutines.resume
+
 /**
  * Copied from AOSP https://android.googlesource.com/platform/frameworks/support/+/67cbbea03d7036f3bd27aae897a3d44b2ee027f5/lifecycle/lifecycle-runtime-ktx/src/main/java/androidx/lifecycle/RepeatOnLifecycle.kt
  * Launches and runs the given [block] in a coroutine when `this` [LifecycleOwner]'s [Lifecycle]
@@ -73,6 +68,7 @@ public fun LifecycleOwner.addRepeatingJob(
 ): Job = lifecycleScope.launch(coroutineContext) {
     lifecycle.repeatOnLifecycle(state, block)
 }
+
 /**
  * Runs the given [block] in a new coroutine when `this` [Lifecycle] is at least at [state] and
  * suspends the execution until `this` [Lifecycle] is [Lifecycle.State.DESTROYED].

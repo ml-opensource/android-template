@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 /**
  * Returns a [StateFlow] that access data associated with the given key.
@@ -51,4 +52,3 @@ fun <T> SavedStateHandle.getStateFlow(
 
     return stateFlow
 }
-

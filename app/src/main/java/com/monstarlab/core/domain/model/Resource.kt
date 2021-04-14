@@ -9,4 +9,4 @@ data class Resource(
     val year: Int,
     val color: String,
     val pantoneValue: String
-)
+): java.io.Serializable

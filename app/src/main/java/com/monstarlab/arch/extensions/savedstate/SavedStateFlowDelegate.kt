@@ -12,8 +12,12 @@ class SavedStateFlowDelegate<T>(
     private val initialValue: T
 ) : ReadOnlyProperty<ViewModel, MutableStateFlow<T>> {
 
+    private var stateFlow: MutableStateFlow<T>? = null
+
     override fun getValue(thisRef: ViewModel, property: KProperty<*>): MutableStateFlow<T> {
-        return savedStateHandle.getStateFlow(thisRef.viewModelScope, property.name, initialValue)
+        return stateFlow ?: savedStateHandle.getStateFlow(thisRef.viewModelScope, property.name, initialValue).also {
+            stateFlow = it
+        }
     }
 }
 

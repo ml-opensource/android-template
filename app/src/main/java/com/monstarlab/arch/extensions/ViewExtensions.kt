@@ -39,46 +39,6 @@ fun <T> Fragment.collectFlow(
     }
 }
 
-
-fun <T1, T2> Fragment.combineFlows(
-    flow1: Flow<T1>,
-    flow2: Flow<T2>,
-    collectBlock: ((T1, T2) -> Unit)
-) {
-    collectFlow(flow1.combine(flow2) { v1, v2 ->
-        collectBlock.invoke(v1, v2)
-    }) {}
-}
-
-fun <T1, T2, T3> Fragment.combineFlows(
-    flow1: Flow<T1>,
-    flow2: Flow<T2>,
-    flow3: Flow<T3>,
-    collectBlock: ((T1, T2, T3) -> Unit)
-) {
-    collectFlow(combine(flow1, flow2, flow3) { v1, v2, v3 ->
-        collectBlock.invoke(v1, v2, v3)
-    }) {}
-}
-
-fun <T1, T2, T3, T4> Fragment.combineFlows(
-    flow1: Flow<T1>,
-    flow2: Flow<T2>,
-    flow3: Flow<T3>,
-    flow4: Flow<T4>,
-    collectBlock: ((T1, T2, T3, T4) -> Unit)
-) {
-    collectFlow(combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
-        collectBlock.invoke(v1, v2, v3, v4)
-    }) {}
-}
-
-fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
-    collectFlow(flow1.zip(flow2) { v1, v2 ->
-        collectBlock.invoke(v1, v2)
-    }) {}
-}
-
 fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
     this@clicks.setOnClickListener {
         offer(Unit)

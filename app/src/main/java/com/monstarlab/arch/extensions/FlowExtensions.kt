@@ -1,10 +1,10 @@
 package com.monstarlab.arch.extensions
 
 import androidx.lifecycle.Lifecycle
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 
 /**
  * Copied from AOSP https://android.googlesource.com/platform/frameworks/support/+/67cbbea03d7036f3bd27aae897a3d44b2ee027f5/lifecycle/lifecycle-runtime-ktx/src/main/java/androidx/lifecycle/FlowExt.kt
@@ -71,44 +71,39 @@ public fun <T> Flow<T>.flowWithLifecycle(
     close()
 }
 
-fun <T1, T2> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: (suspend (T1, T2) -> Unit)) {
-    launch {
-        flow1.combine(flow2) { v1, v2 ->
-            collectBlock.invoke(v1, v2)
-        }.collect {
-            // Empty collect block to trigger ^
-        }
-    }
+/**
+ * Launches and runs the given [Flow] associated with the scope of the [Lifecycle].
+ *
+ * The returned [Job] will be cancelled when the [Lifecycle] is [Lifecycle.State.DESTROYED].
+ * @see launchIn
+ */
+fun <T> Flow<T>.launchIn(lifecycleOwner: LifecycleOwner): Job {
+    return launchIn(lifecycleOwner.lifecycleScope)
 }
 
-fun <T1, T2, T3> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, collectBlock: (suspend (T1, T2, T3) -> Unit)) {
-    launch {
-        combine(flow1, flow2, flow3) { v1, v2, v3 ->
-            collectBlock.invoke(v1, v2, v3)
-        }.collect {
-            // Empty collect block to trigger ^
-        }
-    }
+/**
+ * @see launchIn
+ */
+inline fun <T> Flow<T>.collectIn(
+    scope: CoroutineScope,
+    crossinline action: suspend (value: T) -> Unit
+): Job {
+    return scope.launch { collect(action) }
 }
 
-fun <T1, T2, T3, T4> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, flow4: Flow<T4>, collectBlock: (suspend (T1, T2, T3, T4) -> Unit)) {
-    launch {
-        combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
-            collectBlock.invoke(v1, v2, v3, v4)
-        }.collect {
-            // Empty collect block to trigger ^
-        }
-    }
-}
+fun <T> Flow<T>.throttleFirst(windowDuration: Long): Flow<T> {
+    var job: Job = Job().apply { complete() }
 
-fun <T> Flow<T>.throttleFirst(windowDuration: Long): Flow<T> = flow {
-    var lastEmissionTime = 0L
-    collect { upstream ->
-        val currentTime = System.currentTimeMillis()
-        val mayEmit = currentTime - lastEmissionTime > windowDuration
-        if (mayEmit) {
-            lastEmissionTime = currentTime
-            emit(upstream)
+    return onCompletion { job.cancel() }.run {
+        flow {
+            coroutineScope {
+                collect { value ->
+                    if (!job.isActive) {
+                        emit(value)
+                        job = launch { delay(windowDuration) }
+                    }
+                }
+            }
         }
     }
 }
