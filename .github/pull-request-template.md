@@ -1,6 +1,6 @@
 **Acceptance criteria:**  
 - [ ] PR title includes Jira ticket reference
-- [ ] Follows UI patterns from UI manifesto https://github.com/monstar-lab-oss/ui-manifesto
+- [ ] Follows UI patterns from [UI manifesto](https://github.com/monstar-lab-oss/ui-manifesto)
 - [ ] Loading/error/empty states taken into account
 - [ ] Status of Jira ticket updated
 - [ ] Removed commented out code  
