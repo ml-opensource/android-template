@@ -26,29 +26,20 @@ import androidx.navigation.fragment.findNavController
 import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.snackErrorFlow
+import com.monstarlab.core.sharedui.ComposeFragment
 import com.monstarlab.core.sharedui.components.AppButton
 import com.monstarlab.core.sharedui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class LoginFragment : ComposeFragment() {
 
     private val viewModel by viewModels<LoginViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-
-        return ComposeView(requireContext()).apply {
-            setContent {
-                AppTheme {
-                    LoginScreen(viewModel = viewModel)
-                }
-            }
-        }
+    override val content: @Composable () -> Unit = {
+        LoginScreen(viewModel = viewModel)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
