@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
@@ -19,18 +18,14 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
-import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.arch.extensions.viewBinding
 import com.monstarlab.core.sharedui.theme.AppTheme
-import com.monstarlab.databinding.FragmentResourceBinding
 import com.monstarlab.features.resources.components.ResourcesList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ResourceFragment : Fragment(R.layout.fragment_resource) {
+class ResourceFragment : Fragment() {
 
     private val viewModel by viewModels<ResourceViewModel>()
 
@@ -41,7 +36,7 @@ class ResourceFragment : Fragment(R.layout.fragment_resource) {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                AppTheme() {
+                AppTheme {
                     ResourcesScreen(viewModel)
                 }
             }

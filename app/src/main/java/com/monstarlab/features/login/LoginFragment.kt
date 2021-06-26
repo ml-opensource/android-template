@@ -31,7 +31,7 @@ import com.monstarlab.core.sharedui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : Fragment() {
 
     private val viewModel by viewModels<LoginViewModel>()
 
@@ -41,21 +41,23 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         savedInstanceState: Bundle?
     ): View {
 
-        val view = ComposeView(requireContext()).apply {
+        return ComposeView(requireContext()).apply {
             setContent {
                 AppTheme {
                     LoginScreen(viewModel = viewModel)
                 }
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         collectFlow(viewModel.loginResultFlow) {
             findNavController().navigate(R.id.resourceFragment)
         }
 
         snackErrorFlow(viewModel.viewErrorFlow, view)
-
-        return view
     }
 }
 
@@ -63,7 +65,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 fun LoginScreen(viewModel: LoginViewModel) {
     val state by viewModel.stateFlow.collectAsState()
     val isLoading by viewModel.loadingFlow.collectAsState()
-    Scaffold() {
+    Scaffold {
         Column(
             modifier = Modifier
                 .fillMaxSize()
