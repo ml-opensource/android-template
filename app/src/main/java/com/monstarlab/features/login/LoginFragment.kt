@@ -17,25 +17,18 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.loadingFlow
 import androidx.lifecycle.viewErrorFlow
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
-import androidx.transition.TransitionManager
 import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.arch.extensions.onClick
 import com.monstarlab.arch.extensions.snackErrorFlow
-import com.monstarlab.arch.extensions.viewBinding
-import com.monstarlab.arch.extensions.visibilityFlow
 import com.monstarlab.core.sharedui.components.AppButton
 import com.monstarlab.core.sharedui.theme.AppTheme
-import com.monstarlab.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {

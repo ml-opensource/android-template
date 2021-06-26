@@ -1,7 +1,22 @@
 package com.monstarlab.features.resources
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.transition.TransitionManager
@@ -9,38 +24,54 @@ import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.viewBinding
+import com.monstarlab.core.sharedui.theme.AppTheme
 import com.monstarlab.databinding.FragmentResourceBinding
+import com.monstarlab.features.resources.components.ResourcesList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ResourceFragment : Fragment(R.layout.fragment_resource) {
 
     private val viewModel by viewModels<ResourceViewModel>()
-    private val binding by viewBinding(FragmentResourceBinding::bind)
-    private val resourceAdapter = ResourceAdapter()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                AppTheme() {
+                    ResourcesScreen(viewModel)
+                }
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        with(binding.resourceRecyclerView) {
-            adapter = resourceAdapter
-        }
+        viewModel.fetchResources()
 
         collectFlow(viewModel.errorFlow) { errorMessage ->
             Snackbar.make(view, errorMessage.message, Snackbar.LENGTH_SHORT).show()
         }
 
-        collectFlow(viewModel.resourcesFlow) { resources ->
-            resourceAdapter.updateResources(resources)
-            resourceAdapter.notifyDataSetChanged()
-        }
+    }
+}
 
-        collectFlow(viewModel.loadingFlow) { loading ->
-            TransitionManager.beginDelayedTransition(binding.root)
-            binding.resourceRecyclerView.visibility = if (loading) View.GONE else View.VISIBLE
-            binding.resourceProgressBar.visibility = if (loading) View.VISIBLE else View.GONE
+@Composable
+fun ResourcesScreen(viewModel: ResourceViewModel) {
+    val isLoading by viewModel.loadingFlow.collectAsState()
+    val resources by viewModel.resourcesFlow.collectAsState()
+    Scaffold {
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+            if (isLoading) {
+                CircularProgressIndicator()
+            } else {
+                ResourcesList(items = resources, modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp))
+            }
         }
-
-        viewModel.fetchResources()
     }
 }
