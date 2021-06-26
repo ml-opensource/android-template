@@ -1,4 +1,4 @@
-package com.monstarlab.theme
+package com.monstarlab.core.sharedui.theme
 
 import androidx.compose.ui.text.font.FontFamily
 
