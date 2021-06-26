@@ -108,7 +108,7 @@ dependencies {
     implementation("androidx.compose.material:material:${versions.compose}")
     implementation("androidx.compose.material:material-icons-core:${versions.compose}")
     implementation("androidx.compose.material:material-icons-extended:${versions.compose}")
-
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:${versions.compose}")
 

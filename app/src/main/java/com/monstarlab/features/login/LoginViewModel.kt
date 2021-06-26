@@ -10,6 +10,7 @@ import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.core.usecases.user.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
 
@@ -18,16 +19,23 @@ class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
 ) : ViewModel(), ViewErrorAware, LoadingAware {
 
-    val loginResultFlow: MutableSharedFlow<Boolean> = MutableSharedFlow()
+    val stateFlow = MutableStateFlow(LoginViewState())
+    val loginResultFlow = MutableSharedFlow<Unit>()
 
-    fun login(email: String, password: String) {
+    fun login() {
         loginUseCase
-            .login(email, password)
-            .bindLoading(this)
+            .login(stateFlow.value.email, stateFlow.value.password)
             .bindError(this)
-            .onSuccess {
-                loginResultFlow.emit(true)
-            }
+            .bindLoading(this)
+            .onSuccess { loginResultFlow.emit(Unit) }
             .launchIn(viewModelScope)
+    }
+
+    fun onPasswordTextChanged(text: String) {
+        stateFlow.value = stateFlow.value.copy(password = text)
+    }
+
+    fun onEmailTextChanged(text: String) {
+        stateFlow.value = stateFlow.value.copy(email = text)
     }
 }
