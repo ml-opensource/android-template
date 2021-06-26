@@ -29,7 +29,7 @@ public class Translation {
 	}
 	public final static class error {
 		public static String authenticationError = "Login expired, please login again.";
-		public static String connectionError = "No or bad connection, please try again!!!!";
+		public static String connectionError = "No or bad connection, please try again.";
 		public static String errorTitle = "Error";
 		public static String unknownError = "Unknown error, please try again.";
 		public static String errorRandom = "Random";
