@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.monstarlab.features.resources.components.ResourcesList
 
-
 @Composable
 fun ResourcesScreen(viewModel: ResourceViewModel) {
     val isLoading by viewModel.loadingFlow.collectAsState()
@@ -25,14 +24,16 @@ fun ResourcesScreen(viewModel: ResourceViewModel) {
             if (isLoading) {
                 CircularProgressIndicator()
             } else {
-                ResourcesList(items = resources, modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp))
+                ResourcesList(
+                    items = resources,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                )
             }
         }
     }
 }
-
 
 @Preview
 @Composable

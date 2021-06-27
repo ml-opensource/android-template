@@ -1,6 +1,5 @@
 package com.monstarlab.features.resources.components
 
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -22,7 +21,9 @@ fun ResourcesList(items: List<Resource>, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun PreviewResourcesList() {
-    ResourcesList(items = List(3) {
-        Resource(it, it.toString(), it, it.toString(), "")
-    })
+    ResourcesList(
+        items = List(3) {
+            Resource(it, it.toString(), it, it.toString(), "")
+        }
+    )
 }

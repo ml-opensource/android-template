@@ -19,7 +19,7 @@ abstract class ComposeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       return createComposableView(requireContext(), content)
+        return createComposableView(requireContext(), content)
     }
 }
 
