@@ -29,8 +29,8 @@ buildscript {
             desugaring          : '1.0.9',
             nodes_nstack_kotlin : '3.2.5',
             nstack_gradle_plugin: '3.2.5',
-            compose             : '1.0.0-rc02',
-            accompanist         : '0.14.0'
+            compose             : '1.0.0',
+            accompanist         : '0.15.0'
     ]
 
     ext.keys = [
