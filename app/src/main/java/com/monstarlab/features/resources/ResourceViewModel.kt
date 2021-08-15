@@ -9,11 +9,7 @@ import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
 import com.monstarlab.core.usecases.resources.GetResourcesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +20,10 @@ class ResourceViewModel @Inject constructor(
     val loadingFlow = MutableStateFlow(false)
     val errorFlow = MutableSharedFlow<ViewError>()
     val resourcesFlow: MutableStateFlow<List<Resource>> = MutableStateFlow(emptyList())
+
+    val stateFlow = combine(resourcesFlow, loadingFlow) { res, loading ->
+        ResourcesViewState(items = res, isLoading = loading)
+    }
 
     fun fetchResources() {
         getResourcesUseCase

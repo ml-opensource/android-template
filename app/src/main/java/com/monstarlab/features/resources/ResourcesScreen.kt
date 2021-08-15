@@ -16,16 +16,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.monstarlab.features.resources.components.ResourcesList
 
 @Composable
-fun ResourcesScreen(viewModel: ResourceViewModel) {
-    val isLoading by viewModel.loadingFlow.collectAsState()
-    val resources by viewModel.resourcesFlow.collectAsState()
+fun ResourcesScreen(state: ResourcesViewState) {
     Scaffold {
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-            if (isLoading) {
+            if (state.isLoading) {
                 CircularProgressIndicator()
             } else {
                 ResourcesList(
-                    items = resources,
+                    items = state.items,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(16.dp)
@@ -38,5 +36,5 @@ fun ResourcesScreen(viewModel: ResourceViewModel) {
 @Preview
 @Composable
 fun PreviewResourcesScreen() {
-    ResourcesScreen(viewModel = viewModel())
+    ResourcesScreen(ResourcesViewState())
 }

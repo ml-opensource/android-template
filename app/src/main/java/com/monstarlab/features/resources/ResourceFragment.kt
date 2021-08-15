@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.collectAsState
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
@@ -22,7 +23,8 @@ class ResourceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return createComposableView(requireContext()) {
-            ResourcesScreen(viewModel = viewModel)
+            val state = viewModel.stateFlow.collectAsState(ResourcesViewState()).value
+            ResourcesScreen(state)
         }
     }
 
