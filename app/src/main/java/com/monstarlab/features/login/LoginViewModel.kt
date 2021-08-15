@@ -1,9 +1,6 @@
 package com.monstarlab.features.login
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.bindError
-import androidx.lifecycle.bindLoading
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.ViewErrorAware
 import com.monstarlab.arch.extensions.onSuccess
@@ -12,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,6 +19,13 @@ class LoginViewModel @Inject constructor(
 
     val stateFlow = MutableStateFlow(LoginViewState())
     val loginResultFlow = MutableSharedFlow<Unit>()
+
+    init {
+        loadingFlow
+            .onEach { stateFlow.emit(stateFlow.value.copy(isLoading = it)) }
+            .launchIn(viewModelScope)
+    }
+
 
     fun login() {
         loginUseCase

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewErrorFlow
@@ -21,7 +22,14 @@ class LoginFragment : ComposeFragment() {
     private val viewModel by viewModels<LoginViewModel>()
 
     override val content: @Composable () -> Unit = {
-        LoginScreen(viewModel = viewModel)
+        val state = viewModel.stateFlow.collectAsState().value
+        LoginScreen(state) { event ->
+            when(event) {
+                LoginScreenEvent.LoginButtonPress -> viewModel.login()
+                is LoginScreenEvent.LoginChange -> viewModel.onEmailTextChanged(event.value)
+                is LoginScreenEvent.PasswordChange -> viewModel.onPasswordTextChanged(event.value)
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

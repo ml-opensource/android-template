@@ -17,9 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.monstarlab.core.sharedui.components.AppButton
 
 @Composable
-fun LoginScreen(viewModel: LoginViewModel) {
-    val state by viewModel.stateFlow.collectAsState()
-    val isLoading by viewModel.loadingFlow.collectAsState()
+fun LoginScreen(state: LoginViewState, onEvent: (LoginScreenEvent) -> Unit) {
     Scaffold {
         Column(
             modifier = Modifier
@@ -30,26 +28,26 @@ fun LoginScreen(viewModel: LoginViewModel) {
         ) {
             TextField(
                 value = state.email,
-                enabled = !isLoading,
-                onValueChange = viewModel::onEmailTextChanged
+                enabled = !state.isLoading,
+                onValueChange = { onEvent(LoginScreenEvent.LoginChange(it) ) }
             )
 
             Spacer(modifier = Modifier.size(4.dp))
 
             TextField(
                 value = state.password,
-                enabled = !isLoading,
-                onValueChange = viewModel::onPasswordTextChanged,
+                enabled = !state.isLoading,
+                onValueChange = { onEvent(LoginScreenEvent.PasswordChange(it) ) },
                 visualTransformation = PasswordVisualTransformation()
             )
 
             Spacer(modifier = Modifier.size(4.dp))
             AppButton(text = "Login") {
-                viewModel.login()
+              onEvent.invoke(LoginScreenEvent.LoginButtonPress)
             }
             Spacer(modifier = Modifier.size(4.dp))
 
-            if (isLoading) {
+            if (state.isLoading) {
                 CircularProgressIndicator()
             }
         }
@@ -59,5 +57,5 @@ fun LoginScreen(viewModel: LoginViewModel) {
 @Preview
 @Composable
 fun PreviewLoginScreen() {
-    LoginScreen(viewModel = viewModel())
+    LoginScreen(state = LoginViewState(), {})
 }
