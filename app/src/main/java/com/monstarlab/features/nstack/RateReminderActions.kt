@@ -9,6 +9,8 @@ object RateReminderActions {
 
 	private const val CRASH = "crash"
 	private const val DONATED = "donated"
+	private const val FIRSTACTION = "firstaction"
+	private const val SECONDACTION = "secondaction"
 
 	suspend fun crash() {
 		send(CRASH)
@@ -16,6 +18,14 @@ object RateReminderActions {
 
 	suspend fun donated() {
 		send(DONATED)
+	}
+
+	suspend fun firstaction() {
+		send(FIRSTACTION)
+	}
+
+	suspend fun secondaction() {
+		send(SECONDACTION)
 	}
 
 	private suspend fun send(action: String) {
