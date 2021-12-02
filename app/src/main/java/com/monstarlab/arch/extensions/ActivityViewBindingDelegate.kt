@@ -2,9 +2,7 @@ package com.monstarlab.arch.extensions
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -13,7 +11,7 @@ class ActivityViewBindingDelegate<T : ViewBinding>(
     private val activity: AppCompatActivity,
     private val viewBinder: (LayoutInflater) -> T,
     private val beforeSetContent: () -> Unit = {}
-) : ReadOnlyProperty<AppCompatActivity, T>, LifecycleObserver {
+) : ReadOnlyProperty<AppCompatActivity, T>, DefaultLifecycleObserver {
 
     private var activityBinding: T? = null
 
@@ -21,12 +19,12 @@ class ActivityViewBindingDelegate<T : ViewBinding>(
         activity.lifecycle.addObserver(this)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun createBinding() {
+    override fun onCreate(owner: LifecycleOwner) {
         initialize()
         beforeSetContent()
         activity.setContentView(activityBinding?.root)
         activity.lifecycle.removeObserver(this)
+        super.onCreate(owner)
     }
 
     private fun initialize() {
