@@ -87,6 +87,7 @@ public fun LifecycleOwner.addRepeatingJob(
  * again.
  * @param block The block to run when the lifecycle is at least in [state] state.
  */
+@Suppress("LongMethod")
 public suspend fun Lifecycle.repeatOnLifecycle(
     state: Lifecycle.State,
     block: suspend CoroutineScope.() -> Unit

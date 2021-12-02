@@ -57,6 +57,7 @@ buildscript {
 
 plugins {
     id "com.diffplug.spotless" version "5.9.0"
+    id 'io.gitlab.arturbosch.detekt' version "1.19.0"
 }
 
 allprojects {
@@ -64,6 +65,8 @@ allprojects {
         google()
         jcenter()
     }
+
+    apply from: "$rootDir/detekt.gradle"
 }
 
 subprojects {

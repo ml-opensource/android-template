@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -36,6 +37,11 @@ class RestModule {
         return clientBuilder.build()
     }
 
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
+
+    @ExperimentalSerializationApi
     @Provides
     @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
@@ -43,9 +49,7 @@ class RestModule {
             .client(client)
             .baseUrl(BuildConfig.API_URL)
             .addConverterFactory(
-                Json {
-                    ignoreUnknownKeys = true
-                }.asConverterFactory("application/json".toMediaType())
+                json.asConverterFactory("application/json".toMediaType())
             )
             .build()
     }

@@ -6,6 +6,7 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
+@Suppress("MagicNumber")
 fun <T> Response<T>.toError(): ErrorModel.Http {
     return when {
         code() == 400 -> ErrorModel.Http.BadRequest

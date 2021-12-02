@@ -10,11 +10,7 @@ import androidx.lifecycle.viewErrorFlow
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionManager
 import com.monstarlab.R
-import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.arch.extensions.onClick
-import com.monstarlab.arch.extensions.snackErrorFlow
-import com.monstarlab.arch.extensions.viewBinding
-import com.monstarlab.arch.extensions.visibilityFlow
+import com.monstarlab.arch.extensions.*
 import com.monstarlab.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,20 +22,23 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        bindEvent();
+        collectFlows()
+    }
 
+    private fun bindEvent() {
         binding.loginButton.onClick {
             viewModel.login(
                 binding.loginEmailEditText.text.toString(),
                 binding.loginPasswordEditText.text.toString()
             )
         }
+    }
 
+    private fun collectFlows() {
         collectFlow(viewModel.loginResultFlow) {
             findNavController().navigate(R.id.resourceFragment)
         }
-
-        snackErrorFlow(viewModel.viewErrorFlow, view)
-        visibilityFlow(viewModel.loadingFlow, binding.loginProgressBar)
 
         collectFlow(viewModel.loadingFlow) { loading ->
             TransitionManager.beginDelayedTransition(binding.root)
@@ -47,5 +46,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             binding.loginPasswordEditText.isEnabled = !loading
             binding.loginButton.isVisible = !loading
         }
+
+        snackErrorFlow(viewModel.viewErrorFlow, binding.root)
+        visibilityFlow(viewModel.loadingFlow, binding.loginProgressBar)
     }
 }

@@ -16,7 +16,8 @@ class ResourceAdapter : RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResourceViewHolder {
-        val itemBinding = ItemResourceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding =
+            ItemResourceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ResourceViewHolder(itemBinding)
     }
 
@@ -28,7 +29,8 @@ class ResourceAdapter : RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder>
         return resources.size
     }
 
-    inner class ResourceViewHolder(private val itemBinding: ItemResourceBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    inner class ResourceViewHolder(private val itemBinding: ItemResourceBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(resource: Resource) {
             itemBinding.resourceTitleTextView.text = resource.name
         }

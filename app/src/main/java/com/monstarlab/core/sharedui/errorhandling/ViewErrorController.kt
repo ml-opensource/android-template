@@ -7,7 +7,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.core.domain.error.ErrorModel
 import javax.inject.Inject
 
-fun Fragment.showErrorDialog(error: ViewError, cancelable: Boolean = true, dismissAction: (() -> Unit)? = null) {
+fun Fragment.showErrorDialog(
+    error: ViewError,
+    cancelable: Boolean = true,
+    dismissAction: (() -> Unit)? = null
+) {
     val builder = AlertDialog.Builder(requireContext())
     builder.setTitle(error.title)
     builder.setMessage(error.message)
@@ -26,7 +30,12 @@ fun Fragment.showErrorDialog(error: ViewError, cancelable: Boolean = true, dismi
     }
 }
 
-fun Fragment.showErrorSnackbar(view: View, error: ViewError, showAction: Boolean = false, dismissAction: (() -> Unit)? = null) {
+fun Fragment.showErrorSnackbar(
+    view: View,
+    error: ViewError,
+    showAction: Boolean = false,
+    dismissAction: (() -> Unit)? = null,
+) {
     val showLength = if (showAction) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
     val snackbar = Snackbar.make(view, error.message, showLength)
     if (showAction) {
@@ -41,6 +50,7 @@ fun Fragment.showErrorSnackbar(view: View, error: ViewError, showAction: Boolean
     }
 }
 
+@Suppress("LongMethod")
 fun ErrorModel.mapToViewError(): ViewError {
     return when (this) {
         is ErrorModel.Http.Forbidden,

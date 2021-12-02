@@ -2,7 +2,10 @@ package com.monstarlab.arch.data
 
 import android.content.SharedPreferences
 import kotlinx.serialization.KSerializer
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
+import timber.log.Timber
+import java.io.IOException
 
 abstract class SingleSharedPreferenceDataStore<T> constructor(
     private val sharedPreferences: SharedPreferences,
@@ -16,7 +19,7 @@ abstract class SingleSharedPreferenceDataStore<T> constructor(
             val json = sharedPreferences.getString(key, "") ?: ""
             val entries = Json.decodeFromString(serializer, json)
             entries
-        } catch (e: Exception) {
+        } catch (e: SerializationException) {
             null
         }
     }
@@ -25,7 +28,8 @@ abstract class SingleSharedPreferenceDataStore<T> constructor(
         try {
             val json = Json.encodeToString(serializer, item)
             sharedPreferences.edit().putString(key, json).apply()
-        } catch (e: Exception) {
+        } catch (e: SerializationException) {
+            Timber.e(e)
         }
     }
 
