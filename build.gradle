@@ -2,7 +2,7 @@
 buildscript {
 
     ext.versions = [
-            kotlin_plugin       : '1.6.0',
+            kotlin_plugin       : '1.6.10',
             kotlin              : '1.4.10',
             appcompat           : '1.4.0',
             coroutines          : '1.5.2',
@@ -43,10 +43,10 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_plugin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
@@ -63,7 +63,7 @@ plugins {
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     apply from: "$rootDir/detekt.gradle"
