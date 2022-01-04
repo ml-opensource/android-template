@@ -6,7 +6,7 @@
 - [ ] Removed commented out code  
 - [ ] Removed unnecessary logging
 - [ ] Tested flows in airplane mode and bad connection
-- [ ] Updates documentation (please add a link if other than README 😊)
+- [ ] Updated documentation (please add a link if other than README 😊)
 
 **Related to other PRs:**  
 
