@@ -8,6 +8,6 @@ fun ResourceDto.toEntity(): Resource {
         name = name,
         year = year,
         color = color,
-        pantoneValue = pantone_value
+        pantoneValue = pantoneValue
     )
 }

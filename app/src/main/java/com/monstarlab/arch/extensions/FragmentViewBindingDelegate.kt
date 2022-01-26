@@ -11,9 +11,11 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
     private val fragment: Fragment,
     private val viewBinder: (View) -> T,
     private val disposeEvents: T.() -> Unit = {}
-) : ReadOnlyProperty<Fragment, T>, LifecycleObserver {
+) : ReadOnlyProperty<Fragment, T>, DefaultLifecycleObserver {
 
-    private inline fun Fragment.observeLifecycleOwnerThroughLifecycleCreation(crossinline viewOwner: LifecycleOwner.() -> Unit) {
+    private inline fun Fragment.observeLifecycleOwnerThroughLifecycleCreation(
+        crossinline viewOwner: LifecycleOwner.() -> Unit
+    ) {
         lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onCreate(owner: LifecycleOwner) {
                 viewLifecycleOwnerLiveData.observe(
@@ -28,8 +30,12 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
 
     private var fragmentBinding: T? = null
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun disposeBinding() {
+    override fun onDestroy(owner: LifecycleOwner) {
+        disposeBinding()
+        super.onDestroy(owner)
+    }
+
+    private  fun disposeBinding() {
         fragmentBinding?.disposeEvents()
         fragmentBinding = null
     }

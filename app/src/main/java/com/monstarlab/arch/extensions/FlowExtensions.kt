@@ -58,8 +58,9 @@ import kotlinx.coroutines.launch
  * @return [Flow] that only emits items from `this` upstream flow when the [lifecycle] is at
  * least in the [minActiveState].
  */
+
 @OptIn(ExperimentalCoroutinesApi::class)
-public fun <T> Flow<T>.flowWithLifecycle(
+fun <T> Flow<T>.flowWithLifecycle(
     lifecycle: Lifecycle,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED
 ): Flow<T> = callbackFlow {
@@ -71,7 +72,11 @@ public fun <T> Flow<T>.flowWithLifecycle(
     close()
 }
 
-fun <T1, T2> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: (suspend (T1, T2) -> Unit)) {
+fun <T1, T2> CoroutineScope.combineFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    collectBlock: (suspend (T1, T2) -> Unit)
+) {
     launch {
         flow1.combine(flow2) { v1, v2 ->
             collectBlock.invoke(v1, v2)
@@ -81,7 +86,12 @@ fun <T1, T2> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, colle
     }
 }
 
-fun <T1, T2, T3> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, collectBlock: (suspend (T1, T2, T3) -> Unit)) {
+fun <T1, T2, T3> CoroutineScope.combineFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    flow3: Flow<T3>,
+    collectBlock: (suspend (T1, T2, T3) -> Unit)
+) {
     launch {
         combine(flow1, flow2, flow3) { v1, v2, v3 ->
             collectBlock.invoke(v1, v2, v3)
@@ -91,7 +101,13 @@ fun <T1, T2, T3> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, f
     }
 }
 
-fun <T1, T2, T3, T4> CoroutineScope.combineFlows(flow1: Flow<T1>, flow2: Flow<T2>, flow3: Flow<T3>, flow4: Flow<T4>, collectBlock: (suspend (T1, T2, T3, T4) -> Unit)) {
+fun <T1, T2, T3, T4> CoroutineScope.combineFlows(
+    flow1: Flow<T1>,
+    flow2: Flow<T2>,
+    flow3: Flow<T3>,
+    flow4: Flow<T4>,
+    collectBlock: (suspend (T1, T2, T3, T4) -> Unit)
+) {
     launch {
         combine(flow1, flow2, flow3, flow4) { v1, v2, v3, v4 ->
             collectBlock.invoke(v1, v2, v3, v4)

@@ -23,6 +23,7 @@ suspend inline fun <T> safeUseCase(
     UseCaseResult.Error(e.toError())
 }
 
+@Suppress("TooGenericExceptionCaught")
 inline fun <T> useCaseFlow(
     crossinline block: suspend () -> T,
 ): Flow<UseCaseResult<T>> = flow {
@@ -36,25 +37,28 @@ inline fun <T> useCaseFlow(
     }
 }
 
-fun <T> observableFlow(block: suspend FlowCollector<T>.() -> Unit): Flow<UseCaseResult<T>> = flow(block)
-    .catch { exception ->
-        Timber.e(exception)
-        UseCaseResult.Error(exception.toError())
-    }
-    .map {
-        UseCaseResult.Success(it)
+fun <T> observableFlow(block: suspend FlowCollector<T>.() -> Unit): Flow<UseCaseResult<T>> =
+    flow(block)
+        .catch { exception ->
+            Timber.e(exception)
+            UseCaseResult.Error(exception.toError())
+        }
+        .map {
+            UseCaseResult.Success(it)
+        }
+
+fun <T> Flow<UseCaseResult<T>>.onSuccess(action: suspend (T) -> Unit): Flow<UseCaseResult<T>> =
+    transform { result ->
+        if (result is UseCaseResult.Success<T>) {
+            action(result.value)
+        }
+        return@transform emit(result)
     }
 
-fun <T> Flow<UseCaseResult<T>>.onSuccess(action: suspend (T) -> Unit): Flow<UseCaseResult<T>> = transform { result ->
-    if (result is UseCaseResult.Success<T>) {
-        action(result.value)
+fun <T> Flow<UseCaseResult<T>>.onError(action: suspend (ErrorModel) -> Unit): Flow<UseCaseResult<T>> =
+    transform { result ->
+        if (result is UseCaseResult.Error) {
+            action(result.error)
+        }
+        return@transform emit(result)
     }
-    return@transform emit(result)
-}
-
-fun <T> Flow<UseCaseResult<T>>.onError(action: suspend (ErrorModel) -> Unit): Flow<UseCaseResult<T>> = transform { result ->
-    if (result is UseCaseResult.Error) {
-        action(result.error)
-    }
-    return@transform emit(result)
-}

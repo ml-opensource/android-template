@@ -94,9 +94,9 @@ fun MainActivity.showUpdateDialog(appUpdate: AppUpdate) {
 
 fun MainActivity.showChangelogDialog(appUpdate: AppUpdate) {
     AlertDialog.Builder(this)
-        .setTitle(appUpdate.update?.translate?.title ?: return)
-        .setMessage(appUpdate.update?.translate?.message ?: return)
-        .setNegativeButton(appUpdate.update?.translate?.negativeButton ?: return) { dialog, _ ->
+        .setTitle(appUpdate.update?.translate?.title ?: "")
+        .setMessage(appUpdate.update?.translate?.message ?: "")
+        .setNegativeButton(appUpdate.update?.translate?.negativeButton ?: "") { dialog, _ ->
             dialog.dismiss()
         }
         .show()
