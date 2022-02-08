@@ -32,7 +32,7 @@ buildscript {
             leak_canary         : '2.5',
             desugaring          : '1.0.9',
             nodes_nstack_kotlin : '3.2.5',
-            nstack_gradle_plugin: '3.2.5',
+            nstack_gradle_plugin: '3.2.6',
     ]
 
     ext.keys = [
@@ -46,7 +46,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_plugin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
