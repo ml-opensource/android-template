@@ -13,12 +13,29 @@
   <string name='nstack_default_previous' formatted='false'>{default_previous}</string>
   <string name='nstack_default_skip' formatted='false'>{default_skip}</string>
   <string name='nstack_default_testtest' formatted='false'>{default_testtest}</string>
+  <string name='nstack_terms_termsNotFound' formatted='false'>{terms_termsNotFound}</string>
+  <string name='nstack_terms_acceptLabel' formatted='false'>{terms_acceptLabel}</string>
+  <string name='nstack_terms_acceptedLabel' formatted='false'>{terms_acceptedLabel}</string>
+  <string name='nstack_more_title' formatted='false'>{more_title}</string>
+  <string name='nstack_rateReminder_rateReminderTitle' formatted='false'>{rateReminder_rateReminderTitle}</string>
+  <string name='nstack_rateReminder_rateReminderMessage' formatted='false'>{rateReminder_rateReminderMessage}</string>
+  <string name='nstack_rateReminder_title' formatted='false'>{rateReminder_title}</string>
+  <string name='nstack_rateReminder_firstAction' formatted='false'>{rateReminder_firstAction}</string>
+  <string name='nstack_rateReminder_secondAction' formatted='false'>{rateReminder_secondAction}</string>
   <string name='nstack_donate_donateButton' formatted='false'>{donate_donateButton}</string>
   <string name='nstack_donate_donateAgainButton' formatted='false'>{donate_donateAgainButton}</string>
   <string name='nstack_donate_title' formatted='false'>{donate_title}</string>
+  <string name='nstack_donate_acceptLabel' formatted='false'>{donate_acceptLabel}</string>
   <string name='nstack_error_authenticationError' formatted='false'>{error_authenticationError}</string>
   <string name='nstack_error_connectionError' formatted='false'>{error_connectionError}</string>
   <string name='nstack_error_errorTitle' formatted='false'>{error_errorTitle}</string>
   <string name='nstack_error_unknownError' formatted='false'>{error_unknownError}</string>
   <string name='nstack_error_errorRandom' formatted='false'>{error_errorRandom}</string>
+  <string name='nstack_home_title' formatted='false'>{home_title}</string>
+  <string name='nstack_home_subTitle' formatted='false'>{home_subTitle}</string>
+  <string name='nstack_home_message' formatted='false'>{home_message}</string>
+  <string name='nstack_home_toggleOff' formatted='false'>{home_toggleOff}</string>
+  <string name='nstack_home_sendFeedbackButton' formatted='false'>{home_sendFeedbackButton}</string>
+  <string name='nstack_home_hint' formatted='false'>{home_hint}</string>
+  <string name='nstack_home_toggleOn' formatted='false'>{home_toggleOn}</string>
 </resources>
