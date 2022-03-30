@@ -2,12 +2,12 @@
 buildscript {
 
     ext.versions = [
-            kotlin              : '1.5.10',
+            kotlin              : '1.6.10',
             appcompat           : '1.2.0',
             coroutines          : '1.4.2',
             constraint_layout   : '2.0.1',
             dagger              : '2.33',
-            hilt : '2.35',
+            hilt                : '2.41',
             lifecycle           : '2.3.0',
             timber              : "4.7.1",
             junit               : '4.13.1',
@@ -29,8 +29,8 @@ buildscript {
             desugaring          : '1.0.9',
             nodes_nstack_kotlin : '3.2.5',
             nstack_gradle_plugin: '3.2.5',
-            compose             : '1.0.0',
-            accompanist         : '0.15.0'
+            compose             : '1.1.1',
+            accompanist       :   '0.24.3-alpha',
     ]
 
     ext.keys = [
@@ -44,7 +44,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.2.1"
+        classpath "com.android.tools.build:gradle:4.2.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"

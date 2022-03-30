@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.flow.*
 
 fun Fragment.snackErrorFlow(
@@ -88,7 +89,7 @@ fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: (
 
 fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
     this@clicks.setOnClickListener {
-        offer(Unit)
+        trySend(Unit)
     }
     awaitClose { this@clicks.setOnClickListener(null) }
 }.throttleFirst(throttleTime)
