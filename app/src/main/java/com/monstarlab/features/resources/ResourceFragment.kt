@@ -23,14 +23,12 @@ class ResourceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return createComposableView(requireContext()) {
-            val state = viewModel.stateFlow.collectAsState(ResourcesViewState()).value
-            ResourcesScreen(state)
+            ResourcesCoordinator(viewModel = viewModel)
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchResources()
 
         collectFlow(viewModel.errorFlow) { errorMessage ->
             Snackbar.make(view, errorMessage.message, Snackbar.LENGTH_SHORT).show()
