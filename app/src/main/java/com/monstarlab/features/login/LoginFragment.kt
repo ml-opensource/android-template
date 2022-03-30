@@ -19,22 +19,11 @@ class LoginFragment : ComposeFragment() {
     private val viewModel by viewModels<LoginViewModel>()
 
     override val content: @Composable () -> Unit = {
-        val state = viewModel.stateFlow.collectAsState().value
-        LoginScreen(state) { event ->
-            when(event) {
-                LoginScreenEvent.LoginButtonPress -> viewModel.login()
-                is LoginScreenEvent.LoginChange -> viewModel.onEmailTextChanged(event.value)
-                is LoginScreenEvent.PasswordChange -> viewModel.onPasswordTextChanged(event.value)
-            }
-        }
+        LoginCoordinator(viewModel = viewModel, navController = findNavController())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        collectFlow(viewModel.loginResultFlow) {
-            findNavController().navigate(R.id.resourceFragment)
-        }
 
         snackErrorFlow(viewModel.viewErrorFlow, view)
     }
