@@ -27,6 +27,9 @@ class LoginViewModel @Inject constructor(
     }
 
 
+    fun handle() {}
+
+
     fun login() {
         loginUseCase
             .login(stateFlow.value.email, stateFlow.value.password)
