@@ -13,7 +13,12 @@ import androidx.compose.ui.unit.dp
 import com.monstarlab.core.ui.components.AppButton
 
 @Composable
-fun LoginScreen(state: LoginViewState, onEvent: (LoginScreenEvent) -> Unit) {
+fun LoginScreen(
+    state: LoginViewState,
+    onPasswordChange: (String) -> Unit = {},
+    onEmailChange: (String) -> Unit = {},
+    onLoginClick: () -> Unit = {}
+) {
     Scaffold {
         Column(
             modifier = Modifier
@@ -25,7 +30,7 @@ fun LoginScreen(state: LoginViewState, onEvent: (LoginScreenEvent) -> Unit) {
             TextField(
                 value = state.email,
                 enabled = !state.isLoading,
-                onValueChange = { onEvent(LoginScreenEvent.LoginChange(it) ) }
+                onValueChange = onEmailChange
             )
 
             Spacer(modifier = Modifier.size(4.dp))
@@ -33,14 +38,12 @@ fun LoginScreen(state: LoginViewState, onEvent: (LoginScreenEvent) -> Unit) {
             TextField(
                 value = state.password,
                 enabled = !state.isLoading,
-                onValueChange = { onEvent(LoginScreenEvent.PasswordChange(it) ) },
+                onValueChange = onPasswordChange,
                 visualTransformation = PasswordVisualTransformation()
             )
 
             Spacer(modifier = Modifier.size(4.dp))
-            AppButton(text = "Login") {
-              onEvent.invoke(LoginScreenEvent.LoginButtonPress)
-            }
+            AppButton(text = "Login", onClick = onLoginClick)
             Spacer(modifier = Modifier.size(4.dp))
 
             if (state.isLoading) {

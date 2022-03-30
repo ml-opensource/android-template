@@ -22,11 +22,10 @@ fun LoginCoordinator(
             .launchIn(this)
     }
 
-    LoginScreen(state) { event ->
-        when(event) {
-            LoginScreenEvent.LoginButtonPress -> viewModel.login()
-            is LoginScreenEvent.LoginChange -> viewModel.onEmailTextChanged(event.value)
-            is LoginScreenEvent.PasswordChange -> viewModel.onPasswordTextChanged(event.value)
-        }
-    }
+    LoginScreen(
+        state = state,
+        onPasswordChange = viewModel::onPasswordTextChanged,
+        onEmailChange = viewModel::onEmailTextChanged,
+        onLoginClick = viewModel::login
+    )
 }
