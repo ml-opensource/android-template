@@ -1,4 +1,4 @@
-package com.monstarlab.core.sharedui.errorhandling
+package com.monstarlab.core.ui.errorhandling
 
 import android.view.View
 import androidx.appcompat.app.AlertDialog

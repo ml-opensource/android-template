@@ -2,18 +2,15 @@ package com.monstarlab.features.login
 
 import android.os.Bundle
 import android.view.View
-import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.viewErrorFlow
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.fragment.findNavController
 import com.monstarlab.R
 import com.monstarlab.arch.extensions.collectFlow
 import com.monstarlab.arch.extensions.snackErrorFlow
-import com.monstarlab.core.sharedui.ComposeFragment
+import com.monstarlab.core.ui.ComposeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

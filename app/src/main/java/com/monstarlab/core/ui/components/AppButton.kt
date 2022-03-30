@@ -1,4 +1,4 @@
-package com.monstarlab.core.sharedui.components
+package com.monstarlab.core.ui.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.monstarlab.core.sharedui.theme.AppTheme
+import com.monstarlab.core.ui.theme.AppTheme
 
 enum class AppButtonType {
     Filled, Outlined, Text

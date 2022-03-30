@@ -1,4 +1,4 @@
-package com.monstarlab.core.sharedui
+package com.monstarlab.core.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import com.monstarlab.core.sharedui.theme.AppTheme
+import com.monstarlab.core.ui.theme.AppTheme
 
 abstract class ComposeFragment : Fragment() {
 

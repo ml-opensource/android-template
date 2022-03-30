@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.monstarlab.arch.extensions.onError
 import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.core.domain.model.Resource
-import com.monstarlab.core.sharedui.errorhandling.ViewError
-import com.monstarlab.core.sharedui.errorhandling.mapToViewError
+import com.monstarlab.core.ui.errorhandling.ViewError
+import com.monstarlab.core.ui.errorhandling.mapToViewError
 import com.monstarlab.core.usecases.resources.GetResourcesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.core.sharedui.createComposableView
+import com.monstarlab.core.ui.createComposableView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

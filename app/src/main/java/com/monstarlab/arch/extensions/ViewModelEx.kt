@@ -7,8 +7,8 @@ import com.monstarlab.arch.extensions.LoadingAware
 import com.monstarlab.arch.extensions.UseCaseResult
 import com.monstarlab.arch.extensions.ViewErrorAware
 import com.monstarlab.arch.extensions.onError
-import com.monstarlab.core.sharedui.errorhandling.ViewError
-import com.monstarlab.core.sharedui.errorhandling.mapToViewError
+import com.monstarlab.core.ui.errorhandling.ViewError
+import com.monstarlab.core.ui.errorhandling.mapToViewError
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

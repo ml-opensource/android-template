@@ -1,4 +1,4 @@
-package com.monstarlab.core.sharedui.theme
+package com.monstarlab.core.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
