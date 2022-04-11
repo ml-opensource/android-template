@@ -46,7 +46,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_plugin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
