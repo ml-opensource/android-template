@@ -41,6 +41,7 @@ public class Translation {
 		public static String donateButton = "Donate!";
 		public static String donateAgainButton = "Donate again!";
 		public static String title = "Help the victims now!";
+		public static String acceptLabel = "dwadaw";
 	}
 	public final static class error {
 		public static String authenticationError = "Login expired, please login again.";

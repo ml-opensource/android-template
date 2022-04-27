@@ -14,14 +14,14 @@ translation {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
     flavorDimensions "default"
 
     defaultConfig {
         applicationId "com.monstarlab"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 
