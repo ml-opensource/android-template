@@ -25,6 +25,7 @@
   <string name='nstack_donate_donateButton' formatted='false'>{donate_donateButton}</string>
   <string name='nstack_donate_donateAgainButton' formatted='false'>{donate_donateAgainButton}</string>
   <string name='nstack_donate_title' formatted='false'>{donate_title}</string>
+  <string name='nstack_donate_acceptLabel' formatted='false'>{donate_acceptLabel}</string>
   <string name='nstack_error_authenticationError' formatted='false'>{error_authenticationError}</string>
   <string name='nstack_error_connectionError' formatted='false'>{error_connectionError}</string>
   <string name='nstack_error_errorTitle' formatted='false'>{error_errorTitle}</string>
