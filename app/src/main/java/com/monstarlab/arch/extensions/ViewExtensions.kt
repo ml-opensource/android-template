@@ -2,18 +2,17 @@ package com.monstarlab.arch.extensions
 
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.core.sharedui.errorhandling.ViewError
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.launch
 
-fun Fragment.snackErrorFlow(
+fun LifecycleOwner.snackErrorFlow(
     targetFlow: SharedFlow<ViewError>,
     root: View,
     length: Int = Snackbar.LENGTH_SHORT
@@ -23,7 +22,7 @@ fun Fragment.snackErrorFlow(
     }
 }
 
-fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
+fun LifecycleOwner.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
     collectFlow(targetFlow) { loading ->
         view.forEach { it.isVisible = loading }
     }
@@ -33,13 +32,13 @@ fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
  * Launches a new coroutine and repeats `collectBlock` every time the Fragment's viewLifecycleOwner
  * is in and out of `minActiveState` lifecycle state.
  */
-inline fun <T> Fragment.collectFlow(
+inline fun <T> LifecycleOwner.collectFlow(
     targetFlow: Flow<T>,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline collectBlock: (T) -> Unit
 ) {
-    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-        targetFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, minActiveState)
+    this.lifecycleScope.launchWhenStarted {
+        targetFlow.flowWithLifecycle(this@collectFlow.lifecycle, minActiveState)
             .collect {
                 collectBlock(it)
             }
@@ -62,23 +61,23 @@ inline fun <T> Fragment.collectFlow(
  *
  */
 
-inline fun Fragment.repeatWithViewLifecycle(
+inline fun LifecycleOwner.repeatWithViewLifecycle(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline block: suspend CoroutineScope.() -> Unit
 ) {
-    viewLifecycleOwner.lifecycleScope.launch {
-        viewLifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
+    this.lifecycleScope.launch {
+        this@repeatWithViewLifecycle.lifecycle.repeatOnLifecycle(minActiveState) {
             block()
         }
     }
 }
 
-fun Fragment.launchAndRepeatWithViewLifecycle(
+fun LifecycleOwner.launchAndRepeatWithViewLifecycle(
     vararg blocks: suspend CoroutineScope.() -> Unit,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED
 ) {
-    viewLifecycleOwner.lifecycleScope.launch {
-        viewLifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
+    this.lifecycleScope.launch {
+        this@launchAndRepeatWithViewLifecycle.lifecycle.repeatOnLifecycle(minActiveState) {
             blocks.map {
                 launch {
                     it()
@@ -89,7 +88,7 @@ fun Fragment.launchAndRepeatWithViewLifecycle(
 }
 
 
-fun <T1, T2> Fragment.combineFlows(
+fun <T1, T2> LifecycleOwner.combineFlows(
     flow1: Flow<T1>,
     flow2: Flow<T2>,
     collectBlock: ((T1, T2) -> Unit)
@@ -99,7 +98,7 @@ fun <T1, T2> Fragment.combineFlows(
     }) {}
 }
 
-fun <T1, T2, T3> Fragment.combineFlows(
+fun <T1, T2, T3> LifecycleOwner.combineFlows(
     flow1: Flow<T1>,
     flow2: Flow<T2>,
     flow3: Flow<T3>,
@@ -110,7 +109,7 @@ fun <T1, T2, T3> Fragment.combineFlows(
     }) {}
 }
 
-fun <T1, T2, T3, T4> Fragment.combineFlows(
+fun <T1, T2, T3, T4> LifecycleOwner.combineFlows(
     flow1: Flow<T1>,
     flow2: Flow<T2>,
     flow3: Flow<T3>,
@@ -122,7 +121,7 @@ fun <T1, T2, T3, T4> Fragment.combineFlows(
     }) {}
 }
 
-fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
+fun <T1, T2> LifecycleOwner.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: ((T1, T2) -> Unit)) {
     collectFlow(flow1.zip(flow2) { v1, v2 ->
         collectBlock.invoke(v1, v2)
     }) {}
