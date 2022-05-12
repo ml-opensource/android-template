@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.core.sharedui.errorhandling.ViewError
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*
 
@@ -27,16 +29,62 @@ fun Fragment.visibilityFlow(targetFlow: Flow<Boolean>, vararg view: View) {
     }
 }
 
-fun <T> Fragment.collectFlow(
+/**
+ * Launches a new coroutine and repeats `collectBlock` every time the Fragment's viewLifecycleOwner
+ * is in and out of `minActiveState` lifecycle state.
+ */
+inline fun <T> Fragment.collectFlow(
     targetFlow: Flow<T>,
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
-    collectBlock: ((T) -> Unit)
+    crossinline collectBlock: (T) -> Unit
 ) {
-    lifecycleScope.launchWhenStarted {
+    viewLifecycleOwner.lifecycleScope.launchWhenStarted {
         targetFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, minActiveState)
             .collect {
                 collectBlock(it)
             }
+    }
+}
+
+/**
+ * Launches a new coroutine and repeats `block` every time the Fragment's viewLifecycleOwner
+ * is in and out of `minActiveState` lifecycle state.
+ * ```
+ *   repeatWithViewLifecycle {
+ *           launch {
+ *              // collect
+ *           }
+ *           launch {
+ *              // collect
+ *           }
+ *       }
+ * ```
+ *
+ */
+
+inline fun Fragment.repeatWithViewLifecycle(
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    crossinline block: suspend CoroutineScope.() -> Unit
+) {
+    viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
+            block()
+        }
+    }
+}
+
+fun Fragment.launchAndRepeatWithViewLifecycle(
+    vararg blocks: suspend CoroutineScope.() -> Unit,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED
+) {
+    viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
+            blocks.map {
+                launch {
+                    it()
+                }
+            }.joinAll()
+        }
     }
 }
 
@@ -80,9 +128,10 @@ fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: (
     }) {}
 }
 
+@ExperimentalCoroutinesApi
 fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
     this@clicks.setOnClickListener {
-        offer(Unit)
+        trySend(Unit)
     }
     awaitClose { this@clicks.setOnClickListener(null) }
 }.throttleFirst(throttleTime)

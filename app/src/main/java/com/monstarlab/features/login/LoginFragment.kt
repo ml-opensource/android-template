@@ -13,6 +13,8 @@ import com.monstarlab.R
 import com.monstarlab.arch.extensions.*
 import com.monstarlab.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -36,15 +38,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun collectFlows() {
-        collectFlow(viewModel.loginResultFlow) {
-            findNavController().navigate(R.id.resourceFragment)
-        }
+        repeatWithViewLifecycle {
+            launch {
+                viewModel.loginResultFlow.collect {
+                    findNavController().navigate(R.id.resourceFragment)
+                }
+            }
 
-        collectFlow(viewModel.loadingFlow) { loading ->
-            TransitionManager.beginDelayedTransition(binding.root)
-            binding.loginEmailEditText.isEnabled = !loading
-            binding.loginPasswordEditText.isEnabled = !loading
-            binding.loginButton.isVisible = !loading
+            launch {
+                viewModel.loadingFlow.collect { loading ->
+                    TransitionManager.beginDelayedTransition(binding.root)
+                    binding.loginEmailEditText.isEnabled = !loading
+                    binding.loginPasswordEditText.isEnabled = !loading
+                    binding.loginButton.isVisible = !loading
+                }
+            }
         }
 
         snackErrorFlow(viewModel.viewErrorFlow, binding.root)
