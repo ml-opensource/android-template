@@ -21,18 +21,23 @@ class ResourceFragment : Fragment(R.layout.fragment_resource) {
     private val binding by viewBinding(FragmentResourceBinding::bind)
     private val resourceAdapter = ResourceAdapter()
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding.resourceRecyclerView) {
             adapter = resourceAdapter
         }
+        collectFlows()
+        viewModel.fetchResources()
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun collectFlows() {
         launchAndRepeatWithViewLifecycle(
             {
                 viewModel.errorFlow.collect { errorMessage ->
-                    Snackbar.make(view, errorMessage.message, Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, errorMessage.message, Snackbar.LENGTH_SHORT).show()
                 }
             },
             {
@@ -51,6 +56,5 @@ class ResourceFragment : Fragment(R.layout.fragment_resource) {
                 }
             }
         )
-        viewModel.fetchResources()
     }
 }
