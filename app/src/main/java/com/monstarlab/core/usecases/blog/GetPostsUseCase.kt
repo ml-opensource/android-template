@@ -1,16 +1,16 @@
 package com.monstarlab.core.usecases.blog
 
-import com.monstarlab.arch.extensions.UseCaseResult
 import com.monstarlab.arch.extensions.useCaseFlow
 import com.monstarlab.core.data.repositories.PostRepository
-import com.monstarlab.core.domain.model.Post
-import kotlinx.coroutines.flow.Flow
+import com.monstarlab.injection.qualifiers.DefaultDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Inject
 
 class GetPostsUseCase @Inject constructor(
-    private val postRepository: PostRepository
+    private val postRepository: PostRepository,
+    @DefaultDispatcher private val coroutineDispatcher: CoroutineDispatcher
 ) {
-    fun getPosts(): Flow<UseCaseResult<List<Post>>> = useCaseFlow {
+    fun getPosts() = useCaseFlow(coroutineDispatcher) {
         postRepository.getPosts()
     }
 }

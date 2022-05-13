@@ -2,12 +2,8 @@ package com.monstarlab.arch.extensions
 
 import com.monstarlab.core.domain.error.ErrorModel
 import com.monstarlab.core.domain.error.toError
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.transform
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.*
 import timber.log.Timber
 
 sealed class UseCaseResult<out T> {
@@ -25,7 +21,9 @@ suspend inline fun <T> safeUseCase(
 
 @Suppress("TooGenericExceptionCaught")
 inline fun <T> useCaseFlow(
+    coroutineDispatcher: CoroutineDispatcher,
     crossinline block: suspend () -> T,
+
 ): Flow<UseCaseResult<T>> = flow {
     try {
         val repoResult = block()
@@ -35,7 +33,7 @@ inline fun <T> useCaseFlow(
     } catch (e: Exception) {
         emit(UseCaseResult.Error(e.toError()))
     }
-}
+}.flowOn(coroutineDispatcher)
 
 fun <T> observableFlow(block: suspend FlowCollector<T>.() -> Unit): Flow<UseCaseResult<T>> =
     flow(block)
