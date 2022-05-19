@@ -1,7 +1,7 @@
 package com.monstarlab.arch.data
 
 interface SingleDataSource<T> {
-    fun get(): T?
-    fun add(item: T)
-    fun clear()
+    suspend fun get(): T?
+    suspend fun add(item: T)
+    suspend fun clear()
 }

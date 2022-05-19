@@ -1,7 +1,11 @@
 package com.monstarlab.injection.modules
 
 import android.content.Context
-import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.SharedPreferencesMigration
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import com.monstarlab.core.data.storage.PreferenceDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,9 +17,27 @@ import javax.inject.Singleton
 @Module
 class DataModule {
 
+    private val Context.dataStore by preferencesDataStore(
+        name = PreferenceDataStore.PREFS_NAME,
+        produceMigrations = { context ->
+            listOf(
+                SharedPreferencesMigration(
+                    context,
+                    PreferenceDataStore.PREFS_NAME
+                )
+            )
+        }
+    )
+
     @Singleton
     @Provides
-    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
-        return context.applicationContext.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-    }
+    fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
+        context.dataStore
+
+    @Singleton
+    @Provides
+    fun providePreferenceStorage(@ApplicationContext context: Context): PreferenceDataStore =
+        PreferenceDataStore(context.dataStore)
+
+
 }
