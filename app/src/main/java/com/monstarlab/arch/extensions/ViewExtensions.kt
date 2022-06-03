@@ -82,7 +82,7 @@ fun <T1, T2> Fragment.zipFlows(flow1: Flow<T1>, flow2: Flow<T2>, collectBlock: (
 
 fun View.clicks(throttleTime: Long = 400): Flow<Unit> = callbackFlow {
     this@clicks.setOnClickListener {
-        offer(Unit)
+        this.trySend(Unit).isSuccess
     }
     awaitClose { this@clicks.setOnClickListener(null) }
 }.throttleFirst(throttleTime)

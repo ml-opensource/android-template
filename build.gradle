@@ -2,13 +2,13 @@
 buildscript {
 
     ext.versions = [
-            kotlin_plugin       : '1.6.10',
-            kotlin              : '1.4.10',
+            kotlin_plugin       : '1.6.21',
+            kotlin              : '1.6.21',
             appcompat           : '1.4.1',
-            coroutines          : '1.5.2',
+            coroutines          : '1.6.1',
             json                : '1.0.1',
             constraint_layout   : '2.1.3',
-            hilt                : '2.40',
+            hilt                : '2.40.5',
             lifecycle           : '2.4.1',
             timber              : "5.0.1",
             junit               : '4.13.2',
@@ -22,7 +22,7 @@ buildscript {
             okhttp              : '4.9.1',
             ktx_core            : '1.7.0',
             ktx                 : '1.7.0',
-            material            : '1.5.0',
+            material            : '1.6.0',
             archCore            : '2.1.0',
             navigation          : '2.4.2',
             nodes_utils         : '1.0.0',
@@ -47,7 +47,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.3'
+        classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_plugin}"
         classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
         classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
