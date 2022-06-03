@@ -1,10 +1,11 @@
 package com.monstarlab.core.data.storage
 
-import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import com.monstarlab.arch.data.SharedPreferenceDataStore
 import com.monstarlab.core.domain.model.Resource
 import javax.inject.Inject
 
 class ResourcePreferenceStore @Inject constructor(
-    sharedPreferences: SharedPreferences
-) : SharedPreferenceDataStore<Resource>(sharedPreferences, Resource.serializer())
+    dataStore: DataStore<Preferences>
+) : SharedPreferenceDataStore<Resource>(dataStore, Resource.serializer())

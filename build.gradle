@@ -33,6 +33,7 @@ buildscript {
             desugaring          : '1.0.9',
             nodes_nstack_kotlin : '3.2.5',
             nstack_gradle_plugin: '3.2.5',
+            datastore           : '1.0.0',
     ]
 
     ext.keys = [

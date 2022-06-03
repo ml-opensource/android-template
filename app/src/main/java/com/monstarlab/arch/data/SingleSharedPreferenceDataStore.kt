@@ -1,22 +1,26 @@
 package com.monstarlab.arch.data
 
-import android.content.SharedPreferences
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import timber.log.Timber
-import java.io.IOException
 
 abstract class SingleSharedPreferenceDataStore<T> constructor(
-    private val sharedPreferences: SharedPreferences,
+    private val dataStore: DataStore<Preferences>,
     private val serializer: KSerializer<T>
 ) : SingleDataSource<T> {
 
-    private val key = this.javaClass.simpleName
+    private val key = stringPreferencesKey(this.javaClass.simpleName)
 
-    override fun get(): T? {
+    override suspend fun get(): T? {
         return try {
-            val json = sharedPreferences.getString(key, "") ?: ""
+            val json = dataStore.data.map { it[key] ?: "" }.first()
             val entries = Json.decodeFromString(serializer, json)
             entries
         } catch (e: SerializationException) {
@@ -24,16 +28,18 @@ abstract class SingleSharedPreferenceDataStore<T> constructor(
         }
     }
 
-    override fun add(item: T) {
+    override suspend fun add(item: T) {
         try {
             val json = Json.encodeToString(serializer, item)
-            sharedPreferences.edit().putString(key, json).apply()
+            dataStore.edit {
+                it[key] = json
+            }
         } catch (e: SerializationException) {
             Timber.e(e)
         }
     }
 
-    override fun clear() {
-        sharedPreferences.edit().remove(key).apply()
+    override suspend fun clear() {
+        dataStore.edit { it[key] = "" }
     }
 }
