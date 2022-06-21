@@ -1,22 +1,15 @@
 // Package set to androidx.lifecycle so we can have access to package private methods
 
 @file:Suppress("PackageDirectoryMismatch")
+
 package androidx.lifecycle
 
-import com.monstarlab.arch.extensions.LoadingAware
-import com.monstarlab.arch.extensions.UseCaseResult
-import com.monstarlab.arch.extensions.ViewErrorAware
-import com.monstarlab.arch.extensions.onError
+import com.monstarlab.arch.extensions.*
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlin.onSuccess
 
 private const val ERROR_FLOW_KEY = "androidx.lifecycle.ErrorFlow"
 private const val LOADING_FLOW_KEY = "androidx.lifecycle.LoadingFlow"
@@ -75,4 +68,17 @@ fun <F, T> Flow<UseCaseResult<F>>.bindError(t: T): Flow<UseCaseResult<F>> where 
         .onError {
             t.emitViewError(it.mapToViewError())
         }
+}
+
+inline fun <T, V> V.collectFlow(
+    targetFlow: Flow<UseCaseResult<T>>,
+    crossinline action: suspend (T) -> Unit
+) where V : ViewModel, V : ViewErrorAware, V : LoadingAware {
+    targetFlow
+        .bindLoading(this)
+        .bindError(this)
+        .onSuccess {
+            action(it)
+        }
+        .launchIn(viewModelScope)
 }
