@@ -1,8 +1,7 @@
-package com.monstarlab.injection.modules
+package com.monstarlab.core.injection.modules
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.monstarlab.BuildConfig
-import com.monstarlab.core.data.network.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,9 +53,4 @@ class RestModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideApi(retrofit: Retrofit): Api {
-        return retrofit.create(Api::class.java)
-    }
 }

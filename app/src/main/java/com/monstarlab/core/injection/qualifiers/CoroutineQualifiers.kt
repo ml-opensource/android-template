@@ -1,4 +1,4 @@
-package com.monstarlab.injection.qualifiers
+package com.monstarlab.core.injection.qualifiers
 
 import javax.inject.Qualifier
 

@@ -6,7 +6,7 @@ import com.monstarlab.arch.extensions.onError
 import com.monstarlab.arch.extensions.onSuccess
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
-import com.monstarlab.core.usecases.resources.GetResourcesUseCase
+import com.monstarlab.features.resources.domain.GetResourcesUseCase
 import com.monstarlab.features.resources.domain.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

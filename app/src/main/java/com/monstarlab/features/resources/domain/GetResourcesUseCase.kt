@@ -1,8 +1,8 @@
-package com.monstarlab.core.usecases.resources
+package com.monstarlab.features.resources.domain
 
 import com.monstarlab.arch.extensions.useCaseFlow
 import com.monstarlab.features.resources.domain.ResourceRepository
-import com.monstarlab.injection.qualifiers.DefaultDispatcher
+import com.monstarlab.core.injection.qualifiers.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import javax.inject.Inject
