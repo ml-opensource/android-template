@@ -37,6 +37,4 @@ class DataStoreModule {
     @Provides
     fun providePreferenceStorage(@ApplicationContext context: Context): PreferenceDataStore =
         PreferenceDataStore(context.dataStore)
-
-
 }

@@ -1,6 +1,5 @@
 package com.monstarlab.features.resources.data
 
-import com.monstarlab.features.resources.data.ResourceDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

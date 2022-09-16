@@ -2,7 +2,7 @@ package com.monstarlab.features.resources.domain
 
 import com.monstarlab.arch.data.Repository
 import com.monstarlab.arch.extensions.mapSuccess
-import com.monstarlab.core.data.network.dtos.toEntity
+import com.monstarlab.features.resources.data.toEntity
 import com.monstarlab.features.resources.data.ResourcePreferenceStore
 import com.monstarlab.features.resources.data.ResourcesApi
 import javax.inject.Inject

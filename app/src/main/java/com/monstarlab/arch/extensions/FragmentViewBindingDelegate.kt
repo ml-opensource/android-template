@@ -35,7 +35,7 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
         super.onDestroy(owner)
     }
 
-    private  fun disposeBinding() {
+    private fun disposeBinding() {
         fragmentBinding?.disposeEvents()
         fragmentBinding = null
     }

@@ -25,7 +25,6 @@ abstract class SharedPreferenceDataStore<T> constructor(
         } catch (e: SerializationException) {
             emptyList<T>()
         }
-
     }
 
     override suspend fun add(item: T) {

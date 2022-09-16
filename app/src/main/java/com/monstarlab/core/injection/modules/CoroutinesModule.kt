@@ -1,6 +1,5 @@
 package com.monstarlab.core.injection.modules
 
-
 import com.monstarlab.core.injection.qualifiers.DefaultDispatcher
 import com.monstarlab.core.injection.qualifiers.IoDispatcher
 import com.monstarlab.core.injection.qualifiers.MainDispatcher
