@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.monstarlab.features.login.LoginFragment"
+        android:name="com.monstarlab.features.login.ui.LoginFragment"
         tools:layout="@layout/fragment_login"
         android:label="LoginFragment" />
 

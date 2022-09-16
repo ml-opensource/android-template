@@ -1,6 +1,5 @@
-package com.monstarlab.core.data.network.responses
+package com.monstarlab.features.user.data.models
 
-import com.monstarlab.core.data.network.dtos.UserDto
 import kotlinx.serialization.Serializable
 
 @Serializable

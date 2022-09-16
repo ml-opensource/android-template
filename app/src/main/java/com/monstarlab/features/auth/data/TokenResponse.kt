@@ -1,4 +1,4 @@
-package com.monstarlab.core.data.network.responses
+package com.monstarlab.features.auth.data
 
 import kotlinx.serialization.Serializable
 

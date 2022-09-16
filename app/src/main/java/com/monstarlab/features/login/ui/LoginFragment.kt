@@ -1,4 +1,4 @@
-package com.monstarlab.features.login
+package com.monstarlab.features.login.ui
 
 import android.os.Bundle
 import android.view.View

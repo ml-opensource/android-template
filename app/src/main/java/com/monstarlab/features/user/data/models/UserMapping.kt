@@ -1,6 +1,6 @@
-package com.monstarlab.core.data.network.dtos
+package com.monstarlab.features.user.data.models
 
-import com.monstarlab.core.domain.model.User
+import com.monstarlab.features.user.domain.User
 
 fun UserDto.toUser(): User {
     return User(

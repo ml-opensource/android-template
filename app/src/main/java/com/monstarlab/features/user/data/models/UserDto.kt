@@ -1,4 +1,4 @@
-package com.monstarlab.core.data.network.dtos
+package com.monstarlab.features.user.data.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
