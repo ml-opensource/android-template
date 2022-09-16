@@ -1,7 +1,7 @@
 package com.monstarlab.core.usecases.resources
 
 import com.monstarlab.arch.extensions.useCaseFlow
-import com.monstarlab.core.data.repositories.ResourceRepository
+import com.monstarlab.features.resources.domain.ResourceRepository
 import com.monstarlab.injection.qualifiers.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay

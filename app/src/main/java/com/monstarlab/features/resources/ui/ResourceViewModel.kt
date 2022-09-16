@@ -1,15 +1,14 @@
-package com.monstarlab.features.resources
+package com.monstarlab.features.resources.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.arch.extensions.onError
 import com.monstarlab.arch.extensions.onSuccess
-import com.monstarlab.core.domain.model.Resource
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
 import com.monstarlab.core.usecases.resources.GetResourcesUseCase
+import com.monstarlab.features.resources.domain.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn

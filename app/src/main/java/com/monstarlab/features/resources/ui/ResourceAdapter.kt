@@ -1,10 +1,10 @@
-package com.monstarlab.features.resources
+package com.monstarlab.features.resources.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.monstarlab.core.domain.model.Resource
 import com.monstarlab.databinding.ItemResourceBinding
+import com.monstarlab.features.resources.domain.Resource
 
 class ResourceAdapter : RecyclerView.Adapter<ResourceAdapter.ResourceViewHolder>() {
 

@@ -1,4 +1,4 @@
-package com.monstarlab.features.resources
+package com.monstarlab.features.resources.ui
 
 import android.os.Bundle
 import android.view.View
