@@ -1,9 +1,5 @@
-package com.monstarlab.core.injection.modules
+package com.monstarlab.core.injection
 
-import com.monstarlab.core.injection.qualifiers.DefaultDispatcher
-import com.monstarlab.core.injection.qualifiers.IoDispatcher
-import com.monstarlab.core.injection.qualifiers.MainDispatcher
-import com.monstarlab.core.injection.qualifiers.MainImmediateDispatcher
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

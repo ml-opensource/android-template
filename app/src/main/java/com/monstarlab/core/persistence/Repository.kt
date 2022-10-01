@@ -1,4 +1,4 @@
-package com.monstarlab.core.domain
+package com.monstarlab.core.persistence
 
 /**
  * Empty for now, but could allow us to add cache helpers etc

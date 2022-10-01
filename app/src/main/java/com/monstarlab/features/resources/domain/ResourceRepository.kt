@@ -1,6 +1,6 @@
 package com.monstarlab.features.resources.domain
 
-import com.monstarlab.core.domain.Repository
+import com.monstarlab.core.persistence.Repository
 import com.monstarlab.core.extensions.mapSuccess
 import com.monstarlab.features.resources.data.toEntity
 import com.monstarlab.features.resources.data.ResourcePreferenceStore

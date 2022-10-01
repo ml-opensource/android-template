@@ -1,6 +1,6 @@
 package com.monstarlab.core.extensions
 
-import com.monstarlab.core.domain.error.toError
+import com.monstarlab.core.network.toError
 import retrofit2.Response
 
 inline fun <T> repoCall(

@@ -1,4 +1,4 @@
-package com.monstarlab.core.injection.modules
+package com.monstarlab.core.persistence.injection
 
 import android.content.Context
 import androidx.datastore.core.DataStore

@@ -1,7 +1,7 @@
 package com.monstarlab.core.extensions
 
-import com.monstarlab.core.domain.error.ErrorModel
-import com.monstarlab.core.domain.error.toError
+import com.monstarlab.core.network.ErrorModel
+import com.monstarlab.core.network.toError
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.*
 import timber.log.Timber

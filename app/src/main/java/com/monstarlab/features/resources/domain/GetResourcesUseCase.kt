@@ -1,7 +1,7 @@
 package com.monstarlab.features.resources.domain
 
 import com.monstarlab.core.extensions.useCaseFlow
-import com.monstarlab.core.injection.qualifiers.DefaultDispatcher
+import com.monstarlab.core.injection.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import javax.inject.Inject

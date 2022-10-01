@@ -4,7 +4,7 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
-import com.monstarlab.core.domain.error.ErrorModel
+import com.monstarlab.core.network.ErrorModel
 import javax.inject.Inject
 
 fun Fragment.showErrorDialog(

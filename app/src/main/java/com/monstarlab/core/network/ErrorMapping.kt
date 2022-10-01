@@ -1,4 +1,4 @@
-package com.monstarlab.core.domain.error
+package com.monstarlab.core.network
 
 import kotlinx.serialization.SerializationException
 import retrofit2.Response
