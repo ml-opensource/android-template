@@ -1,4 +1,4 @@
-package com.monstarlab.arch.data
+package com.monstarlab.core.persistence
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

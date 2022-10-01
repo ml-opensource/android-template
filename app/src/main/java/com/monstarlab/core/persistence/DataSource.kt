@@ -1,4 +1,4 @@
-package com.monstarlab.arch.data
+package com.monstarlab.core.persistence
 
 interface DataSource<T> {
     suspend fun getAll(): List<T>

@@ -17,12 +17,12 @@ import javax.inject.Singleton
 class DataStoreModule {
 
     private val Context.dataStore by preferencesDataStore(
-        name = PreferenceDataStore.PREFS_NAME,
+        name = "preferences",
         produceMigrations = { context ->
             listOf(
                 SharedPreferencesMigration(
                     context,
-                    PreferenceDataStore.PREFS_NAME
+                    "preferences"
                 )
             )
         }
@@ -33,8 +33,4 @@ class DataStoreModule {
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
         context.dataStore
 
-    @Singleton
-    @Provides
-    fun providePreferenceStorage(@ApplicationContext context: Context): PreferenceDataStore =
-        PreferenceDataStore(context.dataStore)
 }

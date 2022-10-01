@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
 import com.monstarlab.R
-import com.monstarlab.arch.extensions.collectFlow
-import com.monstarlab.arch.extensions.viewBinding
+import com.monstarlab.core.extensions.collectFlow
+import com.monstarlab.core.extensions.viewBinding
 import com.monstarlab.databinding.FragmentResourceBinding
 import dagger.hilt.android.AndroidEntryPoint
 

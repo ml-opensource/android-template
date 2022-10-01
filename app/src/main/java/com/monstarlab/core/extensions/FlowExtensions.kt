@@ -1,4 +1,4 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.core.extensions
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

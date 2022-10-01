@@ -1,4 +1,4 @@
-package com.monstarlab.arch.data
+package com.monstarlab.core.persistence
 
 interface SingleDataSource<T> {
     suspend fun get(): T?

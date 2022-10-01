@@ -1,4 +1,4 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.core.extensions
 
 import com.monstarlab.core.domain.error.ErrorModel
 import com.monstarlab.core.domain.error.toError

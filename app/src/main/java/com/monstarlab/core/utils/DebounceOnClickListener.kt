@@ -1,4 +1,4 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.core.utils
 
 import android.view.View
 

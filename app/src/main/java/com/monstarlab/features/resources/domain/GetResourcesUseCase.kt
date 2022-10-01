@@ -1,6 +1,6 @@
 package com.monstarlab.features.resources.domain
 
-import com.monstarlab.arch.extensions.useCaseFlow
+import com.monstarlab.core.extensions.useCaseFlow
 import com.monstarlab.core.injection.qualifiers.DefaultDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay

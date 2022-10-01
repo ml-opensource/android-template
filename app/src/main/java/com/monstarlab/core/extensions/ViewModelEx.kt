@@ -3,10 +3,10 @@
 @file:Suppress("PackageDirectoryMismatch")
 package androidx.lifecycle
 
-import com.monstarlab.arch.extensions.LoadingAware
-import com.monstarlab.arch.extensions.UseCaseResult
-import com.monstarlab.arch.extensions.ViewErrorAware
-import com.monstarlab.arch.extensions.onError
+import com.monstarlab.core.extensions.LoadingAware
+import com.monstarlab.core.extensions.UseCaseResult
+import com.monstarlab.core.extensions.ViewErrorAware
+import com.monstarlab.core.extensions.onError
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
 import kotlinx.coroutines.flow.Flow

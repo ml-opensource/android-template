@@ -17,7 +17,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-class RestModule {
+class OkHttpModule {
 
     @Provides
     @Singleton

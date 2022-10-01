@@ -10,7 +10,11 @@ import androidx.lifecycle.viewErrorFlow
 import androidx.navigation.fragment.findNavController
 import androidx.transition.TransitionManager
 import com.monstarlab.R
-import com.monstarlab.arch.extensions.*
+import com.monstarlab.core.extensions.collectFlow
+import com.monstarlab.core.extensions.onClick
+import com.monstarlab.core.extensions.snackErrorFlow
+import com.monstarlab.core.extensions.viewBinding
+import com.monstarlab.core.extensions.visibilityFlow
 import com.monstarlab.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 

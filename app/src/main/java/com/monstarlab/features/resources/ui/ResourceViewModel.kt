@@ -2,8 +2,8 @@ package com.monstarlab.features.resources.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.monstarlab.arch.extensions.onError
-import com.monstarlab.arch.extensions.onSuccess
+import com.monstarlab.core.extensions.onError
+import com.monstarlab.core.extensions.onSuccess
 import com.monstarlab.core.sharedui.errorhandling.ViewError
 import com.monstarlab.core.sharedui.errorhandling.mapToViewError
 import com.monstarlab.features.resources.domain.GetResourcesUseCase

@@ -1,9 +1,10 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.core.utils
 
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
+import com.monstarlab.core.extensions.ensureMainThread
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 

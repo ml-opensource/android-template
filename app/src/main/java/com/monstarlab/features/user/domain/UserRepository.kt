@@ -1,7 +1,7 @@
 package com.monstarlab.features.user.domain
 
-import com.monstarlab.arch.data.Repository
-import com.monstarlab.arch.extensions.mapSuccess
+import com.monstarlab.core.domain.Repository
+import com.monstarlab.core.extensions.mapSuccess
 import com.monstarlab.features.user.data.UserPreferenceStore
 import com.monstarlab.features.user.data.UsersApi
 import com.monstarlab.features.user.data.models.toUser

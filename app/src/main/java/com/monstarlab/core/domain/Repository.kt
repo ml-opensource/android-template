@@ -1,4 +1,4 @@
-package com.monstarlab.arch.data
+package com.monstarlab.core.domain
 
 /**
  * Empty for now, but could allow us to add cache helpers etc

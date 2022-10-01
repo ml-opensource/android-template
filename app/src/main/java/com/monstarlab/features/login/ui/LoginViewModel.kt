@@ -2,8 +2,8 @@ package com.monstarlab.features.login.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.monstarlab.arch.extensions.LoadingAware
-import com.monstarlab.arch.extensions.ViewErrorAware
+import com.monstarlab.core.extensions.LoadingAware
+import com.monstarlab.core.extensions.ViewErrorAware
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

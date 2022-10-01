@@ -2,7 +2,7 @@ package com.monstarlab.features.resources.data
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.monstarlab.arch.data.SharedPreferenceDataStore
+import com.monstarlab.core.persistence.SharedPreferenceDataStore
 import com.monstarlab.features.resources.domain.Resource
 import javax.inject.Inject
 

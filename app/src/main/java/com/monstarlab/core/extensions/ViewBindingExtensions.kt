@@ -1,4 +1,4 @@
-package com.monstarlab.arch.extensions
+package com.monstarlab.core.extensions
 
 import android.app.Activity
 import android.os.Looper
@@ -7,6 +7,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.monstarlab.core.utils.ActivityViewBindingDelegate
+import com.monstarlab.core.utils.FragmentViewBindingDelegate
+import com.monstarlab.core.utils.GlobalViewBindingDelegate
 
 inline fun <T : ViewBinding> Activity.viewBinder(crossinline bindingInflater: (LayoutInflater) -> T) =
     lazy(LazyThreadSafetyMode.NONE) {
