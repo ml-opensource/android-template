@@ -32,5 +32,4 @@ class DataStoreModule {
     @Provides
     fun provideDataStore(@ApplicationContext context: Context): DataStore<Preferences> =
         context.dataStore
-
 }
