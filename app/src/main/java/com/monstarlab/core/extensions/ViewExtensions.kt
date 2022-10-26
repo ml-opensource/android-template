@@ -7,7 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
-import com.monstarlab.core.sharedui.errorhandling.ViewError
+import com.monstarlab.core.ui.errorhandling.ViewError
 import com.monstarlab.core.utils.DebounceOnClickListener
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.*

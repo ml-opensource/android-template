@@ -1,4 +1,4 @@
-package com.monstarlab.core.sharedui.errorhandling
+package com.monstarlab.core.ui.errorhandling
 
 data class ViewError(
     var title: String,
