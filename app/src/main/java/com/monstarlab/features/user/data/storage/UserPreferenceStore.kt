@@ -1,4 +1,4 @@
-package com.monstarlab.features.user.data
+package com.monstarlab.features.user.data.storage
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

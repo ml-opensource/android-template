@@ -1,6 +1,6 @@
 package com.monstarlab.features.user.injection
 
-import com.monstarlab.features.user.data.UsersApi
+import com.monstarlab.features.user.data.api.UsersApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,6 +1,7 @@
 package com.monstarlab.features.auth.domain
 
-import com.monstarlab.features.auth.data.AuthApi
+import com.monstarlab.features.auth.data.api.AuthApi
+import com.monstarlab.features.auth.domain.models.AuthToken
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(

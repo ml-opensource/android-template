@@ -1,6 +1,6 @@
 package com.monstarlab.features.resources.injection
 
-import com.monstarlab.features.resources.data.ResourcesApi
+import com.monstarlab.features.resources.data.api.ResourcesApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

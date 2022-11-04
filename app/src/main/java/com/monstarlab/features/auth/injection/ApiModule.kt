@@ -1,6 +1,6 @@
 package com.monstarlab.features.auth.injection
 
-import com.monstarlab.features.auth.data.AuthApi
+import com.monstarlab.features.auth.data.api.AuthApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

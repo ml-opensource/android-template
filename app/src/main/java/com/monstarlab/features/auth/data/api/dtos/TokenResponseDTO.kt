@@ -1,8 +1,8 @@
-package com.monstarlab.features.auth.data
+package com.monstarlab.features.auth.data.api.dtos
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class TokenResponse(
+data class TokenResponseDTO(
     val token: String
 )

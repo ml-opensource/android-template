@@ -2,9 +2,9 @@ package com.monstarlab.features.resources.domain
 
 import com.monstarlab.core.extensions.mapSuccess
 import com.monstarlab.core.persistence.Repository
-import com.monstarlab.features.resources.data.ResourcePreferenceStore
-import com.monstarlab.features.resources.data.ResourcesApi
-import com.monstarlab.features.resources.data.toEntity
+import com.monstarlab.features.resources.data.storage.ResourcePreferenceStore
+import com.monstarlab.features.resources.data.api.ResourcesApi
+import com.monstarlab.features.resources.data.api.dtos.toResource
 import javax.inject.Inject
 
 class ResourceRepository @Inject constructor(
@@ -14,7 +14,7 @@ class ResourceRepository @Inject constructor(
 
     suspend fun getResources(): List<Resource> {
         return api.getResources()
-            .mapSuccess { response -> response.data.map { it.toEntity() } }
+            .mapSuccess { response -> response.data.map { it.toResource()} }
             .also { resourcePreferenceStore.addAll(it) }
     }
 }
