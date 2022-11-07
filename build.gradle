@@ -2,8 +2,8 @@
 buildscript {
 
     ext.versions = [
-            kotlin_plugin       : '1.6.21',
-            kotlin              : '1.6.21',
+            kotlin_plugin       : '1.7.20',
+            kotlin              : '1.7.20',
             appcompat           : '1.4.1',
             coroutines          : '1.6.1',
             json                : '1.0.1',
