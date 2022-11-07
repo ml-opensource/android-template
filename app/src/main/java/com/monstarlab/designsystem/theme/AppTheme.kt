@@ -46,7 +46,7 @@ fun AppTheme(
                 typography = Typography,
                 shapes = Shapes,
                 content = content,
-                colors = if (isDarkMode) DarkColors else LightColors
+                colors = LightColors
             )
         }
     }
@@ -54,24 +54,13 @@ fun AppTheme(
 
 }
 
-private val DarkColors = darkColors(
-    primary = MonstarlabYellow,
-    secondary = MonstarlabYellow,
-    onPrimary = DarkGrey,
-    background = Black,
-    onBackground = White,
-    surface = Black,
-    onSurface = Black
-)
-
 private val LightColors = lightColors(
     primary = MonstarlabYellow,
-    secondary = MonstarlabYellow,
-    onPrimary = DarkGrey,
-    background = White,
-    onBackground = Black,
-    onSurface = Black,
-    surface = White
+    onPrimary = Black,
+    background = DarkGrey,
+    onBackground = White,
+    onSurface = White,
+    surface = DarkGrey
 )
 
 @Composable
