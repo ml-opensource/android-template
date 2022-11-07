@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/resourceFragment"
-        android:name="com.monstarlab.features.resources.ResourceFragment"
+        android:name="com.monstarlab.features.resources.ui.ResourceFragment"
         tools:layout="@layout/fragment_resource"
         android:label="ResourceFragment" />
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.monstarlab.features.login.LoginFragment"
+        android:name="com.monstarlab.features.login.ui.LoginFragment"
         tools:layout="@layout/fragment_login"
         android:label="LoginFragment" />
 
