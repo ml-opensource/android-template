@@ -1,6 +1,7 @@
 package com.monstarlab.features.resources.ui
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,7 +25,7 @@ fun ResourcesScreen(
         topBar = { AppTopBar(title = "Resources")}
     ) {
         LazyColumn(
-            modifier = Modifier.padding(it),
+            modifier = Modifier.padding(it).fillMaxSize(),
             contentPadding = PaddingValues(Theme.dimensions.medium1),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

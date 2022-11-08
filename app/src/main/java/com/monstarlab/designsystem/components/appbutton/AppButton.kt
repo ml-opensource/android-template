@@ -2,6 +2,7 @@ package com.monstarlab.designsystem.components.appbutton
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -75,6 +76,7 @@ private fun PrimaryButton(
         enabled = enabled,
         content = content,
         colors = colors,
+        contentPadding = PaddingValues(vertical = Theme.dimensions.medium2)
     )
 }
 
