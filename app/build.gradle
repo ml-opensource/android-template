@@ -142,6 +142,12 @@ dependencies {
     implementation("androidx.compose.material3:material3-window-size-class")
 
 
+    implementation("io.coil-kt:coil-compose:2.2.2")
+    implementation "com.google.accompanist:accompanist-systemuicontroller:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-placeholder-material:${versions.accompanist}"
+    implementation "com.google.accompanist:accompanist-pager:${versions.accompanist}"
+
+
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
     implementation "com.jakewharton.timber:timber:${versions.timber}"
 
