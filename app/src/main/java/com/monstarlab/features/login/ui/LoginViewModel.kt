@@ -1,6 +1,5 @@
 package com.monstarlab.features.login.ui
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
@@ -14,7 +13,6 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val loginUseCase: LoginUseCase
 ) : ViewModel() {
 

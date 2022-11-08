@@ -1,6 +1,5 @@
 package com.monstarlab.features.resources.ui
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.features.resources.domain.GetResourcesUseCase
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class ResourcesViewModel @Inject constructor(
     private val getResourcesUseCase: GetResourcesUseCase,
-    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _stateFlow: MutableStateFlow<ResourcesState> = MutableStateFlow(ResourcesState())
