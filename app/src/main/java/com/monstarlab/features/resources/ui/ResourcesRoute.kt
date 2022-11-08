@@ -18,10 +18,8 @@ fun ResourcesRoute(
     val actions = rememberResourcesActions(coordinator)
 
     // UI Rendering
-    ProvideResourcesActions(actions) {
-        AppTheme {
-            ResourcesScreen(uiState, actions)
-        }
+    AppTheme {
+        ResourcesScreen(uiState, actions)
     }
 }
 

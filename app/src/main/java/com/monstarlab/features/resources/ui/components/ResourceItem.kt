@@ -29,7 +29,7 @@ fun ResourceItem(
 ) {
     Card {
         Row(
-            modifier = modifier.fillMaxWidth().padding(vertical = Theme.dimensions.medium2),
+            modifier = modifier.fillMaxWidth().padding(Theme.dimensions.medium2),
             horizontalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1),
             verticalAlignment = Alignment.CenterVertically
         ) {

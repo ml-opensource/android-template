@@ -61,7 +61,7 @@ private val LightColors = lightColors(
     background = DarkGrey,
     onBackground = White,
     onSurface = White,
-    surface = DarkGrey,
+    surface = Black,
     error = Red
 )
 

@@ -18,10 +18,8 @@ fun LoginRoute(
     val actions = rememberLoginActions(coordinator)
 
     // UI Rendering
-    ProvideLoginActions(actions) {
-        AppTheme {
-            LoginScreen(uiState, actions)
-        }
+    AppTheme {
+        LoginScreen(uiState, actions)
     }
 }
 

@@ -26,18 +26,3 @@ data class LoginActions(
     val onEmailChange: (String) -> Unit = {},
     val onLoginClick: () -> Unit = {}
 )
-
-/**
- * Compose Utility to retrieve actions from nested components
- **/
-val LocalLoginActions = staticCompositionLocalOf<LoginActions> {
-    error("{NAME} Actions Were not provided, make sure ProvideLoginActions is called")
-}
-
-@Composable
-fun ProvideLoginActions(actions: LoginActions, content: @Composable () -> Unit) {
-    CompositionLocalProvider(LocalLoginActions provides actions) {
-        content.invoke()
-    }
-}
-

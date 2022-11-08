@@ -35,7 +35,7 @@ fun AppTopBar(
 
         Text(
             text = title,
-            style = Theme.typography.body1.bold,
+            style = Theme.typography.headline2.bold,
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.monstarlab.features.resources.ui
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -19,7 +20,7 @@ import com.monstarlab.features.resources.ui.components.ResourceItem
 @Composable
 fun ResourcesScreen(
     state: ResourcesState = ResourcesState(),
-    actions: ResourcesActions = LocalResourcesActions.current
+    actions: ResourcesActions = ResourcesActions()
 ) {
     Scaffold(
         topBar = { AppTopBar(title = "Resources")}
@@ -27,7 +28,8 @@ fun ResourcesScreen(
         LazyColumn(
             modifier = Modifier.padding(it).fillMaxSize(),
             contentPadding = PaddingValues(Theme.dimensions.medium1),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1)
         ) {
 
             animatedVisibilityItem("progress-indicator", state.isLoading) {
