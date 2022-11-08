@@ -19,14 +19,17 @@ fun LazyListScope.animatedVisibilityItem(
     exit: ExitTransition = fadeOut() + shrinkOut(),
     content: @Composable () -> Unit
 ) {
-    item(key = key, content = {
-        AnimatedVisibility(
-            visible = visible,
-            enter = enter,
-            exit = exit,
-            content = { content.invoke() }
-        )
-    })
+    item(
+        key = key,
+        content = {
+            AnimatedVisibility(
+                visible = visible,
+                enter = enter,
+                exit = exit,
+                content = { content.invoke() }
+            )
+        }
+    )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -38,13 +41,16 @@ fun LazyListScope.animatedVisibilityHeader(
     exit: ExitTransition = fadeOut() + shrinkOut(),
     content: @Composable () -> Unit
 ) {
-    stickyHeader(key = key, content = {
-        AnimatedVisibility(
-            modifier = modifier,
-            visible = visible,
-            enter = enter,
-            exit = exit,
-            content = { content.invoke() }
-        )
-    })
+    stickyHeader(
+        key = key,
+        content = {
+            AnimatedVisibility(
+                modifier = modifier,
+                visible = visible,
+                enter = enter,
+                exit = exit,
+                content = { content.invoke() }
+            )
+        }
+    )
 }

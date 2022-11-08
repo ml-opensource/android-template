@@ -37,7 +37,6 @@ class LoginCoordinator(
             }
             .launchIn(scope)
     }
-
 }
 
 @Composable

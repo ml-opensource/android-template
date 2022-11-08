@@ -21,5 +21,4 @@ abstract class ComposeFragment : Fragment() {
             setContent { content.invoke() }
         }
     }
-
 }

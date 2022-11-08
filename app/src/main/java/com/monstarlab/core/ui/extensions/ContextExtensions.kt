@@ -38,7 +38,7 @@ fun Context.copyToClipboard(value: String) {
 
 fun Context.checkPermission(permission: String): Boolean {
     return ContextCompat.checkSelfPermission(this, permission) ==
-            PackageManager.PERMISSION_GRANTED
+        PackageManager.PERMISSION_GRANTED
 }
 
 fun Context.openShareSheet(title: String, message: String) {

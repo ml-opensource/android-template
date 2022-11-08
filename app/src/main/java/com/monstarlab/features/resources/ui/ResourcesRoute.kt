@@ -6,7 +6,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.monstarlab.designsystem.theme.AppTheme
 
-
 @Composable
 fun ResourcesRoute(
     coordinator: ResourcesCoordinator
@@ -22,7 +21,6 @@ fun ResourcesRoute(
         ResourcesScreen(uiState, actions)
     }
 }
-
 
 @Composable
 fun rememberResourcesActions(coordinator: ResourcesCoordinator): ResourcesActions {

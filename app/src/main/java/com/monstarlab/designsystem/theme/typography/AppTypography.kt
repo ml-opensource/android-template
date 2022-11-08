@@ -25,6 +25,4 @@ data class AppTypography(
         body2 = typography.body2,
         button = typography.button
     )
-
-
 }

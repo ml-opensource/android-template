@@ -6,7 +6,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import com.monstarlab.designsystem.theme.AppTheme
 
-
 @Composable
 fun LoginRoute(
     coordinator: LoginCoordinator,
@@ -22,7 +21,6 @@ fun LoginRoute(
         LoginScreen(uiState, actions)
     }
 }
-
 
 @Composable
 fun rememberLoginActions(coordinator: LoginCoordinator): LoginActions {

@@ -2,7 +2,6 @@ package com.monstarlab.features.resources.ui
 
 import com.monstarlab.features.resources.domain.Resource
 
-
 /**
  * UI State that represents ResourcesScreen
  **/
@@ -19,5 +18,3 @@ data class ResourcesState(
 data class ResourcesActions(
     val onResourceClick: (Resource) -> Unit = {}
 )
-
-

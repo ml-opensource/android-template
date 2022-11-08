@@ -41,15 +41,16 @@ fun ResourceItem(
                         shape = RoundedCornerShape(8.dp)
                     )
             )
-            Text(text = buildString {
-                append(resource.name)
-                append(' ')
-                append(resource.year)
-            })
+            Text(
+                text = buildString {
+                    append(resource.name)
+                    append(' ')
+                    append(resource.year)
+                }
+            )
         }
     }
 }
-
 
 @Preview(name = "ResourceItem")
 @Composable

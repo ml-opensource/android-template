@@ -6,9 +6,8 @@ val FontFamily = FontFamily.Default
 
 /**
  val CustomFontFamily =  Font(
-        resId = R.font.my_custom_font,
-        weight = FontWeight.Bold,
-        style = FontStyle.Normal
-    )
+ resId = R.font.my_custom_font,
+ weight = FontWeight.Bold,
+ style = FontStyle.Normal
+ )
  */
-

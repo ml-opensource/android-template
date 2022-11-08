@@ -4,10 +4,8 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
-import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import com.monstarlab.designsystem.theme.dimensions.Dimensions
 import com.monstarlab.designsystem.theme.dimensions.LocalDimensions
@@ -51,8 +49,6 @@ fun AppTheme(
             )
         }
     }
-
-
 }
 
 private val LightColors = lightColors(

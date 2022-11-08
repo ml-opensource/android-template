@@ -9,7 +9,7 @@ class AuthRepository @Inject constructor(
 ) {
 
     suspend fun login(email: String, password: String): AuthToken {
-        val responseBody = requireNotNull(api.postLogin(email, password).body()) { "Login Failed"}
+        val responseBody = requireNotNull(api.postLogin(email, password).body()) { "Login Failed" }
         return AuthToken(responseBody.token)
     }
 }

@@ -1,7 +1,6 @@
 package com.monstarlab.features.login.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.monstarlab.designsystem.components.AppTopBar
 import com.monstarlab.designsystem.components.appbutton.AppButton
@@ -72,4 +70,3 @@ private fun LoginScreenPreview() {
         LoginScreen()
     }
 }
-

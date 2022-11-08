@@ -23,7 +23,7 @@ fun ResourcesScreen(
     actions: ResourcesActions = ResourcesActions()
 ) {
     Scaffold(
-        topBar = { AppTopBar(title = "Resources")}
+        topBar = { AppTopBar(title = "Resources") }
     ) {
         LazyColumn(
             modifier = Modifier.padding(it).fillMaxSize(),
@@ -35,8 +35,6 @@ fun ResourcesScreen(
             animatedVisibilityItem("progress-indicator", state.isLoading) {
                 CircularProgressIndicator()
             }
-
-
 
             items(state.resources) { resource ->
                 ResourceItem(resource = resource)
@@ -50,4 +48,3 @@ fun ResourcesScreen(
 private fun ResourcesScreenPreview() {
     ResourcesScreen()
 }
-

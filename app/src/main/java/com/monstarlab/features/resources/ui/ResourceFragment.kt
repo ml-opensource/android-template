@@ -10,10 +10,8 @@ class ResourceFragment : ComposeFragment() {
 
     private val viewModel by viewModels<ResourcesViewModel>()
 
-
     override val content: @Composable () -> Unit = {
         val coordinator = rememberResourcesCoordinator(viewModel = viewModel)
         ResourcesRoute(coordinator)
     }
-
 }

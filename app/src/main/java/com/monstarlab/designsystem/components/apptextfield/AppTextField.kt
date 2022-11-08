@@ -75,7 +75,7 @@ private fun PreviewTextField() {
         Surface(color = Theme.colors.background) {
             AppTextField(
                 value = value,
-                onValueChange = { value = it},
+                onValueChange = { value = it },
                 placeholder = "Placeholder",
                 label = "Label",
                 error = if (value == "error") "This is error" else null

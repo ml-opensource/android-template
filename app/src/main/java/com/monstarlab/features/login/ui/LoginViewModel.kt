@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -19,7 +19,6 @@ class LoginViewModel @Inject constructor(
     private val _stateFlow: MutableStateFlow<LoginState> = MutableStateFlow(LoginState())
 
     val stateFlow: StateFlow<LoginState> get() = _stateFlow.asStateFlow()
-
 
     fun onEmailChange(value: String) {
         _stateFlow.update { state ->
@@ -47,5 +46,4 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
-
 }
