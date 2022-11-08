@@ -2,6 +2,7 @@ package com.monstarlab.features.login.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.monstarlab.core.error.toError
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,7 +40,7 @@ class LoginViewModel @Inject constructor(
             val result = loginUseCase(state.email, state.password)
             _stateFlow.update { state ->
                 state.copy(
-                    error = result.exceptionOrNull()?.localizedMessage,
+                    error = result.exceptionOrNull()?.toError(),
                     isLoading = false,
                     isLoggedIn = result.isSuccess
                 )

@@ -1,5 +1,7 @@
 package com.monstarlab.features.login.ui
 
+import com.monstarlab.core.error.ErrorModel
+
 /**
  * UI State that represents LoginScreen
  **/
@@ -7,7 +9,7 @@ data class LoginState(
     val email: String = "eve.holt@reqres.in",
     val password: String = "cityslicka",
     val isLoading: Boolean = false,
-    val error: String? = null,
+    val error: ErrorModel? = null,
     val loginButtonEnabled: Boolean = false,
     val isLoggedIn: Boolean = false
 )

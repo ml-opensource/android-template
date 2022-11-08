@@ -1,5 +1,6 @@
 package com.monstarlab.features.resources.ui
 
+import com.monstarlab.core.error.ErrorModel
 import com.monstarlab.features.resources.domain.Resource
 
 /**
@@ -8,7 +9,7 @@ import com.monstarlab.features.resources.domain.Resource
 data class ResourcesState(
     val isLoading: Boolean = false,
     val resources: List<Resource> = emptyList(),
-    val error: String? = null
+    val error: ErrorModel? = null
 )
 
 /**

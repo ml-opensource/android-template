@@ -1,6 +1,5 @@
 package com.monstarlab.features.user.domain
 
-import com.monstarlab.core.extensions.mapSuccess
 import com.monstarlab.core.persistence.Repository
 import com.monstarlab.features.user.data.api.UsersApi
 import com.monstarlab.features.user.data.api.dtos.toUser
@@ -13,11 +12,8 @@ class UserRepository @Inject constructor(
 ) : Repository() {
 
     suspend fun getUser(): User {
-        return api.getUser()
-            .mapSuccess {
-                it.data.toUser()
-            }.also {
-                userPreferenceStore.add(it)
-            }
+        return api.getUser().data.toUser().also {
+            userPreferenceStore.add(it)
+        }
     }
 }
