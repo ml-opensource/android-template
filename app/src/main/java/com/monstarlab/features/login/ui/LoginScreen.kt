@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,13 +27,18 @@ fun LoginScreen(
     state: LoginState = LoginState(),
     actions: LoginActions = LoginActions()
 ) = Scaffold(
-    topBar = { AppTopBar(title = "Login") }
+    topBar = {
+        AppTopBar(
+            modifier = Modifier.systemBarsPadding(),
+            title = "Login")
+    }
 ) {
     Column(
         modifier = Modifier
             .padding(it)
             .fillMaxSize()
-            .padding(Theme.dimensions.big1),
+            .padding(Theme.dimensions.big1)
+            .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {

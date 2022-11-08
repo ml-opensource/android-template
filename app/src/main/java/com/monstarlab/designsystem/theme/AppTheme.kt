@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
+import androidx.compose.material.Surface
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
@@ -36,9 +37,7 @@ fun AppTheme(
     isSmallDevice: Boolean = isSmallDevice(),
     content: @Composable () -> Unit
 ) {
-
     val dimensions = if (isSmallDevice) Dimensions.Small else Dimensions.Default
-
     ProvideDimensions(dimensions = dimensions) {
         ProvideAppTypography {
             MaterialTheme(

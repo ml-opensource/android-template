@@ -1,10 +1,14 @@
 package com.monstarlab.features.login.ui
 
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.graphics.Color
+import com.monstarlab.core.ui.effects.SystemUISideEffect
 import com.monstarlab.designsystem.theme.AppTheme
+import com.monstarlab.designsystem.theme.Theme
 
 @Composable
 fun LoginRoute(
@@ -12,6 +16,10 @@ fun LoginRoute(
 ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsState(initial = LoginState())
+
+    SystemUISideEffect { controller ->
+        controller.setSystemBarsColor(Color.Transparent, false)
+    }
 
     // UI Actions
     val actions = rememberLoginActions(coordinator)
