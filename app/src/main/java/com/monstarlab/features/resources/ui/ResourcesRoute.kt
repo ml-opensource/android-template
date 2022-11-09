@@ -4,14 +4,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.monstarlab.designsystem.theme.AppTheme
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun ResourcesRoute(
     coordinator: ResourcesCoordinator
 ) {
     // State observing and declarations
-    val uiState by coordinator.screenStateFlow.collectAsState(initial = ResourcesState())
+    val uiState by coordinator.screenStateFlow.collectAsStateWithLifecycle(ResourcesState())
 
     // UI Actions
     val actions = rememberResourcesActions(coordinator)

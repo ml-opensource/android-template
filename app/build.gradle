@@ -126,6 +126,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}")
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
 
     implementation("androidx.datastore:datastore-preferences:${versions.datastore}")
 
@@ -146,6 +147,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:${versions.accompanist}"
     implementation "com.google.accompanist:accompanist-placeholder-material:${versions.accompanist}"
     implementation "com.google.accompanist:accompanist-pager:${versions.accompanist}"
+
 
 
     implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
