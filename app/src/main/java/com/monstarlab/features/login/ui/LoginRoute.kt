@@ -1,8 +1,6 @@
 package com.monstarlab.features.login.ui
 
-import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
@@ -10,7 +8,6 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.monstarlab.core.ui.effects.SystemUISideEffect
 import com.monstarlab.designsystem.theme.AppTheme
-import com.monstarlab.designsystem.theme.Theme
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable

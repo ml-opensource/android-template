@@ -30,7 +30,8 @@ fun LoginScreen(
     topBar = {
         AppTopBar(
             modifier = Modifier.systemBarsPadding(),
-            title = "Login")
+            title = "Login"
+        )
     }
 ) {
     Column(

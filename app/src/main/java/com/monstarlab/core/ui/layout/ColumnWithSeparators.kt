@@ -46,11 +46,10 @@ fun ColumnWithSeparators(
 
 private data class ContentChild(val height: Int)
 
-
 @Preview(name = "Column With Separators", showBackground = true)
 @Composable
 private fun PreviewColumnWithSeparators() {
     ColumnWithSeparators() {
-        repeat(10) { Text(text = "Hello $it")}
+        repeat(10) { Text(text = "Hello $it") }
     }
 }

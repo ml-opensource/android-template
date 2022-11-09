@@ -17,7 +17,6 @@ sealed interface ErrorModel {
     data class Unknown(val throwable: Throwable) : ErrorModel
 }
 
-
 fun Throwable.toError(): ErrorModel {
     return when (this) {
         is ApiException -> ErrorModel.ApiError(this)
