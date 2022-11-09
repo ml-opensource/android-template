@@ -28,6 +28,6 @@ fun ResourcesRoute(
 @Composable
 fun rememberResourcesActions(coordinator: ResourcesCoordinator): ResourcesActions {
     return remember(coordinator) {
-        ResourcesActions()
+        ResourcesActions(coordinator::openResourceDetails)
     }
 }

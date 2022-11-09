@@ -1,5 +1,6 @@
 package com.monstarlab.features.resources.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -44,7 +45,12 @@ fun ResourcesScreen(
             }
 
             items(state.resources) { resource ->
-                ResourceItem(resource = resource)
+                ResourceItem(
+                    resource = resource,
+                    modifier = Modifier.clickable {
+                        actions.onResourceClick(resource)
+                    }
+                )
             }
         }
     }

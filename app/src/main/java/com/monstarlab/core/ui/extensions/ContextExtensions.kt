@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.provider.Settings
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.monstarlab.core.extensions.castAs
@@ -49,6 +50,10 @@ fun Context.openShareSheet(title: String, message: String) {
         type = "text/plain"
     }
     startActivity(Intent.createChooser(shareIntent, "Share with"))
+}
+
+fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+    Toast.makeText(this, message, duration).show()
 }
 
 fun Context.openBrowser(url: String) {
