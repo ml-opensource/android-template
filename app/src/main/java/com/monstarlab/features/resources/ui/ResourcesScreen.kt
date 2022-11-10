@@ -15,8 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.monstarlab.core.ui.extensions.animatedVisibilityItem
+import com.monstarlab.core.ui.previews.LightDarkPreview
 import com.monstarlab.designsystem.components.AppTopBar
+import com.monstarlab.designsystem.theme.AppTheme
 import com.monstarlab.designsystem.theme.Theme
+import com.monstarlab.features.resources.domain.Resource
 import com.monstarlab.features.resources.ui.components.ResourceItem
 
 @Composable
@@ -33,7 +36,9 @@ fun ResourcesScreen(
         }
     ) {
         LazyColumn(
-            modifier = Modifier.padding(it).fillMaxSize(),
+            modifier = Modifier
+                .padding(it)
+                .fillMaxSize(),
             contentPadding = PaddingValues(Theme.dimensions.medium1),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1)
@@ -56,7 +61,9 @@ fun ResourcesScreen(
 }
 
 @Composable
-@Preview
+@LightDarkPreview
 private fun ResourcesScreenPreview() {
-    ResourcesScreen()
+    AppTheme {
+        ResourcesScreen(state = ResourcesState(resources = List(4) { Resource.Mock }))
+    }
 }

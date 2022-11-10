@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.monstarlab.core.error.displayableMessage
+import com.monstarlab.core.ui.previews.LightDarkPreview
 import com.monstarlab.designsystem.components.AppTopBar
 import com.monstarlab.designsystem.components.appbutton.AppButton
 import com.monstarlab.designsystem.components.apptextfield.AppTextField
@@ -73,7 +74,7 @@ fun LoginScreen(
 }
 
 @Composable
-@Preview
+@LightDarkPreview
 private fun LoginScreenPreview() {
     AppTheme {
         LoginScreen()

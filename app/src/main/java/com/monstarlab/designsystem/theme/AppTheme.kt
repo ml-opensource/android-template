@@ -4,8 +4,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Shapes
+import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import com.monstarlab.designsystem.theme.dimensions.Dimensions
 import com.monstarlab.designsystem.theme.dimensions.LocalDimensions
@@ -43,7 +45,7 @@ fun AppTheme(
                 typography = Typography,
                 shapes = Shapes,
                 content = content,
-                colors = LightColors
+                colors = if (isDarkMode) DarkColors else LightColors
             )
         }
     }
@@ -56,6 +58,16 @@ private val LightColors = lightColors(
     onBackground = White,
     onSurface = White,
     surface = Black,
+    error = Red
+)
+
+private val DarkColors = darkColors(
+    primary = MonstarlabYellow,
+    onPrimary = Black,
+    background = LightGrey,
+    onBackground = DarkGrey,
+    onSurface = Black,
+    surface = White,
     error = Red
 )
 
