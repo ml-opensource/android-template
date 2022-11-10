@@ -32,9 +32,9 @@ fun Context.openNotificationSettings() {
     }
 }
 
-fun Context.copyToClipboard(value: String) {
+fun Context.copyToClipboard(value: String, clipLabel: String) {
     val cm = getSystemService(Context.CLIPBOARD_SERVICE).castAs<ClipboardManager>()
-    cm.setPrimaryClip(ClipData.newPlainText("Clip", value))
+    cm.setPrimaryClip(ClipData.newPlainText(clipLabel, value))
 }
 
 fun Context.checkPermission(permission: String): Boolean {
@@ -42,14 +42,18 @@ fun Context.checkPermission(permission: String): Boolean {
         PackageManager.PERMISSION_GRANTED
 }
 
-fun Context.openShareSheet(title: String, message: String) {
+fun Context.openShareSheet(
+    title: String,
+    message: String,
+    intentTitle: String = title
+) {
     val shareIntent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TITLE, title)
         putExtra(Intent.EXTRA_TEXT, message)
         type = "text/plain"
     }
-    startActivity(Intent.createChooser(shareIntent, "Share with"))
+    startActivity(Intent.createChooser(shareIntent, intentTitle))
 }
 
 fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
