@@ -21,20 +21,21 @@ class ApiErrorInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val response = chain.proceed(request)
-        return if (response.isSuccessful) {
-            response
+
+        if (response.isSuccessful) {
+            return response
+        }
+        val errorBody = response.body?.string()
+        val errorDtoResult = runCatching {
+            json.decodeFromString<ApiErrorDTO>(requireNotNull(errorBody))
+        }
+
+        if (errorDtoResult.isSuccess) {
+            throw errorDtoResult.getOrThrow().toApiError(response.code)
         } else {
-            val errorBody = response.body?.string()
-            val errorDtoResult = runCatching {
-                json.decodeFromString<ApiErrorDTO>(requireNotNull(errorBody))
-            }
-            if (errorDtoResult.isSuccess) {
-                throw errorDtoResult.getOrThrow().toApiError(response.code)
-            } else {
-                val newErrorBody = errorBody?.toResponseBody("application/json".toMediaType())
-                Timber.e("Failed to deserialize error body: ${errorDtoResult.exceptionOrNull()}")
-                return response.newBuilder().body(newErrorBody).build()
-            }
+            val newErrorBody = errorBody?.toResponseBody("application/json".toMediaType())
+            Timber.e("Failed to deserialize error body: ${errorDtoResult.exceptionOrNull()}")
+            return response.newBuilder().body(newErrorBody).build()
         }
     }
 }

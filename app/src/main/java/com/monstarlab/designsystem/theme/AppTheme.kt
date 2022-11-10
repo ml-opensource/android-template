@@ -54,20 +54,20 @@ fun AppTheme(
 private val LightColors = lightColors(
     primary = MonstarlabYellow,
     onPrimary = Black,
-    background = DarkGrey,
-    onBackground = White,
-    onSurface = White,
-    surface = Black,
+    background = LightGrey,
+    onBackground = DarkGrey,
+    onSurface = Black,
+    surface = White,
     error = Red
 )
 
 private val DarkColors = darkColors(
     primary = MonstarlabYellow,
     onPrimary = Black,
-    background = LightGrey,
-    onBackground = DarkGrey,
-    onSurface = Black,
-    surface = White,
+    background = DarkGrey,
+    onBackground = White,
+    onSurface = White,
+    surface = Black,
     error = Red
 )
 

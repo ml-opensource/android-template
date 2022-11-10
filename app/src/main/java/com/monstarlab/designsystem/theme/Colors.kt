@@ -7,4 +7,4 @@ val DarkGrey = Color(0xFF363636)
 val Black = Color.Black
 val White = Color.White
 val Red = Color(0xFFFF2600)
-val LightGrey = Color(0xFFF2F2F2)
+val LightGrey = Color(0xFFE4E4E4)
