@@ -19,7 +19,7 @@ class LoginViewModel @Inject constructor(
 
     private val _stateFlow: MutableStateFlow<LoginState> = MutableStateFlow(LoginState())
 
-    val stateFlow: StateFlow<LoginState> get() = _stateFlow.asStateFlow()
+    val stateFlow: StateFlow<LoginState> = _stateFlow.asStateFlow()
 
     fun onEmailChange(value: String) {
         _stateFlow.update { state ->

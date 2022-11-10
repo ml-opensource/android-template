@@ -19,7 +19,7 @@ class ResourcesViewModel @Inject constructor(
 
     private val _stateFlow: MutableStateFlow<ResourcesState> = MutableStateFlow(ResourcesState())
 
-    val stateFlow: StateFlow<ResourcesState> get() = _stateFlow.asStateFlow()
+    val stateFlow: StateFlow<ResourcesState> = _stateFlow.asStateFlow()
 
     init {
         viewModelScope.launch {
