@@ -25,9 +25,8 @@ class LoginCoordinator(
     val screenStateFlow = viewModel.stateFlow
 
     init {
-        viewModel.stateFlow.map { it.isLoggedIn }
-            .distinctUntilChanged()
-            .filter { it }
+        viewModel.stateFlow
+            .filter { it.isLoggedIn }
             .onEach {
                 navController.navigate(
                     R.id.resourceFragment,
