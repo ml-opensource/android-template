@@ -7,10 +7,8 @@ import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.monstarlab.R
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
 /**

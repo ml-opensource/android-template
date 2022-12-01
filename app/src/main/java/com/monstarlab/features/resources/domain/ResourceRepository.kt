@@ -12,6 +12,8 @@ class ResourceRepository @Inject constructor(
 ) : Repository() {
 
     suspend fun getResources(): List<Resource> {
-        return api.getResources().data.map { it.toResource() }
+        return api.getResources().data.map { it.toResource() }.also {
+            resourcePreferenceStore.addAll(it)
+        }
     }
 }

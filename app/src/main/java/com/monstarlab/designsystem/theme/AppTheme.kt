@@ -17,19 +17,8 @@ import com.monstarlab.designsystem.theme.typography.ProvideAppTypography
 import com.monstarlab.designsystem.theme.typography.Typography
 
 /**
- * Shortcut to obtain App Theme values instead of using [MaterialTheme]
- * - Provides custom AppTypography instead of Material one
- * - Provides access to dimensions, that can vary based on device size
- */
-object Theme {
-    val typography: AppTypography @Composable get() = LocalAppTypography.current
-    val colors: Colors @Composable get() = MaterialTheme.colors
-    val shapes: Shapes @Composable get() = MaterialTheme.shapes
-    val dimensions: Dimensions @Composable get() = LocalDimensions.current
-}
-
-/**
  * Main theme provider
+ * Use [Theme.*] to access colors, typography and etc
  */
 @Composable
 fun AppTheme(
@@ -49,6 +38,19 @@ fun AppTheme(
         }
     }
 }
+
+/**
+ * Shortcut to obtain App Theme values instead of using [MaterialTheme]
+ * - Provides custom AppTypography instead of Material one
+ * - Provides access to dimensions, that can vary based on device size
+ */
+object Theme {
+    val typography: AppTypography @Composable get() = LocalAppTypography.current
+    val colors: Colors @Composable get() = MaterialTheme.colors
+    val shapes: Shapes @Composable get() = MaterialTheme.shapes
+    val dimensions: Dimensions @Composable get() = LocalDimensions.current
+}
+
 
 private val LightColors = lightColors(
     primary = MonstarlabYellow,
