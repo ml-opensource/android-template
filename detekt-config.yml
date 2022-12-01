@@ -67,12 +67,12 @@ complexity:
     threshold: 150
   LongMethod:
     active: true
-    threshold: 20
+    threshold: 65
   LongParameterList:
     active: true
-    functionThreshold: 10
-    constructorThreshold: 10
-    ignoreDefaultParameters: false
+    functionThreshold: 15
+    constructorThreshold: 15
+    ignoreDefaultParameters: true
   MethodOverloading:
     active: false
     threshold: 5
@@ -87,11 +87,11 @@ complexity:
     ignoreStringsRegex: '$^'
   TooManyFunctions:
     active: true
-    thresholdInFiles: 10
-    thresholdInClasses: 10
-    thresholdInInterfaces: 10
-    thresholdInObjects: 10
-    thresholdInEnums: 10
+    thresholdInFiles: 11
+    thresholdInClasses: 11
+    thresholdInInterfaces: 11
+    thresholdInObjects: 11
+    thresholdInEnums: 11
 
 empty-blocks:
   active: true
@@ -151,24 +151,11 @@ exceptions:
   ThrowingNewInstanceOfSameException:
     active: false
   TooGenericExceptionCaught:
-    active: true
-    exceptionNames:
-      - ArrayIndexOutOfBoundsException
-      - Error
-      - Exception
-      - IllegalMonitorStateException
-      - NullPointerException
-      - IndexOutOfBoundsException
-      - RuntimeException
-      - Throwable
+    active: false
   TooGenericExceptionThrown:
-    active: true
-    exceptionNames:
-      - Error
-      - Exception
-      - NullPointerException
-      - Throwable
-      - RuntimeException
+    active: false
+    excludes:
+      - '**/gls/network/**'
 
 naming:
   active: true
@@ -190,6 +177,7 @@ naming:
   FunctionNaming:
     active: true
     functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
+    ignoreAnnotated: ['Composable']
   MatchingDeclarationName:
     active: true
   MemberNameEqualsClassName:
@@ -202,9 +190,9 @@ naming:
     active: true
     packagePattern: '^[a-z]+(\.[a-z][a-z0-9]*)*$'
   TopLevelPropertyNaming:
-    active: true
-    constantPattern: '[A-Z][_A-Z0-9]*'
-    propertyPattern: '[a-z][A-Za-z\d]*'
+    active: false
+    constantPattern: '[A-Z][A-Za-z0-9]*'
+    propertyPattern: '[A-Z][A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
   VariableMaxLength:
     active: false
@@ -216,6 +204,10 @@ naming:
     active: true
     variablePattern: '(_)?[a-z][A-Za-z0-9]*'
     privateVariablePattern: '(_)?[a-z][A-Za-z0-9]*'
+  ConstructorParameterNaming:
+    active: true
+    excludes:
+      - '**/gls/network/**'
 
 performance:
   active: true
@@ -223,6 +215,8 @@ performance:
     active: true
   SpreadOperator:
     active: true
+    excludes:
+      - '**/gls/network/**'
   UnnecessaryTemporaryInstantiation:
     active: true
 
@@ -284,10 +278,10 @@ style:
     active: false
     maxJumpCount: 1
   MagicNumber:
-    active: true
+    active: false
     ignoreNumbers: '-1,0,1,2'
     ignoreHashCodeFunction: false
-    ignorePropertyDeclaration: false
+    ignorePropertyDeclaration: true
     ignoreConstantDeclaration: true
     ignoreCompanionObjectPropertyDeclaration: true
     ignoreAnnotation: false
@@ -298,6 +292,8 @@ style:
     maxLineLength: 120
     excludePackageStatements: false
     excludeImportStatements: false
+    excludes:
+      - '**/gls/network/**'
   ModifierOrder:
     active: true
   NestedClassesVisibility:
@@ -344,3 +340,7 @@ style:
     active: false
   WildcardImport:
     active: false
+  UnusedPrivateMember:
+    ignoreAnnotated: ['Preview']
+    excludes:
+      - '**/RateReminderActions.kt'
