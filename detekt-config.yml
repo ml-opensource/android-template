@@ -341,6 +341,6 @@ style:
   WildcardImport:
     active: false
   UnusedPrivateMember:
-    ignoreAnnotated: ['Preview']
+    ignoreAnnotated: ['*Preview' ]
     excludes:
       - '**/RateReminderActions.kt'
