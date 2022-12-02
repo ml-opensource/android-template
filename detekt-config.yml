@@ -154,8 +154,7 @@ exceptions:
     active: false
   TooGenericExceptionThrown:
     active: false
-    excludes:
-      - '**/gls/network/**'
+
 
 naming:
   active: true
@@ -206,8 +205,6 @@ naming:
     privateVariablePattern: '(_)?[a-z][A-Za-z0-9]*'
   ConstructorParameterNaming:
     active: true
-    excludes:
-      - '**/gls/network/**'
 
 performance:
   active: true
@@ -215,8 +212,7 @@ performance:
     active: true
   SpreadOperator:
     active: true
-    excludes:
-      - '**/gls/network/**'
+
   UnnecessaryTemporaryInstantiation:
     active: true
 
@@ -292,8 +288,8 @@ style:
     maxLineLength: 120
     excludePackageStatements: false
     excludeImportStatements: false
-    excludes:
-      - '**/gls/network/**'
+
+
   ModifierOrder:
     active: true
   NestedClassesVisibility:
