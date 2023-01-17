@@ -1,7 +1,31 @@
 apply plugin: 'io.gitlab.arturbosch.detekt'
 
 detekt {
-  buildUponDefaultConfig = true // preconfigure defaults
-  allRules = false // activate all available (even unstable) rules.
-  config = files("$rootDir/detekt-config.yml") // point to your custom config defining rules to run, overwriting default behavior
+    buildUponDefaultConfig = true // preconfigure defaults
+    allRules = false // activate all available (even unstable) rules.
+    config = files("$rootDir/detekt-config.yml")
+    // point to your custom config defining rules to run, overwriting default behavior
+}
+
+task createDetektPreCommitHook() {
+    def gitHooksDirectory = new File("$project.rootDir/.git/hooks/")
+    if (!gitHooksDirectory.exists()) gitHooksDirectory.mkdirs()
+    new File("$project.rootDir/.git/hooks", "pre-commit").text = """
+    #!/bin/bash
+    echo "Running detekt check"
+    ./scripts/pre-commit.sh
+"""
+    "chmod +x .git/hooks/pre-commit".execute()
+}
+
+task createConventionalMessagePreCommitHook() {
+    def gitHooksDirectory = new File("$project.rootDir/.git/hooks/")
+    if (!gitHooksDirectory.exists()) gitHooksDirectory.mkdirs()
+    new File("$project.rootDir/.git/hooks", "commit-msg").text = """
+    #!/bin/bash
+    echo "Running Conventional Commit check"
+    commit_message="\$1"
+    ./scripts/conventional-pre-commit.sh "\$commit_message"
+"""
+    "chmod +x .git/hooks/commit-msg".execute()
 }
