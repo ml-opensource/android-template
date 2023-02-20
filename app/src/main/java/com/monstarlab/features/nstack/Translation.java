@@ -25,7 +25,7 @@ public class Translation {
 	public final static class terms {
 		public static String termsNotFound = "Terms not found.";
 		public static String acceptLabel = "Accept";
-		public static String acceptedLabel = "Accepted";
+		public static String acceptedLabel = "Accepted.";
 	}
 	public final static class more {
 		public static String title = "more";
