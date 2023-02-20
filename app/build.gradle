@@ -2,12 +2,9 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    alias(libs.plugins.kotlin.serialization)
     id 'dk.nstack.translation.plugin'
     id 'dagger.hilt.android.plugin'
-
-//        id 'de.fayard.refreshVersions'
-
+    alias(libs.plugins.kotlin.serialization)
 }
 
 translation {
@@ -128,28 +125,18 @@ dependencies {
     implementation(libs.android.lifecycle.viewmodel)
     implementation(libs.android.lifecycle.livedata)
     implementation(libs.android.lifecycle.runtime.compose)
-    //implementation libs.lifecycle.runtime.compose
 
     implementation(libs.android.datastore.preferences)
 
 
     // Compose
-//    def composeBom = platform(libs.compose.bom)
-//    implementation(composeBom)
+    implementation platform(libs.android.compose.bom)
     implementation(libs.android.compose.material)
-//    implementation(libs.ui.tooling.preview)
     debugImplementation(libs.android.compose.ui.tooling)
- //   implementation(libs.material.icons.extended)
-//    implementation(libs.activity.compose)
-//    implementation(libs.lifecycle.viewmodel.compose)
-//    implementation(libs.material3.window.size.class)
-
 
     implementation libs.accompanist.pager
-//    implementation(libs.coil.compose)
     implementation libs.accompanist.systemuicontroller
     implementation libs.accompanist.placeholder.material
-
 
     implementation libs.nstack
     implementation libs.timber
