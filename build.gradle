@@ -48,28 +48,31 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin_plugin}"
-        classpath "dk.nodes.nstack:translation:${versions.nstack_gradle_plugin}"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:${versions.hilt}"
+        classpath 'com.android.tools.build:gradle:7.4.1'
+        classpath libs.kotlin.gradle.plugin
+        classpath libs.nstack.plugin
+        classpath libs.hilt.android.plugin
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
 plugins {
-    id "com.diffplug.spotless" version "5.9.0"
-    id 'io.gitlab.arturbosch.detekt' version "1.19.0"
+    id "com.diffplug.spotless"
+    id 'io.gitlab.arturbosch.detekt'
+
+//    id 'de.fayard.refreshVersions'
+
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-
-    apply from: "$rootDir/detekt.gradle"
-}
+//allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//
+//    apply from: "$rootDir/detekt.gradle"
+//}
 
 subprojects {
     apply plugin: 'com.diffplug.spotless'

@@ -2,9 +2,12 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.30'
+    alias(libs.plugins.kotlin.serialization)
     id 'dk.nstack.translation.plugin'
     id 'dagger.hilt.android.plugin'
+
+//        id 'de.fayard.refreshVersions'
+
 }
 
 translation {
@@ -93,61 +96,62 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}")
+    implementation(libs.kotlin)
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.json}"
-    implementation "androidx.fragment:fragment-ktx:1.5.4"
-    implementation "androidx.core:core-ktx:${versions.ktx_core}"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "com.google.android.material:material:${versions.material}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
-    testImplementation "junit:junit:${versions.junit}"
-    androidTestImplementation "androidx.test.ext:junit:${versions.junit_ext}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
-
-
-    implementation "com.google.dagger:hilt-android:${versions.hilt}"
-    kapt "com.google.dagger:hilt-compiler:${versions.hilt}"
+    implementation libs.kotlin.coroutines.android
+    implementation libs.kotlin.coroutines.jdk
+    implementation libs.kotlin.serialization.json
+    implementation libs.android.fragment
+    implementation libs.android.core
+    implementation libs.android.appcompat
+    implementation libs.android.material
+    implementation libs.android.contraint.layout
+    testImplementation libs.junit
+    androidTestImplementation libs.junit.android
+    androidTestImplementation libs.espresso.core
 
 
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${versions.retrofit_converter}")
-    implementation("com.squareup.retrofit2:retrofit:${versions.retrofit}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${versions.okhttp}")
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
-    implementation("androidx.navigation:navigation-fragment-ktx:${versions.navigation}")
-    implementation("androidx.navigation:navigation-ui-ktx:${versions.navigation}")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}")
-    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
+    implementation(libs.retrofit.converter)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp.logger)
 
-    implementation("androidx.datastore:datastore-preferences:${versions.datastore}")
+    implementation(libs.android.navigation.fragment)
+    implementation(libs.android.navigation.ui)
+
+    implementation(libs.android.lifecycle.core)
+    implementation(libs.android.lifecycle.runtime)
+    implementation(libs.android.lifecycle.common)
+    implementation(libs.android.lifecycle.viewmodel)
+    implementation(libs.android.lifecycle.livedata)
+    implementation(libs.android.lifecycle.runtime.compose)
+    //implementation libs.lifecycle.runtime.compose
+
+    implementation(libs.android.datastore.preferences)
 
 
     // Compose
-    def composeBom = platform('androidx.compose:compose-bom:2022.10.00')
-    implementation(composeBom)
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.activity:activity-compose:1.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
-    implementation("androidx.compose.material3:material3-window-size-class")
+//    def composeBom = platform(libs.compose.bom)
+//    implementation(composeBom)
+    implementation(libs.android.compose.material)
+//    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.android.compose.ui.tooling)
+ //   implementation(libs.material.icons.extended)
+//    implementation(libs.activity.compose)
+//    implementation(libs.lifecycle.viewmodel.compose)
+//    implementation(libs.material3.window.size.class)
 
 
-    implementation("io.coil-kt:coil-compose:2.2.2")
-    implementation "com.google.accompanist:accompanist-systemuicontroller:${versions.accompanist}"
-    implementation "com.google.accompanist:accompanist-placeholder-material:${versions.accompanist}"
-    implementation "com.google.accompanist:accompanist-pager:${versions.accompanist}"
+    implementation libs.accompanist.pager
+//    implementation(libs.coil.compose)
+    implementation libs.accompanist.systemuicontroller
+    implementation libs.accompanist.placeholder.material
 
 
-    implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
-    implementation "com.jakewharton.timber:timber:${versions.timber}"
+    implementation libs.nstack
+    implementation libs.timber
 
 }
