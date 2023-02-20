@@ -5,12 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.monstarlab.core.ui.effects.SystemUISideEffect
 import com.monstarlab.designsystem.theme.AppTheme
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun LoginRoute(
     coordinator: LoginCoordinator,
