@@ -8,7 +8,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.monstarlab.core.ui.effects.SystemUISideEffect
-import com.monstarlab.designsystem.theme.AppTheme
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
@@ -27,9 +26,7 @@ fun LoginRoute(
     val actions = rememberLoginActions(coordinator)
 
     // UI Rendering
-    AppTheme {
-        LoginScreen(uiState, actions)
-    }
+    LoginScreen(uiState, actions)
 }
 
 @Composable

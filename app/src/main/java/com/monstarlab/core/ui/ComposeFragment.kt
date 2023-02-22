@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.Fragment
+import com.monstarlab.designsystem.theme.AppTheme
 
 abstract class ComposeFragment : Fragment() {
 
@@ -21,7 +22,9 @@ abstract class ComposeFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-                content.invoke()
+                AppTheme {
+                    content.invoke()
+                }
             }
         }
     }
