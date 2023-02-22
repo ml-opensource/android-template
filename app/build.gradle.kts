@@ -4,7 +4,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version "1.8.10"
+    kotlin("plugin.serialization") version Libs.Versions.kotlin
     id("dk.nstack.translation.plugin")
     id("dagger.hilt.android.plugin")
 }
@@ -45,8 +45,8 @@ android {
             dimension = "default"
             applicationIdSuffix = ".dev"
             manifestPlaceholders += mapOf(
-                "appId" to "MonstarlabDev",
-                "apiKey" to "staging",
+                "APP_NAME" to "MonstarlabDev",
+                "env" to "staging",
             )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
@@ -54,8 +54,8 @@ android {
             dimension = "default"
             applicationIdSuffix = ".staging"
             manifestPlaceholders += mapOf(
-                "appId" to "MonstarlabStaging",
-                "apiKey" to "staging",
+                "APP_NAME" to "MonstarlabStaging",
+                "env" to "staging",
             )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
@@ -64,8 +64,8 @@ android {
             applicationIdSuffix = ".staging"
             //signingConfig signingConfigs.production
             manifestPlaceholders += mapOf(
-                "appId" to "Monstarlab",
-                "apiKey" to "production",
+                "APP_NAME" to "Monstarlab",
+                "env" to "production",
             )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
@@ -75,13 +75,13 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.2"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
 }
 
 kapt {
@@ -101,6 +101,7 @@ dependencies {
     implementation(Libs.Android.material)
     implementation(Libs.Android.contraintLayout)
     implementation(Libs.Android.datastore)
+    implementation(Libs.Android.activityCompose)
 
     testImplementation(Libs.Test.junit)
     androidTestImplementation(Libs.Test.junitAndroid)
@@ -120,21 +121,17 @@ dependencies {
     implementation(Libs.Android.Lifecycle.runtime)
     implementation(Libs.Android.Lifecycle.common)
     implementation(Libs.Android.Lifecycle.viewModel)
+    implementation(Libs.Android.Lifecycle.viewModelCompose)
     implementation(Libs.Android.Lifecycle.livedata)
     implementation(Libs.Android.Lifecycle.runtimeCompose)
 
 
-//    // Compose
-//    def composeBom = platform('androidx.compose:compose-bom:2022.10.00')
-//    implementation(composeBom)
-//    implementation("androidx.compose.material:material")
-//    implementation("androidx.compose.ui:ui-tooling-preview")
-//    debugImplementation("androidx.compose.ui:ui-tooling")
-//    implementation("androidx.compose.material:material-icons-extended")
-//    implementation("androidx.activity:activity-compose:1.5.1")
-//    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
-//    implementation("androidx.compose.material3:material3-window-size-class")
-//
+    implementation(platform(Libs.Compose.bom))
+    implementation(Libs.Compose.material)
+    implementation(Libs.Compose.preview)
+    implementation(Libs.Compose.icons)
+    implementation(Libs.Compose.windowSize)
+    debugImplementation(Libs.Compose.tooling)
 
     implementation(Libs.Compose.coil)
     implementation(Libs.Compose.accompanistSystemUi)

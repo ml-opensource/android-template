@@ -7,9 +7,8 @@ object Libs {
         val hilt = "com.google.dagger:hilt-android-gradle-plugin:${Libs.Versions.hilt}"
     }
 
-    private object Versions {
-        val kotlinPlugin = "1.7.20"
-        val kotlin = "1.7.20"
+    object Versions {
+        val kotlin = "1.8.10"
         val appcompat = "1.4.1"
         val coroutines = "1.6.1"
         val json = "1.0.1"
@@ -44,7 +43,7 @@ object Libs {
     }
 
     object Kotlin {
-        val stdlib = "org.jetbrains.kotlin:kotlin-stdlib${Versions.kotlin}"
+        val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.coroutines}"
         val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.json}"
@@ -58,6 +57,7 @@ object Libs {
         val material = "com.google.android.material:material:${Versions.material}"
         val contraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         val datastore = "androidx.datastore:datastore-preferences:${Versions.datastore}"
+        val activityCompose = "androidx.activity:activity-compose:1.5.1"
 
         object Navigation {
             val fragNavigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
@@ -71,6 +71,7 @@ object Libs {
             val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
             val livedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
             val runtimeCompose = "androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03"
+            val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
         }
 
     }
@@ -87,6 +88,13 @@ object Libs {
     }
 
     object Compose {
+        val bom = "androidx.compose:compose-bom:2023.01.00"
+        val material = "androidx.compose.material:material"
+        val preview = "androidx.compose.ui:ui-tooling-preview"
+        val tooling = "androidx.compose.ui:ui-tooling"
+        val icons = "androidx.compose.material:material-icons-extended"
+        val windowSize = "androidx.compose.material3:material3-window-size-class"
+        // Third party
         val coil = "io.coil-kt:coil-compose:2.2.2"
         val accompanistSystemUi = "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
         val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
@@ -95,7 +103,7 @@ object Libs {
 
     object Test {
         val junit = "junit:junit:${Versions.junit}"
-        val junitAndroid = "androidx.test.ext:junit:${Versions.junit}"
+        val junitAndroid = "androidx.test.ext:junit:${Versions.junitExt}"
         val androidEspresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     }
 
