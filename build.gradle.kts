@@ -14,7 +14,12 @@ plugins {
 }
 
 allprojects {
-    apply(from = "$rootDir/detekt.gradle")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+    configure<io.gitlab.arturbosch.detekt.extensions.DetektExtension> {
+        buildUponDefaultConfig = true
+        allRules = false
+        config = files("$rootDir/detekt-config.yml")
+    }
 }
 
 subprojects {
