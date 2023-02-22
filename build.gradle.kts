@@ -8,9 +8,9 @@ buildscript {
 }
 
 plugins {
-    id("com.diffplug.spotless") version "5.9.0" apply false
-    id("io.gitlab.arturbosch.detekt") version "1.19.0" apply false
-    id("org.jetbrains.kotlin.jvm") version "1.8.0" apply false
+    kotlin("jvm") version Libs.Versions.kotlin apply false
+    id("com.diffplug.spotless") version "6.15.0" apply false
+    id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
 }
 
 allprojects {
