@@ -101,5 +101,6 @@ object Libs {
 
     val nstack = "dk.nodes.nstack:nstack-kotlin:${Versions.nstack}"
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 
 }

@@ -39,7 +39,6 @@ android {
             )
         }
     }
-
     productFlavors {
         create("dev") {
             dimension = "default"
@@ -88,6 +87,10 @@ kapt {
     correctErrorTypes = true
 }
 
+configurations {
+    create("devDebugImplementation")
+}
+
 dependencies {
 
     implementation(Libs.Kotlin.stdlib)
@@ -125,7 +128,6 @@ dependencies {
     implementation(Libs.Android.Lifecycle.livedata)
     implementation(Libs.Android.Lifecycle.runtimeCompose)
 
-
     implementation(platform(Libs.Compose.bom))
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.preview)
@@ -140,5 +142,6 @@ dependencies {
 
     implementation(Libs.nstack)
     implementation(Libs.timber)
+    "devDebugImplementation"(Libs.leakCanary)
 
 }
