@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class UserRepository @Inject constructor(
     private val api: UsersApi,
-    private val userPreferenceStore: UserPreferenceStore
+    private val userPreferenceStore: UserPreferenceStore,
 ) : Repository() {
 
     suspend fun getUser(): User {

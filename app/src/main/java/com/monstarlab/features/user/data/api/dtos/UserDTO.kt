@@ -12,7 +12,7 @@ data class UserDTO(
     val firstName: String,
     @SerialName("last_name")
     val lastName: String,
-    val avatar: String
+    val avatar: String,
 )
 
 fun UserDTO.toUser(): User {

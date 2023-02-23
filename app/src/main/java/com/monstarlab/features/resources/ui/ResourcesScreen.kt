@@ -24,7 +24,7 @@ import com.monstarlab.features.resources.ui.components.ResourceItem
 @Composable
 fun ResourcesScreen(
     state: ResourcesState = ResourcesState(),
-    actions: ResourcesActions = ResourcesActions()
+    actions: ResourcesActions = ResourcesActions(),
 ) {
     Scaffold(
         topBar = {
@@ -42,7 +42,6 @@ fun ResourcesScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1)
         ) {
-
             animatedVisibilityItem("progress-indicator", state.isLoading) {
                 CircularProgressIndicator()
             }

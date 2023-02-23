@@ -4,7 +4,7 @@ import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class GetResourcesUseCase @Inject constructor(
-    private val resourceRepository: ResourceRepository
+    private val resourceRepository: ResourceRepository,
 ) {
 
     suspend operator fun invoke() = runCatching {
