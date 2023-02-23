@@ -9,8 +9,8 @@ buildscript {
 
 plugins {
     kotlin("jvm") version Libs.Versions.kotlin apply false
-    id("com.diffplug.spotless") version "6.15.0" apply false
     id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
+    id("com.diffplug.spotless") version "6.15.0"
 }
 
 allprojects {
@@ -26,6 +26,8 @@ subprojects {
     apply(plugin = "com.diffplug.spotless")
     configure<com.diffplug.gradle.spotless.SpotlessExtension> {
         kotlin {
+            target("**/*.kt")
+            targetExclude("**/RateReminderActions.kt")
             ktlint()
         }
     }
