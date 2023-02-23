@@ -89,6 +89,12 @@ kapt {
 
 configurations {
     create("devDebugImplementation")
+    create("stagingDebugImplementation")
+}
+
+private var isStagingDebug = false
+gradle.startParameter.taskNames.forEach { task ->
+    isStagingDebug = task.contains("StagingDebug", true)
 }
 
 dependencies {
@@ -143,5 +149,6 @@ dependencies {
     implementation(Libs.nstack)
     implementation(Libs.timber)
     "devDebugImplementation"(Libs.leakCanary)
+    implementation(if (isStagingDebug) Libs.chuckerDebug else Libs.chucker)
 
 }

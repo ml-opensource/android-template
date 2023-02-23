@@ -26,8 +26,8 @@ object Libs {
         val ktxCore = "1.9.0"
         val material = "1.8.0"
         val navigation = "2.5.3"
-        val chucker = "3.3.0"
-        val leakCanary = "2.5"
+        val chucker = "3.5.2"
+        val leakCanary = "2.10"
         val desugaring = "1.0.9"
         val nstackGradlePlugin = "3.2.5"
         val datastore = "1.0.0"
@@ -102,5 +102,7 @@ object Libs {
     val nstack = "dk.nodes.nstack:nstack-kotlin:${Versions.nstack}"
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+    val chucker = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
+    val chuckerDebug = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
 
 }
