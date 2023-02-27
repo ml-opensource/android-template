@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class ResourceRepository @Inject constructor(
     private val api: ResourcesApi,
-    private val resourcePreferenceStore: ResourcePreferenceStore
+    private val resourcePreferenceStore: ResourcePreferenceStore,
 ) : Repository() {
 
     suspend fun getResources(): List<Resource> {

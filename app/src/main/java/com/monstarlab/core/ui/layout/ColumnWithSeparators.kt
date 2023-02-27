@@ -11,9 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 fun ColumnWithSeparators(
     modifier: Modifier = Modifier,
     separator: @Composable () -> Unit = { Divider() },
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-
     SubcomposeLayout(modifier) { constraints ->
         val contentsMesuarebles = subcompose("content", content)
         val separators = contentsMesuarebles.map { subcompose("separator$it", separator).first() }

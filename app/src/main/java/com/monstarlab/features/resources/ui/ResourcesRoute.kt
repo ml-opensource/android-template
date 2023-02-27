@@ -10,7 +10,7 @@ import com.monstarlab.designsystem.theme.AppTheme
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun ResourcesRoute(
-    coordinator: ResourcesCoordinator
+    coordinator: ResourcesCoordinator,
 ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsStateWithLifecycle(ResourcesState())

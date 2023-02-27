@@ -24,7 +24,7 @@ import com.monstarlab.designsystem.theme.typography.Typography
 fun AppTheme(
     isDarkMode: Boolean = isSystemInDarkTheme(),
     isSmallDevice: Boolean = isSmallDevice(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val dimensions = if (isSmallDevice) Dimensions.Small else Dimensions.Default
     ProvideDimensions(dimensions = dimensions) {
@@ -50,7 +50,6 @@ object Theme {
     val shapes: Shapes @Composable get() = MaterialTheme.shapes
     val dimensions: Dimensions @Composable get() = LocalDimensions.current
 }
-
 
 private val LightColors = lightColors(
     primary = MonstarlabYellow,

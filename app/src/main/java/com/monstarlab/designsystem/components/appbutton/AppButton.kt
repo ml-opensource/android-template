@@ -27,7 +27,7 @@ fun AppButton(
     enabled: Boolean = true,
     isLoading: Boolean = false,
     type: AppButtonType = AppButtonType.Filled,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     when (type) {
         AppButtonType.Filled -> PrimaryButton(
@@ -56,7 +56,7 @@ fun AppButton(
                 enabled = enabled && !isLoading,
                 content = {
                     ButtonContent(text = text, isLoading = isLoading)
-                },
+                }
             )
         }
     }
@@ -67,7 +67,7 @@ private fun PrimaryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     enabled: Boolean = false,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     val colors = ButtonDefaults.buttonColors()
     Button(

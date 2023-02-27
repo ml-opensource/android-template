@@ -25,7 +25,7 @@ import com.monstarlab.designsystem.theme.Theme
 @Composable
 fun LoginScreen(
     state: LoginState = LoginState(),
-    actions: LoginActions = LoginActions()
+    actions: LoginActions = LoginActions(),
 ) = Scaffold(
     topBar = {
         AppTopBar(
@@ -43,7 +43,6 @@ fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
         AppTextField(
             value = state.email,
             onValueChange = actions.onEmailChange,

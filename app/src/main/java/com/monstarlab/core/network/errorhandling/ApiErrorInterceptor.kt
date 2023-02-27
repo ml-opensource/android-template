@@ -15,7 +15,7 @@ import javax.inject.Inject
  *
  */
 class ApiErrorInterceptor @Inject constructor(
-    private val json: Json
+    private val json: Json,
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
