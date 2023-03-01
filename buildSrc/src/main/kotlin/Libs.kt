@@ -102,7 +102,7 @@ object Libs {
     val nstack = "dk.nodes.nstack:nstack-kotlin:${Versions.nstack}"
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
-    val chucker = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
+    val chuckerNoOp = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
     val chuckerDebug = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
 
 }
