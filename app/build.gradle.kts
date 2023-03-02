@@ -39,7 +39,6 @@ android {
             )
         }
     }
-
     productFlavors {
         create("dev") {
             dimension = "default"
@@ -81,11 +80,19 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlin {
+        jvmToolchain {
+            languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.toString()))
+        }
+    }
 }
 
 kapt {
     correctErrorTypes = true
+}
+
+configurations {
+    create("devDebugImplementation")
 }
 
 dependencies {
@@ -125,7 +132,6 @@ dependencies {
     implementation(Libs.Android.Lifecycle.livedata)
     implementation(Libs.Android.Lifecycle.runtimeCompose)
 
-
     implementation(platform(Libs.Compose.bom))
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.preview)
@@ -140,5 +146,8 @@ dependencies {
 
     implementation(Libs.nstack)
     implementation(Libs.timber)
+    "devDebugImplementation"(Libs.leakCanary)
+    releaseImplementation(Libs.chuckerNoOp)
+    debugImplementation(Libs.chuckerDebug)
 
 }
