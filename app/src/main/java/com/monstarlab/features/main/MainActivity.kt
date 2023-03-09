@@ -20,11 +20,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-        splashScreen.setKeepOnScreenCondition { showSplash }
-        init()
-    }
-
-    private fun init() {
+        splashScreen.setOnExitAnimationListener { showSplash }
         WindowCompat.setDecorFitsSystemWindows(window, false)
         checkNotificationPermission()
         setupNStack().invokeOnCompletion { showSplash = false }
