@@ -17,6 +17,7 @@ object Libs {
         val lifecycle = "2.5.1"
         val timber = "5.0.1"
         val junit = "4.13.2"
+        val mockk = "1.13.4"
         val junitExt = "1.1.5"
         val espresso = "3.5.1"
         val nstack = "3.2.5"
@@ -36,7 +37,8 @@ object Libs {
 
     object Kotlin {
         val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        val coroutinesAndroid =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.coroutines}"
         val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.json}"
     }
@@ -47,12 +49,14 @@ object Libs {
         val core = "androidx.core:core-ktx:${Versions.ktxCore}"
         val appCompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         val material = "com.google.android.material:material:${Versions.material}"
-        val contraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+        val contraintLayout =
+            "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         val datastore = "androidx.datastore:datastore-preferences:${Versions.datastore}"
         val activityCompose = "androidx.activity:activity-compose:1.5.1"
 
         object Navigation {
-            val fragNavigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+            val fragNavigation =
+                "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
             val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
         }
 
@@ -74,7 +78,8 @@ object Libs {
     }
 
     object Networking {
-        val retrofitSerializer = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitConverter}"
+        val retrofitSerializer =
+            "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.retrofitConverter}"
         val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         val interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     }
@@ -86,10 +91,13 @@ object Libs {
         val tooling = "androidx.compose.ui:ui-tooling"
         val icons = "androidx.compose.material:material-icons-extended"
         val windowSize = "androidx.compose.material3:material3-window-size-class"
+
         // Third party
         val coil = "io.coil-kt:coil-compose:2.2.2"
-        val accompanistSystemUi = "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
-        val accompanistPlaceholder = "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
+        val accompanistSystemUi =
+            "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
+        val accompanistPlaceholder =
+            "com.google.accompanist:accompanist-placeholder-material:${Versions.accompanist}"
         val accompanifestPager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
     }
 
@@ -97,6 +105,9 @@ object Libs {
         val junit = "junit:junit:${Versions.junit}"
         val junitAndroid = "androidx.test.ext:junit:${Versions.junitExt}"
         val androidEspresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+        val mockkAndroid = "io.mockk:mockk-android:${Versions.mockk}"
+        val mockkAgent = "io.mockk:mockk-agent:${Versions.mockk}"
+        val coroutinesTest="org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 
     val nstack = "dk.nodes.nstack:nstack-kotlin:${Versions.nstack}"
