@@ -111,6 +111,10 @@ dependencies {
     implementation(Libs.Android.activityCompose)
 
     testImplementation(Libs.Test.junit)
+    testImplementation(Libs.Test.mockkAndroid)
+    testImplementation(Libs.Test.mockkAgent)
+    testImplementation(Libs.Test.coroutinesTest)
+
     androidTestImplementation(Libs.Test.junitAndroid)
     androidTestImplementation(Libs.Test.androidEspresso)
 
