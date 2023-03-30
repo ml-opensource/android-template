@@ -1,10 +1,13 @@
 package com.monstarlab.features.main
 
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.monstarlab.features.nstack.domain.usecase.SetupNstackUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dk.nodes.nstack.kotlin.models.*
-import kotlinx.coroutines.flow.*
+import dk.nodes.nstack.kotlin.models.AppOpenData
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

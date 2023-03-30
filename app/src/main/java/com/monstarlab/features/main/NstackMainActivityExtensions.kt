@@ -4,7 +4,13 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AlertDialog
 import dk.nodes.nstack.kotlin.NStack
-import dk.nodes.nstack.kotlin.models.*
+import dk.nodes.nstack.kotlin.models.AppOpenData
+import dk.nodes.nstack.kotlin.models.AppUpdate
+import dk.nodes.nstack.kotlin.models.AppUpdateState
+import dk.nodes.nstack.kotlin.models.Message
+import dk.nodes.nstack.kotlin.models.RateReminder
+import dk.nodes.nstack.kotlin.models.state
+import dk.nodes.nstack.kotlin.models.update
 
 fun MainActivity.handleNstackData(data: AppOpenData?) {
     val updateData = data?.update
