@@ -14,7 +14,6 @@ import com.chuckerteam.chucker.api.Chucker
 import com.monstarlab.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -43,10 +42,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun observeState() = lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.stateFlow.collect {
-                if (it.nstackData != null) {
-                    handleNstackData(it.nstackData)
-                    viewModel.onNstackDataConsumed()
-                }
+                handleNstackData(it.nstackData, viewModel::onNstackDataConsumed)
             }
         }
     }
