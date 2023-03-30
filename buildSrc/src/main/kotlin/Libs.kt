@@ -53,6 +53,7 @@ object Libs {
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
         val datastore = "androidx.datastore:datastore-preferences:${Versions.datastore}"
         val activityCompose = "androidx.activity:activity-compose:1.5.1"
+        val splash = "androidx.core:core-splashscreen:1.0.0"
 
         object Navigation {
             val fragNavigation =

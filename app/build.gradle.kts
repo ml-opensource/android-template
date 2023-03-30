@@ -109,6 +109,7 @@ dependencies {
     implementation(Libs.Android.contraintLayout)
     implementation(Libs.Android.datastore)
     implementation(Libs.Android.activityCompose)
+    implementation(Libs.Android.splash)
 
     testImplementation(Libs.Test.junit)
     testImplementation(Libs.Test.mockkAndroid)
