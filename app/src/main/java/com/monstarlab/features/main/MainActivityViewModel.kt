@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.features.nstack.domain.usecase.SetupNstackUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dk.nodes.nstack.kotlin.models.AppOpenData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -16,7 +15,7 @@ class MainActivityViewModel @Inject constructor(
     private val setupNstackUseCase: SetupNstackUseCase,
 ) : ViewModel() {
 
-    private val _stateFlow = MutableStateFlow(State())
+    private val _stateFlow = MutableStateFlow(MainActivityState())
     val stateFlow = _stateFlow.asStateFlow()
 
     init {
@@ -36,10 +35,5 @@ class MainActivityViewModel @Inject constructor(
             )
         }
     }
-
-    data class State(
-        val showSplash: Boolean = true,
-        val nstackData: AppOpenData? = null
-    )
 
 }
