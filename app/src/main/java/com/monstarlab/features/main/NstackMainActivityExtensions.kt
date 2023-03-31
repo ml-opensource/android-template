@@ -3,57 +3,30 @@ package com.monstarlab.features.main
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.lifecycleScope
 import dk.nodes.nstack.kotlin.NStack
+import dk.nodes.nstack.kotlin.models.AppOpenData
 import dk.nodes.nstack.kotlin.models.AppUpdate
 import dk.nodes.nstack.kotlin.models.AppUpdateState
 import dk.nodes.nstack.kotlin.models.Message
 import dk.nodes.nstack.kotlin.models.RateReminder
-import dk.nodes.nstack.kotlin.models.Result
 import dk.nodes.nstack.kotlin.models.state
 import dk.nodes.nstack.kotlin.models.update
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-fun MainActivity.setupNStack() = lifecycleScope.launch(Dispatchers.IO) {
-    when (val result = NStack.appOpen()) {
-        is Result.Success -> {
-            withContext(Dispatchers.Main) {
-                when (result.value.data.update.state) {
-                    AppUpdateState.NONE -> {
-                        /* Nothing to do */
-                    }
-                    AppUpdateState.UPDATE -> showUpdateDialog(result.value.data.update)
-                    AppUpdateState.FORCE -> showForceDialog(result.value.data.update)
-                    AppUpdateState.CHANGELOG -> showChangelogDialog(result.value.data.update)
-                }
-
-                result.value.data.message?.let { showMessageDialog(it) }
-                result.value.data.rateReminder?.let { showRateReminderDialog(it) }
-            }
-        }
-        is Result.Error -> {
+fun MainActivity.handleNstackData(data: AppOpenData?, onDismissed: () -> Unit) {
+    val updateData = data?.update
+    if (updateData != null) {
+        when (updateData.state) {
+            AppUpdateState.NONE -> Unit // Nothing to do
+            AppUpdateState.UPDATE -> showUpdateDialog(updateData, onDismissed)
+            AppUpdateState.FORCE -> showForceDialog(updateData)
+            AppUpdateState.CHANGELOG -> showChangelogDialog(updateData, onDismissed)
         }
     }
-    // if (withContext(Dispatchers.IO) { NStack.RateReminder.shouldShow() }) {
-    //     val answer = NStack.RateReminder.apply {
-    //         title = Translation.rate.title
-    //         message = Translation.rate.message
-    //         yesButton = Translation.rate.yesButton
-    //         noButton = Translation.rate.noButton
-    //         skipButton = Translation.rate.skipButton
-    //     }.show(ContextThemeWrapper(context, R.style.customDialog))
-
-    //     when (answer) {
-    //         RateReminderAnswer.POSITIVE -> // take user to the playstore page
-    //             RateReminderAnswer.NEGATIVE -> // take user to the feedback screen
-    //         RateReminderAnswer.SKIP -> // do nothing?
-    //     }
-    // }
+    data?.message?.let { showMessageDialog(it, onDismissed) }
+    data?.rateReminder?.let { showRateReminderDialog(it, onDismissed) }
 }
 
-fun MainActivity.showRateReminderDialog(rateReminder: RateReminder) {
+fun MainActivity.showRateReminderDialog(rateReminder: RateReminder, onDismissed: () -> Unit) {
     AlertDialog.Builder(this)
         .setMessage(rateReminder.body)
         .setTitle(rateReminder.title)
@@ -68,10 +41,11 @@ fun MainActivity.showRateReminderDialog(rateReminder: RateReminder) {
         .setNeutralButton(rateReminder.laterButton) { dialog, _ ->
             dialog.dismiss()
         }
+        .setOnDismissListener { onDismissed() }
         .show()
 }
 
-fun MainActivity.showMessageDialog(message: Message) {
+fun MainActivity.showMessageDialog(message: Message, onDismissed: () -> Unit) {
     AlertDialog.Builder(this)
         .setMessage(message.message)
         .setCancelable(false)
@@ -79,26 +53,29 @@ fun MainActivity.showMessageDialog(message: Message) {
             NStack.messageSeen(message)
             dialog.dismiss()
         }
+        .setOnDismissListener { onDismissed() }
         .show()
 }
 
-fun MainActivity.showUpdateDialog(appUpdate: AppUpdate) {
+fun MainActivity.showUpdateDialog(appUpdate: AppUpdate, onDismissed: () -> Unit) {
     AlertDialog.Builder(this)
         .setTitle(appUpdate.update?.translate?.title ?: return)
         .setMessage(appUpdate.update?.translate?.message ?: return)
         .setPositiveButton(appUpdate.update?.translate?.positiveButton) { dialog, _ ->
             dialog.dismiss()
         }
+        .setOnDismissListener { onDismissed() }
         .show()
 }
 
-fun MainActivity.showChangelogDialog(appUpdate: AppUpdate) {
+fun MainActivity.showChangelogDialog(appUpdate: AppUpdate, onDismissed: () -> Unit) {
     AlertDialog.Builder(this)
         .setTitle(appUpdate.update?.translate?.title ?: "")
         .setMessage(appUpdate.update?.translate?.message ?: "")
         .setNegativeButton(appUpdate.update?.translate?.negativeButton ?: "") { dialog, _ ->
             dialog.dismiss()
         }
+        .setOnDismissListener { onDismissed() }
         .show()
 }
 
