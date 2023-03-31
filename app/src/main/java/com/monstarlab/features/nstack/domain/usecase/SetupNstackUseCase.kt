@@ -7,6 +7,7 @@ import dk.nodes.nstack.kotlin.models.AppOpenData
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import dk.nodes.nstack.kotlin.models.Result as NstackResult
 
 class SetupNstackUseCase @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
@@ -15,8 +16,8 @@ class SetupNstackUseCase @Inject constructor(
     suspend operator fun invoke(): Result<AppOpenData> = suspendRunCatching {
         withContext(ioDispatcher) {
             when (val result = NStack.appOpen()) {
-                is dk.nodes.nstack.kotlin.models.Result.Success -> result.value.data
-                is dk.nodes.nstack.kotlin.models.Result.Error -> throw Exception("Failed to appOpen NStack")
+                is NstackResult.Success -> result.value.data
+                is NstackResult.Error -> throw Exception("Failed to appOpen NStack")
             }
         }
     }
