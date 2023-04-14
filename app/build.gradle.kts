@@ -16,6 +16,7 @@ configure<dk.nstack.kotlin.plugin.TranslationExtension> {
 
 android {
     compileSdk = 33
+    namespace = "com.monstarlab"
     flavorDimensions += "default"
     defaultConfig {
         applicationId = "com.monstarlab"
@@ -95,7 +96,6 @@ configurations {
 }
 
 dependencies {
-
     implementation(Libs.Kotlin.stdlib)
     implementation(Libs.Kotlin.coroutines)
     implementation(Libs.Kotlin.coroutinesAndroid)
