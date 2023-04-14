@@ -1,17 +1,20 @@
+
 @file:Suppress("UnstableApiUsage")
+// TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version Libs.Versions.kotlin
+    alias(libs.plugins.kotlin.serialization)
     id("dk.nstack.translation.plugin")
     id("dagger.hilt.android.plugin")
 }
 
 configure<dk.nstack.kotlin.plugin.TranslationExtension> {
-    appId = NStackKeys.appId
-    apiKey = NStackKeys.apiKey
-    acceptHeader = NStackKeys.acceptHeader
+    appId = "IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0"
+    apiKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
+    acceptHeader = "en-GB"
 }
 
 android {
@@ -96,62 +99,45 @@ configurations {
 }
 
 dependencies {
-    implementation(Libs.Kotlin.stdlib)
-    implementation(Libs.Kotlin.coroutines)
-    implementation(Libs.Kotlin.coroutinesAndroid)
-    implementation(Libs.Kotlin.serialization)
+    // Kotlin
+    implementation(libs.bundles.kotlin)
+    implementation(libs.kotlin.serialization.json)
 
-    implementation(Libs.Android.fragment)
-    implementation(Libs.Android.core)
-    implementation(Libs.Android.appCompat)
-    implementation(Libs.Android.material)
-    implementation(Libs.Android.contraintLayout)
-    implementation(Libs.Android.datastore)
-    implementation(Libs.Android.activityCompose)
-    implementation(Libs.Android.splash)
+    // Android
+    implementation(libs.bundles.android.core)
+    implementation(libs.android.splash)
 
-    testImplementation(Libs.Test.junit)
-    testImplementation(Libs.Test.mockkAndroid)
-    testImplementation(Libs.Test.mockkAgent)
-    testImplementation(Libs.Test.coroutinesTest)
+    implementation(libs.bundles.android.lifecycle)
 
-    androidTestImplementation(Libs.Test.junitAndroid)
-    androidTestImplementation(Libs.Test.androidEspresso)
+    implementation(libs.android.navigation.fragment)
+    implementation(libs.android.navigation.ui)
 
-    implementation(Libs.Injection.hilt)
-    kapt(Libs.Injection.hiltKapt)
+    implementation(libs.android.lifecycle.runtime.compose)
+    implementation(libs.android.datastore.preferences)
 
-    implementation(Libs.Networking.retrofit)
-    implementation(Libs.Networking.retrofitSerializer)
-    implementation(Libs.Networking.interceptor)
+    // Compose
+    implementation(platform(libs.android.compose.bom))
+    implementation(libs.bundles.android.compose.core)
+    implementation(libs.android.activity.compose)
+    implementation(libs.android.lifecycle.viewmodel.compose)
+    implementation(libs.bundles.google.accompanist)
+    debugImplementation(libs.android.compose.ui.tooling)
 
-    implementation(Libs.Android.Navigation.fragNavigation)
-    implementation(Libs.Android.Navigation.navigationUi)
+    // Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    implementation(Libs.Android.Lifecycle.core)
-    implementation(Libs.Android.Lifecycle.runtime)
-    implementation(Libs.Android.Lifecycle.common)
-    implementation(Libs.Android.Lifecycle.viewModel)
-    implementation(Libs.Android.Lifecycle.viewModelCompose)
-    implementation(Libs.Android.Lifecycle.livedata)
-    implementation(Libs.Android.Lifecycle.runtimeCompose)
+    // Networking
+    implementation(libs.retrofit.converter)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp.logger)
 
-    implementation(platform(Libs.Compose.bom))
-    implementation(Libs.Compose.material)
-    implementation(Libs.Compose.preview)
-    implementation(Libs.Compose.icons)
-    implementation(Libs.Compose.windowSize)
-    debugImplementation(Libs.Compose.tooling)
-
-    implementation(Libs.Compose.coil)
-    implementation(Libs.Compose.accompanistSystemUi)
-    implementation(Libs.Compose.accompanistPlaceholder)
-    implementation(Libs.Compose.accompanifestPager)
-
-    implementation(Libs.nstack)
-    implementation(Libs.timber)
-    "devDebugImplementation"(Libs.leakCanary)
-    releaseImplementation(Libs.chuckerNoOp)
-    debugImplementation(Libs.chuckerDebug)
+    implementation(libs.nstack)
+    implementation(libs.timber)
+    "devDebugImplementation"(libs.leakcanary)
+    releaseImplementation(libs.chucker.op)
+    debugImplementation(libs.chucker.noop)
+    testImplementation(libs.bundles.test)
+    androidTestImplementation(libs.bundles.android.test)
 
 }

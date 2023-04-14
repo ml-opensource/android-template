@@ -1,16 +1,16 @@
 buildscript {
     dependencies {
-        classpath(Libs.Plugins.gradle)
-        classpath(Libs.Plugins.kotlin)
-        classpath(Libs.Plugins.nstack)
-        classpath(Libs.Plugins.hilt)
+        classpath(libs.android.gradle.plugin)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.nstack.plugin)
+        classpath(libs.hilt.android.plugin)
     }
 }
 
 plugins {
-    kotlin("jvm") version Libs.Versions.kotlin apply false
-    id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
-    id("com.diffplug.spotless") version "6.15.0"
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.spotless)
 }
 
 allprojects {
