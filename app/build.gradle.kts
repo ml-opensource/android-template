@@ -11,9 +11,12 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
+val nStackAppId = "IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0"
+
 configure<dk.nstack.kotlin.plugin.TranslationExtension> {
-    appId = "IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0"
-    apiKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
+    appId = nStackAppId
+    apiKey = nStackKey
     acceptHeader = "en-GB"
 }
 
@@ -28,8 +31,8 @@ android {
         versionCode = 1
         versionName = "1.0.0"
         manifestPlaceholders += mapOf(
-            "appId" to NStackKeys.appId,
-            "apiKey" to NStackKeys.apiKey,
+            "appId" to nStackAppId,
+            "apiKey" to nStackKey,
         )
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
