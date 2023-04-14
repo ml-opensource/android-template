@@ -7,5 +7,5 @@ import com.monstarlab.features.user.domain.User
 import javax.inject.Inject
 
 class UserPreferenceStore @Inject constructor(
-    dataStore: DataStore<Preferences>
+    dataStore: DataStore<Preferences>,
 ) : SingleSharedPreferenceDataStore<User>(dataStore, User.serializer())

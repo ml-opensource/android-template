@@ -8,7 +8,7 @@ import com.monstarlab.designsystem.theme.AppTheme
 
 @Composable
 fun ResourcesRoute(
-    coordinator: ResourcesCoordinator
+    coordinator: ResourcesCoordinator,
 ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsStateWithLifecycle(ResourcesState())

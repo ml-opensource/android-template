@@ -25,7 +25,7 @@ import com.monstarlab.features.resources.domain.Resource
 @Composable
 fun ResourceItem(
     resource: Resource,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card {
         Row(
@@ -37,7 +37,9 @@ fun ResourceItem(
                 modifier = Modifier
                     .size(32.dp)
                     .background(
-                        brush = Brush.verticalGradient(listOf(Color.DarkGray, Color.fromHex(resource.color))),
+                        brush = Brush.verticalGradient(
+                            listOf(Color.DarkGray, Color.fromHex(resource.color))
+                        ),
                         shape = RoundedCornerShape(8.dp)
                     )
             )
