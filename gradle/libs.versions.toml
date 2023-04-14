@@ -13,7 +13,7 @@ datastore = "1.0.0"
 google-accompanist = "0.27.0"
 androidx_appcompat = "1.6.1"
 androidx_core = "1.9.0"
-android_gradle = "7.4.1"
+android_gradle = "8.0.0"
 mockk = "1.13.4"
 chucker = "3.5.2"
 
