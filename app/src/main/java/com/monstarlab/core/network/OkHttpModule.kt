@@ -2,6 +2,7 @@ package com.monstarlab.core.network
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.monstarlab.BuildConfig
+import com.monstarlab.core.network.errorhandling.ApiErrorInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +33,8 @@ class OkHttpModule {
             logging.level = HttpLoggingInterceptor.Level.BODY
             clientBuilder.addInterceptor(logging)
         }
+
+        clientBuilder.addInterceptor(ApiErrorInterceptor(json))
 
         return clientBuilder.build()
     }

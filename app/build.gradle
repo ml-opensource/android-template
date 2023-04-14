@@ -2,9 +2,9 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.30'
     id 'dk.nstack.translation.plugin'
     id 'dagger.hilt.android.plugin'
+    alias(libs.plugins.kotlin.serialization)
 }
 
 translation {
@@ -14,22 +14,18 @@ translation {
 }
 
 android {
-    compileSdkVersion 32
-    buildToolsVersion "30.0.3"
-    flavorDimensions "default"
-
+    compileSdk 33
+    flavorDimensions += "default"
     defaultConfig {
         applicationId "com.monstarlab"
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
-
         manifestPlaceholders = [
                 appId : keys.appId,
                 apiKey: keys.apiKey
         ]
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
@@ -41,7 +37,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
     productFlavors {
         dev {
             dimension "default"
@@ -72,55 +67,76 @@ android {
             buildConfigField "String", "API_URL", "\"https://reqres.in/api/\""
         }
     }
-
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = 11
+    }
+    namespace 'com.monstarlab'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 
-
-
 dependencies {
 
-    implementation ("org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}")
+    implementation libs.kotlin
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${versions.coroutines}"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:${versions.json}"
-
-    implementation "androidx.core:core-ktx:${versions.ktx_core}"
-    implementation "androidx.appcompat:appcompat:${versions.appcompat}"
-    implementation "com.google.android.material:material:${versions.material}"
-    implementation "androidx.constraintlayout:constraintlayout:${versions.constraint_layout}"
-    testImplementation "junit:junit:${versions.junit}"
-    androidTestImplementation "androidx.test.ext:junit:${versions.junit_ext}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${versions.espresso}"
-
-
-    implementation "com.google.dagger:hilt-android:${versions.hilt}"
-    kapt "com.google.dagger:hilt-compiler:${versions.hilt}"
+    implementation libs.kotlin.coroutines.android
+    implementation libs.kotlin.coroutines.jdk
+    implementation libs.kotlin.serialization.json
+    implementation libs.android.fragment
+    implementation libs.android.core
+    implementation libs.android.appcompat
+    implementation libs.android.material
+    implementation libs.android.contraint.layout
+    testImplementation libs.junit
+    androidTestImplementation libs.junit.android
+    androidTestImplementation libs.espresso.core
 
 
-    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${versions.retrofit_converter}")
-    implementation("com.squareup.retrofit2:retrofit:${versions.retrofit}")
-    implementation("com.squareup.okhttp3:logging-interceptor:${versions.okhttp}")
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
 
-    implementation("androidx.navigation:navigation-fragment-ktx:${versions.navigation}")
-    implementation("androidx.navigation:navigation-ui-ktx:${versions.navigation}")
 
-    implementation("androidx.lifecycle:lifecycle-livedata-core-ktx:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-common-java8:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}")
+    implementation(libs.retrofit.converter)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp.logger)
 
-    implementation("androidx.datastore:datastore-preferences:${versions.datastore}")
+    implementation(libs.android.navigation.fragment)
+    implementation(libs.android.navigation.ui)
 
-    implementation "dk.nodes.nstack:nstack-kotlin:${versions.nodes_nstack_kotlin}"
-    implementation "com.jakewharton.timber:timber:${versions.timber}"
+    implementation(libs.android.lifecycle.core)
+    implementation(libs.android.lifecycle.runtime)
+    implementation(libs.android.lifecycle.common)
+    implementation(libs.android.lifecycle.viewmodel)
+    implementation(libs.android.lifecycle.livedata)
+    implementation(libs.android.lifecycle.runtime.compose)
+
+    implementation(libs.android.datastore.preferences)
+
+
+    // Compose
+    implementation platform(libs.android.compose.bom)
+    implementation(libs.android.compose.material)
+    debugImplementation(libs.android.compose.ui.tooling)
+
+    implementation libs.accompanist.pager
+    implementation libs.accompanist.systemuicontroller
+    implementation libs.accompanist.placeholder.material
+
+    implementation libs.nstack
+    implementation libs.timber
 
 }
