@@ -29,6 +29,7 @@ public class Translation {
 	}
 	public final static class more {
 		public static String title = "more";
+		public static String imageTest = "https://cdn.like.st/image/nstack/localize_values/smallaldilogo_Z6EJzauO5P.png";
 	}
 	public final static class rateReminder {
 		public static String rateReminderTitle = "Rate this app";

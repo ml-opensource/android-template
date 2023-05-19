@@ -1,7 +1,7 @@
 package com.monstarlab.features.login.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.monstarlab.core.coroutines.CloseableCoroutineScope
 import com.monstarlab.core.error.toError
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,10 +12,13 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+
+
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
-) : ViewModel() {
+    private val viewModelScope: CloseableCoroutineScope,
+) : ViewModel(viewModelScope) {
 
     private val _stateFlow: MutableStateFlow<LoginState> = MutableStateFlow(LoginState())
 

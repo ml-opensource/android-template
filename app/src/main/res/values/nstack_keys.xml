@@ -17,6 +17,7 @@
   <string name='nstack_terms_acceptLabel' formatted='false'>{terms_acceptLabel}</string>
   <string name='nstack_terms_acceptedLabel' formatted='false'>{terms_acceptedLabel}</string>
   <string name='nstack_more_title' formatted='false'>{more_title}</string>
+  <string name='nstack_more_imageTest' formatted='false'>{more_imageTest}</string>
   <string name='nstack_rateReminder_rateReminderTitle' formatted='false'>{rateReminder_rateReminderTitle}</string>
   <string name='nstack_rateReminder_rateReminderMessage' formatted='false'>{rateReminder_rateReminderMessage}</string>
   <string name='nstack_rateReminder_title' formatted='false'>{rateReminder_title}</string>

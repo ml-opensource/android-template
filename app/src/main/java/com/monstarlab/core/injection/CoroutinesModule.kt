@@ -1,11 +1,13 @@
 package com.monstarlab.core.injection
 
+import com.monstarlab.core.coroutines.CloseableCoroutineScope
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -26,4 +28,11 @@ object CoroutinesModule {
     @MainImmediateDispatcher
     @Provides
     fun providesMainImmediateDispatcher(): CoroutineDispatcher = Dispatchers.Main.immediate
+
+    @Provides
+    fun provideCloseableCoroutineScope(
+        @MainImmediateDispatcher dispatcher: CoroutineDispatcher
+    ) : CloseableCoroutineScope {
+        return CloseableCoroutineScope(SupervisorJob() + dispatcher)
+    }
 }
