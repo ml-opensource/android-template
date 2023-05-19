@@ -1,7 +1,6 @@
 package com.monstarlab.features.resources.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.monstarlab.core.coroutines.CloseableCoroutineScope
 import com.monstarlab.core.error.toError
 import com.monstarlab.features.resources.domain.GetResourcesUseCase
@@ -17,7 +16,7 @@ import javax.inject.Inject
 class ResourcesViewModel @Inject constructor(
     private val getResourcesUseCase: GetResourcesUseCase,
     private val viewModelScope: CloseableCoroutineScope
-) : ViewModel() {
+) : ViewModel(viewModelScope) {
 
     private val _stateFlow: MutableStateFlow<ResourcesState> = MutableStateFlow(ResourcesState())
 
