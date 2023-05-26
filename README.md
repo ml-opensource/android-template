@@ -24,6 +24,22 @@ After installing, creating new features in the correct template structure should
 
 ![](https://user-images.githubusercontent.com/8679058/223731540-1604198c-78ac-4b3b-ad84-b3fc290746af.png)
 
+## Architecture
+Template implements [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and follows recommended best [recommended practices](https://developer.android.com/topic/architecture) provided by Google with some tweaks here and there
+
+### Presentation layer
+In our Android world, the Presentation layer or UI Layer is our Activities, Fragments, Jetpack Compose UI screens and components, and ViewModels. The Presentation layer interacts with Domain Layer where our business logic happens.
+### Domain layer
+The domain layer contains the application's business logic. This layer should only work with abstractions and as such it would never know about how different layers look like. It shouldn’t know about any Databases, APIs, or even Android Framework.
+
+### Data layer
+The data layer is where the actual interactions happen between different data sources. This layer “implements” parts of the Domain layer and communicates with the APIs, Databases, and other services and SDKs.
+
+![](assets/arch.svg)
+
+## Project Structure
+TODO
+
 ## Flavors
 
 - **Dev**: Intende for developers use only. Usually will have the same endpoints as staging. This have LeakCanary to help detect leaks.
@@ -42,7 +58,7 @@ Spotless is a Gradle plugin used to format source files. You can use it running 
 
 
 ### [Chucker](https://github.com/ChuckerTeam/chucker)
-Chucker is a HTTP inspector to help check the api calls when the app is being executed, this is helpful for both devs and QAs to analyse the trafic data. It should show as a notification when the app is ran. Note that is uses an `Interceptor` in the `OkHttpClient` to get the data, so if you need to create a new `OkHttpClient` for any reason, remember to also add the Chucker`s `Interceptor`.
+Chucker is a HTTP inspector to help check the api calls when the app is being executed, this is helpful for both devs and QAs to analyse the trafic data. It should show as a notification when the app is ran. Note that is uses an `Interceptor` in the `OkHttpClient` to get the data, so if you need to create a new `OkHttpClient` for any reason, remember to also add the Chucker's `Interceptor`.
 
 ### [LeakCanary](https://square.github.io/leakcanary/)
 LeakCanary is a memory detectiong library that will automatically run in `devDebug` builds. It will automatically detect memory leaks and in case anything is found a notification will be shown. After that the details of the leak can be viweed both by clicking the notification on in the Logcat. This is intended for devs to spot and fix any leaks as early as possible. 
