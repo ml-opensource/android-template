@@ -2,6 +2,7 @@
 
 This is a opinionated template for new Android projects used and open sourced by Monstarlab.
 
+
 💻 **Techstack** 
 -   <img src="https://kotlinlang.org/assets/images/favicon.svg?&v=8607ff59d5296c7642ecd72bd3daa79b" height=12 /> 100% Kotlin
 - 🔄 Kotlin Coroutines for async operations 
@@ -14,6 +15,14 @@ This is a opinionated template for new Android projects used and open sourced by
 - 🔍 [Detekt](https://github.com/detekt/detekt) for static code analysis
 - 🌐 [Chucker](https://github.com/ChuckerTeam/chucker) - network traffic logger
 - 🐤 [LeakCanary](https://square.github.io/leakcanary/) -  memory leak detection 
+
+
+# Table of contents
+1. [Before you start](#⚠️-before-you-start)
+2. [Template Structure](#project-structure)
+3. [Architecture](#architecture)
+4. [Flavours](#flavors)
+5. [Tools](#tools)
 
 
 ## ⚠️ Before you start 
