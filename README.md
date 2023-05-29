@@ -24,21 +24,56 @@ After installing, creating new features in the correct template structure should
 
 ![](https://user-images.githubusercontent.com/8679058/223731540-1604198c-78ac-4b3b-ad84-b3fc290746af.png)
 
+
+
+## Project Structure
+Android template project has three top-level packages: `core`, `designsystem` and `features`. Overall package structure looks like following
+- `core`
+  - `extensions`
+  - `injection`
+  - `network`
+  - `persistence`
+  - `ui`
+- `designsystem`
+  - `components`
+  - `theme`
+- `features`
+  - `nstack`
+  - `feature1`
+    - `data`
+    - `domain`  
+    - `injection`
+    - `ui`
+  
+### `core` package
+Core package is meant to be Domain-agnostic. It means that it should never reference anything Project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are Behaviroual rather then UI emmiting
+
+### `designsystem` package
+The design system package contains the building blocks  for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
+
+Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. Template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout you project. Learn more about design system [here](./docs/)
+
+
+### `features` package
+Features package contains the most important part of any projec. A Feature typically contains all the necessary code, resources, and assets required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. Each feature is following Clean Architecture Principles and has a three-layer split
+
+
+
 ## Architecture
 Template implements [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and follows recommended best [recommended practices](https://developer.android.com/topic/architecture) provided by Google with some tweaks here and there
 
 ### Presentation layer
 In our Android world, the Presentation layer or UI Layer is our Activities, Fragments, Jetpack Compose UI screens and components, and ViewModels. The Presentation layer interacts with Domain Layer where our business logic happens.
+
 ### Domain layer
 The domain layer contains the application's business logic. This layer should only work with abstractions and as such it would never know about how different layers look like. It shouldn’t know about any Databases, APIs, or even Android Framework.
 
 ### Data layer
 The data layer is where the actual interactions happen between different data sources. This layer “implements” parts of the Domain layer and communicates with the APIs, Databases, and other services and SDKs.
 
+
 ![](assets/arch.svg)
 
-## Project Structure
-TODO
 
 ## Flavors
 
