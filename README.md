@@ -1,6 +1,20 @@
-# <img src="https://engineering.monstar-lab.com/assets/img/logo/ml-logo-grey.png"  height="23"> &nbsp;     Android Template
+# <img src="https://engineering.monstar-lab.com/assets/img/logo/ml-logo-grey.png"  height="23"> &nbsp;     Android Template <img src="https://android-developers.googleblog.com/favicon.ico" height=23/>
 
 This is a opinionated template for new Android projects used and open sourced by Monstarlab.
+
+💻 **Techstack** 
+-   <img src="https://kotlinlang.org/assets/images/favicon.svg?&v=8607ff59d5296c7642ecd72bd3daa79b" height=12 /> 100% Kotlin
+- 🔄 Kotlin Coroutines for async operations 
+- 🚀 Jetpack Architecture Components
+- <img src="https://developer.android.com/static/images/spot-icons/jetpack-compose.svg" height = 16>  Jetpack Compose ❤️
+- ☁️ [OkHttp](https://github.com/square/okhttp) and [Retrofit](https://github.com/square/retrofit) for networking
+- 🔗 [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html) as primary JSON (de)serialization tool
+- 🗡️ [Dagger / Hilt](https://dagger.dev/hilt/) for Dependency Injection
+- ✨ [Spotless](https://github.com/diffplug/spotless) for code-format control
+- 🔍 [Detekt](https://github.com/detekt/detekt) for static code analysis
+- 🌐 [Chucker](https://github.com/ChuckerTeam/chucker) - network traffic logger
+- 🐤 [LeakCanary](https://square.github.io/leakcanary/) -  memory leak detection 
+
 
 ## ⚠️ Before you start 
 
@@ -51,11 +65,11 @@ Core package is meant to be Domain-agnostic. It means that it should never refer
 ### `designsystem` package
 The design system package contains the building blocks  for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
 
-Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. Template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout you project. Learn more about design system [here](./docs/)
+Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. Template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout you project. [Learn more about design system here](./docs/DESIGN_SYSTEM.md)
 
 
 ### `features` package
-Features package contains the most important part of any projec. A Feature typically contains all the necessary code, resources, and assets required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. Each feature is following Clean Architecture Principles and has a three-layer split
+Features package contains the most important part of any projec. A Feature typically contains all the necessary code, resources, and assets required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. [Each feature is following Clean Architecture Principles and has a three-layer split](#architecture)
 
 
 
