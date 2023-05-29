@@ -95,7 +95,7 @@ The domain layer contains the application's business logic. This layer should on
 The data layer is where the actual interactions happen between different data sources. This layer “implements” parts of the Domain layer and communicates with the APIs, Databases, and other services and SDKs.
 
 
-![](assets/arch.svg)
+![](/docs/assets/arch.svg)
 
 
 ## Flavors
