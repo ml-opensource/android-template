@@ -1,26 +1,26 @@
 [versions]
 nstack = "3.2.9"
-kotlin = "1.8.10"
-kotlin_coroutines = "1.6.4"
+kotlin = "1.9.0"
+kotlin_coroutines = "1.7.3"
 retrofit = "2.9.0"
 okhttp = "5.0.0-alpha.10"
-compose_bom = "2023.01.00"
-compose_compiler = "1.4.2"
-hilt = "2.44.2"
-lifecycle = "2.5.1"
-navigation = "2.5.3"
+compose_bom = "2023.08.00"
+compose_compiler = "1.5.1"
+hilt = "2.47"
+lifecycle = "2.6.1"
+navigation = "2.7.0"
 datastore = "1.0.0"
-google-accompanist = "0.27.0"
+google_accompanist = "0.31.6-rc"
 androidx_appcompat = "1.6.1"
 androidx_core = "1.9.0"
-android_gradle = "8.0.0"
-mockk = "1.13.4"
+android_gradle = "8.1.0"
+mockk = "1.13.5"
 chucker = "3.5.2"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "5.9.0" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.19.0" }
-kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version = "1.4.30" }
+kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
 android_library = { id = "com.android.library", version.ref = "android_gradle" }
 kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -33,19 +33,19 @@ kotlin = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin"
 kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin_coroutines_android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin_coroutines" }
 kotlin_coroutines_jdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlin_coroutines" }
-kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
+kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0-RC"
 #-------------------------
 # Android
 #-------------------------
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle" }
-android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.5.5" }
-android_material = { group = "com.google.android.material", name = "material", version = "1.8.0" }
+android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.6.1" }
+android_material = { group = "com.google.android.material", name = "material", version = "1.9.0" }
 android_contraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.1.4" }
 android_appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 android_core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
-android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.5.1" }
-android_splash = { module = "androidx.core:core-splashscreen", version = "1.0.0"}
+android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.7.2" }
+android_splash = { module = "androidx.core:core-splashscreen", version = "1.0.1"}
 #-------------------------
 # Android - Lifecycle
 #-------------------------
@@ -55,7 +55,7 @@ android_lifecycle_common = { module = "androidx.lifecycle:lifecycle-common-java8
 android_lifecycle_viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 android_lifecycle_livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 android_lifecycle_viewmodel_compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-android_lifecycle_runtime_compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version = "2.6.0-beta01" }
+android_lifecycle_runtime_compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version = "2.7.0-alpha01" }
 #-------------------------
 # Android - Hilt
 #-------------------------
@@ -73,7 +73,7 @@ android_compose_ui_tooling = { module = "androidx.compose.ui:ui-tooling" }
 android_compose_runtime = { module = "androidx.compose.runtime:runtime-livedata" }
 android_compose_ui_test = { module = "androidx.compose.ui:ui-test-junit4" }
 android_compose_ui_test_manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.0.1"
+android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.1.1"
 #-------------------------
 # Android - Navigation
 #-------------------------
@@ -88,7 +88,7 @@ android_datastore_preferences = { module = "androidx.datastore:datastore-prefere
 #-------------------------
 # Networking
 #-------------------------
-retrofit_converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0"
+retrofit_converter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 okhttp_logger = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 okhttp_mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }

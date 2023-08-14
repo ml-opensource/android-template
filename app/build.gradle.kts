@@ -1,5 +1,8 @@
 
 @file:Suppress("UnstableApiUsage")
+
+import com.android.build.api.dsl.Packaging
+
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -21,19 +24,16 @@ configure<dk.nstack.kotlin.plugin.TranslationExtension> {
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
     namespace = "com.monstarlab"
     flavorDimensions += "default"
     defaultConfig {
+        manifestPlaceholders += mapOf("appId" to nStackAppId, "apiKey" to nStackKey)
         applicationId = "com.monstarlab"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
-        manifestPlaceholders += mapOf(
-            "appId" to nStackAppId,
-            "apiKey" to nStackKey,
-        )
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -47,31 +47,22 @@ android {
     }
     productFlavors {
         create("dev") {
+            manifestPlaceholders += mapOf("APP_NAME" to "MonstarlabDev", "env" to "staging")
             dimension = "default"
             applicationIdSuffix = ".dev"
-            manifestPlaceholders += mapOf(
-                "APP_NAME" to "MonstarlabDev",
-                "env" to "staging",
-            )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
         create("staging") {
+            manifestPlaceholders += mapOf("APP_NAME" to "MonstarlabStaging", "env" to "staging")
             dimension = "default"
             applicationIdSuffix = ".staging"
-            manifestPlaceholders += mapOf(
-                "APP_NAME" to "MonstarlabStaging",
-                "env" to "staging",
-            )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
         create("production") {
+            manifestPlaceholders += mapOf("APP_NAME" to "Monstarlab", "env" to "production")
             dimension = "default"
             applicationIdSuffix = ".staging"
             //signingConfig signingConfigs.production
-            manifestPlaceholders += mapOf(
-                "APP_NAME" to "Monstarlab",
-                "env" to "production",
-            )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
     }
@@ -80,7 +71,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.2"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -90,6 +81,10 @@ android {
         jvmToolchain {
             languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.toString()))
         }
+    }
+
+    packaging {
+        resources.excludes.add("META-INF/versions/9/previous-compilation-data.bin")
     }
 }
 
