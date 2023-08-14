@@ -3,8 +3,12 @@ package com.monstarlab.features.auth.domain
 import com.monstarlab.features.auth.data.api.AuthApi
 import com.monstarlab.features.auth.data.api.dtos.TokenResponseDTO
 import com.monstarlab.features.auth.data.api.dtos.toAuthToken
+import com.monstarlab.features.auth.data.repository.AuthRepositoryImpl
 import com.monstarlab.features.auth.domain.repository.AuthRepository
-import io.mockk.*
+import io.mockk.clearAllMocks
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -23,7 +27,7 @@ internal class AuthRepositoryTest {
     @Before
     fun setUp() {
         mockAuthApi = mockk()
-        authRepository = AuthRepository(mockAuthApi)
+        authRepository = AuthRepositoryImpl(mockAuthApi)
     }
 
     @After
