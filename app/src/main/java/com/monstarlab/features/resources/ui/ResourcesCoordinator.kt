@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import com.monstarlab.core.ui.extensions.toast
-import com.monstarlab.features.resources.domain.Resource
+import com.monstarlab.features.resources.domain.model.Resource
 
 /**
  * Screen's coordinator which is responsible for handling actions from the UI layer

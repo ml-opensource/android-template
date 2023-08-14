@@ -1,8 +1,8 @@
 package com.monstarlab.features.login.domain.usecase
 
 import com.monstarlab.core.extensions.suspendRunCatching
-import com.monstarlab.features.auth.domain.AuthRepository
-import com.monstarlab.features.user.domain.UserRepository
+import com.monstarlab.features.auth.domain.repository.AuthRepository
+import com.monstarlab.features.user.domain.repository.UserRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(

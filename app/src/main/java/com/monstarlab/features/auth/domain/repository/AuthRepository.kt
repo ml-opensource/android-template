@@ -1,4 +1,4 @@
-package com.monstarlab.features.auth.domain
+package com.monstarlab.features.auth.domain.repository
 
 import com.monstarlab.features.auth.data.api.AuthApi
 import com.monstarlab.features.auth.data.api.dtos.toAuthToken

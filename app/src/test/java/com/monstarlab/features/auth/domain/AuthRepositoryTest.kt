@@ -3,6 +3,7 @@ package com.monstarlab.features.auth.domain
 import com.monstarlab.features.auth.data.api.AuthApi
 import com.monstarlab.features.auth.data.api.dtos.TokenResponseDTO
 import com.monstarlab.features.auth.data.api.dtos.toAuthToken
+import com.monstarlab.features.auth.domain.repository.AuthRepository
 import io.mockk.*
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi

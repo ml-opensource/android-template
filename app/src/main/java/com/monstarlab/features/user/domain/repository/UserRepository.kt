@@ -1,9 +1,10 @@
-package com.monstarlab.features.user.domain
+package com.monstarlab.features.user.domain.repository
 
 import com.monstarlab.core.persistence.Repository
 import com.monstarlab.features.user.data.api.UsersApi
 import com.monstarlab.features.user.data.api.dtos.toUser
 import com.monstarlab.features.user.data.storage.UserPreferenceStore
+import com.monstarlab.features.user.domain.model.User
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
