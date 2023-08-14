@@ -1,8 +1,5 @@
 
 @file:Suppress("UnstableApiUsage")
-
-import com.android.build.api.dsl.Packaging
-
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -17,7 +14,7 @@ plugins {
 val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
 val nStackAppId = "IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0"
 
-configure<dk.nstack.kotlin.plugin.TranslationExtension> {
+translation {
     appId = nStackAppId
     apiKey = nStackKey
     acceptHeader = "en-GB"

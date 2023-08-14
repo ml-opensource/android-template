@@ -7,6 +7,8 @@ buildscript {
     }
 }
 
+// TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.detekt) apply false
@@ -24,7 +26,7 @@ allprojects {
 
 subprojects {
     apply(plugin = "com.diffplug.spotless")
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    spotless {
         kotlin {
             target("**/*.kt")
             targetExclude("**/RateReminderActions.kt")
