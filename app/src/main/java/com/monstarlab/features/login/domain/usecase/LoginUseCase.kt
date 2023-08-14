@@ -12,7 +12,7 @@ class LoginUseCase @Inject constructor(
 
     suspend operator fun invoke(email: String, password: String) = suspendRunCatching {
         authRepository.login(email, password)
-        userRepository.getUser()
+        userRepository.get()
     }
 
 }

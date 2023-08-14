@@ -11,6 +11,6 @@ class GetResourcesUseCase @Inject constructor(
 
     suspend operator fun invoke() = suspendRunCatching {
         delay(2000)
-        resourceRepository.getResources()
+        resourceRepository.get()
     }
 }
