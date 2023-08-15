@@ -1,7 +1,7 @@
 package com.monstarlab.features.resources.injection
 
+import com.monstarlab.features.resources.data.repository.ResourceRepositoryImpl
 import com.monstarlab.features.resources.domain.repository.ResourceRepository
-import com.monstarlab.features.resources.domain.repository.ResourceRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
