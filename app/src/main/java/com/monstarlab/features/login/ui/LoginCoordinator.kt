@@ -3,9 +3,13 @@ package com.monstarlab.features.login.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.monstarlab.R
+import com.monstarlab.core.ui.navigation.extensions.navigateTo
+import com.monstarlab.core.ui.navigation.extensions.popUpTo
+import com.monstarlab.features.resources.ui.ResourcesNavDirection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.launchIn
@@ -26,11 +30,11 @@ class LoginCoordinator(
         viewModel.stateFlow
             .filter { it.isLoggedIn }
             .onEach {
-                navController.navigate(
-                    R.id.resourceFragment,
-                    navOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build(),
-                    args = null
-                )
+                navController.navigateTo(ResourcesNavDirection) {
+                    popUpTo(LoginNavDirection) {
+                        inclusive = true
+                    }
+                }
             }
             .launchIn(scope)
     }
@@ -38,8 +42,8 @@ class LoginCoordinator(
 
 @Composable
 fun rememberLoginCoordinator(
-    viewModel: LoginViewModel,
     navController: NavController,
+    viewModel: LoginViewModel = hiltViewModel(),
     scope: CoroutineScope = rememberCoroutineScope(),
 ): LoginCoordinator {
     return remember(viewModel, navController, scope) {

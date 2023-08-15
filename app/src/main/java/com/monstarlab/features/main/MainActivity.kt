@@ -2,21 +2,21 @@ package com.monstarlab.features.main
 
 import android.os.Build
 import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.chuckerteam.chucker.api.Chucker
-import com.monstarlab.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main) {
+class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<MainActivityViewModel>()
     private val notificationRequest =
@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         checkNotificationPermission()
         observeState()
+        setContent {
+            MainNavHost()
+        }
     }
 
     private fun checkNotificationPermission() {

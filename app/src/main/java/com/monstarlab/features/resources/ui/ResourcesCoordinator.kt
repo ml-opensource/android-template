@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.monstarlab.core.ui.extensions.toast
 import com.monstarlab.features.resources.domain.Resource
 
@@ -24,7 +25,7 @@ class ResourcesCoordinator(
 
 @Composable
 fun rememberResourcesCoordinator(
-    viewModel: ResourcesViewModel,
+    viewModel: ResourcesViewModel = hiltViewModel(),
     context: Context = LocalContext.current,
 ): ResourcesCoordinator {
     return remember(viewModel, context) {
