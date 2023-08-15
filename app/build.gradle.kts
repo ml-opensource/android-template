@@ -1,33 +1,36 @@
-@file:Suppress("UnstableApiUsage")
 
+@file:Suppress("UnstableApiUsage")
+// TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    kotlin("plugin.serialization") version Libs.Versions.kotlin
+    alias(libs.plugins.kotlin.serialization)
     id("dk.nstack.translation.plugin")
     id("dagger.hilt.android.plugin")
 }
 
-configure<dk.nstack.kotlin.plugin.TranslationExtension> {
-    appId = NStackKeys.appId
-    apiKey = NStackKeys.apiKey
-    acceptHeader = NStackKeys.acceptHeader
+val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
+val nStackAppId = "IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0"
+
+translation {
+    appId = nStackAppId
+    apiKey = nStackKey
+    acceptHeader = "en-GB"
 }
 
 android {
-    compileSdk = 33
+    compileSdk = 34
+    namespace = "com.monstarlab"
     flavorDimensions += "default"
     defaultConfig {
+        manifestPlaceholders += mapOf("appId" to nStackAppId, "apiKey" to nStackKey)
         applicationId = "com.monstarlab"
         minSdk = 23
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
-        manifestPlaceholders += mapOf(
-            "appId" to NStackKeys.appId,
-            "apiKey" to NStackKeys.apiKey,
-        )
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,31 +44,22 @@ android {
     }
     productFlavors {
         create("dev") {
+            manifestPlaceholders += mapOf("APP_NAME" to "MonstarlabDev", "env" to "staging")
             dimension = "default"
             applicationIdSuffix = ".dev"
-            manifestPlaceholders += mapOf(
-                "APP_NAME" to "MonstarlabDev",
-                "env" to "staging",
-            )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
         create("staging") {
+            manifestPlaceholders += mapOf("APP_NAME" to "MonstarlabStaging", "env" to "staging")
             dimension = "default"
             applicationIdSuffix = ".staging"
-            manifestPlaceholders += mapOf(
-                "APP_NAME" to "MonstarlabStaging",
-                "env" to "staging",
-            )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
         create("production") {
+            manifestPlaceholders += mapOf("APP_NAME" to "Monstarlab", "env" to "production")
             dimension = "default"
             applicationIdSuffix = ".staging"
             //signingConfig signingConfigs.production
-            manifestPlaceholders += mapOf(
-                "APP_NAME" to "Monstarlab",
-                "env" to "production",
-            )
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
     }
@@ -74,7 +68,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.2"
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -84,6 +78,10 @@ android {
         jvmToolchain {
             languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.toString()))
         }
+    }
+
+    packaging {
+        resources.excludes.add("META-INF/versions/9/previous-compilation-data.bin")
     }
 }
 
@@ -96,63 +94,45 @@ configurations {
 }
 
 dependencies {
+    // Kotlin
+    implementation(libs.bundles.kotlin)
+    implementation(libs.kotlin.serialization.json)
 
-    implementation(Libs.Kotlin.stdlib)
-    implementation(Libs.Kotlin.coroutines)
-    implementation(Libs.Kotlin.coroutinesAndroid)
-    implementation(Libs.Kotlin.serialization)
+    // Android
+    implementation(libs.bundles.android.core)
+    implementation(libs.android.splash)
 
-    implementation(Libs.Android.fragment)
-    implementation(Libs.Android.core)
-    implementation(Libs.Android.appCompat)
-    implementation(Libs.Android.material)
-    implementation(Libs.Android.contraintLayout)
-    implementation(Libs.Android.datastore)
-    implementation(Libs.Android.activityCompose)
-    implementation(Libs.Android.splash)
+    implementation(libs.bundles.android.lifecycle)
 
-    testImplementation(Libs.Test.junit)
-    testImplementation(Libs.Test.mockkAndroid)
-    testImplementation(Libs.Test.mockkAgent)
-    testImplementation(Libs.Test.coroutinesTest)
+    implementation(libs.android.navigation.fragment)
+    implementation(libs.android.navigation.ui)
 
-    androidTestImplementation(Libs.Test.junitAndroid)
-    androidTestImplementation(Libs.Test.androidEspresso)
+    implementation(libs.android.lifecycle.runtime.compose)
+    implementation(libs.android.datastore.preferences)
 
-    implementation(Libs.Injection.hilt)
-    kapt(Libs.Injection.hiltKapt)
+    // Compose
+    implementation(platform(libs.android.compose.bom))
+    implementation(libs.bundles.android.compose.core)
+    implementation(libs.android.activity.compose)
+    implementation(libs.android.lifecycle.viewmodel.compose)
+    implementation(libs.bundles.google.accompanist)
+    debugImplementation(libs.android.compose.ui.tooling)
 
-    implementation(Libs.Networking.retrofit)
-    implementation(Libs.Networking.retrofitSerializer)
-    implementation(Libs.Networking.interceptor)
+    // Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 
-    implementation(Libs.Android.Navigation.fragNavigation)
-    implementation(Libs.Android.Navigation.navigationUi)
+    // Networking
+    implementation(libs.retrofit.converter)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp.logger)
 
-    implementation(Libs.Android.Lifecycle.core)
-    implementation(Libs.Android.Lifecycle.runtime)
-    implementation(Libs.Android.Lifecycle.common)
-    implementation(Libs.Android.Lifecycle.viewModel)
-    implementation(Libs.Android.Lifecycle.viewModelCompose)
-    implementation(Libs.Android.Lifecycle.livedata)
-    implementation(Libs.Android.Lifecycle.runtimeCompose)
-
-    implementation(platform(Libs.Compose.bom))
-    implementation(Libs.Compose.material)
-    implementation(Libs.Compose.preview)
-    implementation(Libs.Compose.icons)
-    implementation(Libs.Compose.windowSize)
-    debugImplementation(Libs.Compose.tooling)
-
-    implementation(Libs.Compose.coil)
-    implementation(Libs.Compose.accompanistSystemUi)
-    implementation(Libs.Compose.accompanistPlaceholder)
-    implementation(Libs.Compose.accompanifestPager)
-
-    implementation(Libs.nstack)
-    implementation(Libs.timber)
-    "devDebugImplementation"(Libs.leakCanary)
-    releaseImplementation(Libs.chuckerNoOp)
-    debugImplementation(Libs.chuckerDebug)
+    implementation(libs.nstack)
+    implementation(libs.timber)
+    "devDebugImplementation"(libs.leakcanary)
+    releaseImplementation(libs.chucker.op)
+    debugImplementation(libs.chucker.noop)
+    testImplementation(libs.bundles.test)
+    androidTestImplementation(libs.bundles.android.test)
 
 }

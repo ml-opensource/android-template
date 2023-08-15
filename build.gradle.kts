@@ -1,16 +1,18 @@
 buildscript {
     dependencies {
-        classpath(Libs.Plugins.gradle)
-        classpath(Libs.Plugins.kotlin)
-        classpath(Libs.Plugins.nstack)
-        classpath(Libs.Plugins.hilt)
+        classpath(libs.android.gradle.plugin)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.nstack.plugin)
+        classpath(libs.hilt.android.plugin)
     }
 }
 
+// TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("jvm") version Libs.Versions.kotlin apply false
-    id("io.gitlab.arturbosch.detekt") version "1.22.0" apply false
-    id("com.diffplug.spotless") version "6.15.0"
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.detekt) apply false
+    alias(libs.plugins.spotless)
 }
 
 allprojects {
@@ -24,7 +26,7 @@ allprojects {
 
 subprojects {
     apply(plugin = "com.diffplug.spotless")
-    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    spotless {
         kotlin {
             target("**/*.kt")
             targetExclude("**/RateReminderActions.kt")

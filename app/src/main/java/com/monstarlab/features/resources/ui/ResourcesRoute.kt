@@ -3,11 +3,9 @@ package com.monstarlab.features.resources.ui
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.monstarlab.designsystem.theme.AppTheme
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun ResourcesRoute(
     coordinator: ResourcesCoordinator,
