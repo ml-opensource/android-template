@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.monstarlab.core.ui.extensions.fromHex
 import com.monstarlab.designsystem.theme.AppTheme
 import com.monstarlab.designsystem.theme.Theme
-import com.monstarlab.features.resources.domain.Resource
+import com.monstarlab.features.resources.domain.model.Resource
 
 @Composable
 fun ResourceItem(

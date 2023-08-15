@@ -3,7 +3,7 @@ package com.monstarlab.features.resources.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.core.error.toError
-import com.monstarlab.features.resources.domain.GetResourcesUseCase
+import com.monstarlab.features.resources.domain.usecase.GetResourcesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

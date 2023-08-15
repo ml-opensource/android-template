@@ -1,6 +1,6 @@
 package com.monstarlab.features.resources.data.api.dtos
 
-import com.monstarlab.features.resources.domain.Resource
+import com.monstarlab.features.resources.domain.model.Resource
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package com.monstarlab.features.resources.domain
+package com.monstarlab.features.resources.domain.model
 
 import kotlinx.serialization.Serializable
 
