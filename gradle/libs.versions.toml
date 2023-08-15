@@ -15,7 +15,7 @@ androidx_appcompat = "1.6.1"
 androidx_core = "1.9.0"
 android_gradle = "8.1.0"
 mockk = "1.13.5"
-chucker = "3.5.2"
+chucker = "4.0.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "5.9.0" }
