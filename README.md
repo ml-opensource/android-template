@@ -69,7 +69,7 @@ Android template project has three top-level packages: `core`, `designsystem` an
     - `ui`
   
 ### `core` package
-Core package is meant to be Domain-agnostic. It means that it should never reference anything Project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are Behaviroual rather then UI emmiting
+Core package is meant to be Domain-agnostic. It means that it should never reference anything project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are behavioural rather then UI emitting
 
 ### `designsystem` package
 The design system package contains the building blocks  for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
