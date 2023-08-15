@@ -74,7 +74,7 @@ Core package is meant to be Domain-agnostic. It means that it should never refer
 ### `designsystem` package
 The design system package contains the building blocks  for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
 
-Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. Template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout you project. [Learn more about design system here](./docs/DESIGN_SYSTEM.md)
+Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project. [Learn more about design system here](./docs/DESIGN_SYSTEM.md)
 
 
 ### `features` package
