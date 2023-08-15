@@ -86,7 +86,7 @@ Features package contains the most important part of any project. A Feature typi
 Template implements [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and follows [recommended practices](https://developer.android.com/topic/architecture) provided by Google with some tweaks here and there
 
 ### Presentation layer
-In our Android world, the Presentation layer or UI Layer is our Activities, Fragments, Jetpack Compose UI screens and components, and ViewModels. The Presentation layer interacts with Domain Layer where our business logic happens.
+In our Android world, the Presentation layer or UI Layer is our Activities, Fragments, Jetpack Compose UI screens and components and ViewModels. The Presentation layer interacts with Domain Layer where our business logic happens.
 
 ### Domain layer
 The domain layer contains the application's business logic. This layer should only work with abstractions and as such it would never know about how different layers look like. It shouldn’t know about any Databases, APIs, or even Android Framework.
