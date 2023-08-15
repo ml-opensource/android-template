@@ -78,7 +78,7 @@ Another part of the design system are components. Examples of `designsystem` com
 
 
 ### `features` package
-Features package contains the most important part of any projec. A Feature typically contains all the necessary code, resources, and assets required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. [Each feature is following Clean Architecture Principles and has a three-layer split](#architecture)
+Features package contains the most important part of any project. A Feature typically contains all the necessary code(and resources + assets if migrated to multi module) required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. [Each feature is following Clean Architecture Principles and has a three-layer split](#architecture)
 
 
 
