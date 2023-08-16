@@ -14,7 +14,7 @@ google_accompanist = "0.31.6-rc"
 androidx_appcompat = "1.6.1"
 androidx_core = "1.9.0"
 android_gradle = "8.1.0"
-mockk = "1.13.5"
+mockk = "1.13.7"
 chucker = "3.5.2"
 
 [plugins]
