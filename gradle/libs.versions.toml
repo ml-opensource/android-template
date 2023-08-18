@@ -117,7 +117,7 @@ mockk_agent = { module = "io.mockk:mockk-agent", version.ref = "mockk"}
 timber = { group = "com.jakewharton.timber", name = "timber", version = "5.0.1" }
 chucker_noop = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker"}
 chucker_op = { module = "com.github.chuckerteam.chucker:library", version.ref = "chucker" }
-leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version = "2.10"}
+leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version = "2.12"}
 [bundles]
 
 kotlin = [
