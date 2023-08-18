@@ -130,8 +130,8 @@ dependencies {
     implementation(libs.nstack)
     implementation(libs.timber)
     "devDebugImplementation"(libs.leakcanary)
-    releaseImplementation(libs.chucker.op)
-    debugImplementation(libs.chucker.noop)
+    debugImplementation(libs.chucker.op)
+    releaseImplementation(libs.chucker.noop)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
 
