@@ -18,7 +18,7 @@ import com.monstarlab.core.ui.previews.LightDarkPreview
 import com.monstarlab.designsystem.components.AppTopBar
 import com.monstarlab.designsystem.theme.AppTheme
 import com.monstarlab.designsystem.theme.Theme
-import com.monstarlab.features.resources.domain.Resource
+import com.monstarlab.features.resources.domain.model.Resource
 import com.monstarlab.features.resources.ui.components.ResourceItem
 
 @Composable

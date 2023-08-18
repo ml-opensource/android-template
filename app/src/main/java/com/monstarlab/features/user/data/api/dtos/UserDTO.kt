@@ -1,6 +1,6 @@
 package com.monstarlab.features.user.data.api.dtos
 
-import com.monstarlab.features.user.domain.User
+import com.monstarlab.features.user.domain.model.User
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
