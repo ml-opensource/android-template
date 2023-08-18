@@ -19,7 +19,7 @@ mockk = "1.13.7"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "5.9.0" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.19.0" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
 android_library = { id = "com.android.library", version.ref = "android_gradle" }
