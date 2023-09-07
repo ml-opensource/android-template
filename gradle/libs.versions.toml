@@ -23,6 +23,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
 android_library = { id = "com.android.library", version.ref = "android_gradle" }
+kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
 [libraries]
