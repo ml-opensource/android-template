@@ -10,9 +10,11 @@ buildscript {
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.spotless)
+    alias(libs.plugins.hilt) apply false
 }
 
 allprojects {
