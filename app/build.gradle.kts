@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     id("dk.nstack.translation.plugin")
 }
@@ -85,10 +85,6 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 configurations {
     create("devDebugImplementation")
 }
@@ -120,7 +116,7 @@ dependencies {
 
     // Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // Networking
     implementation(libs.retrofit.converter)
