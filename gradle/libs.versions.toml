@@ -70,6 +70,7 @@ android_compose_ui = { module = "androidx.compose.ui:ui" }
 android_compose_material = { module = "androidx.compose.material:material" }
 android_compose_ui_util = { module = "androidx.compose.ui:ui-util" }
 android_compose_ui_tooling = { module = "androidx.compose.ui:ui-tooling" }
+android_compose_ui_tooling_preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 android_compose_runtime = { module = "androidx.compose.runtime:runtime-livedata" }
 android_compose_ui_test = { module = "androidx.compose.ui:ui-test-junit4" }
 android_compose_ui_test_manifest = { module = "androidx.compose.ui:ui-test-manifest" }

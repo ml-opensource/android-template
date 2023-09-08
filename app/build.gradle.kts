@@ -116,6 +116,7 @@ dependencies {
     implementation(libs.android.activity.compose)
     implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(libs.bundles.google.accompanist)
+    implementation (libs.android.compose.ui.tooling.preview)
     debugImplementation(libs.android.compose.ui.tooling)
 
     // Injection
