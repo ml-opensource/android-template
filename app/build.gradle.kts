@@ -71,12 +71,12 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
         jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.toString()))
+            languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_17.toString()))
         }
     }
 
