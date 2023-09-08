@@ -6,6 +6,8 @@ on:
       - main
     types:
       - opened
+      - synchronize
+      - reopened
 
 jobs:
   build:
@@ -18,7 +20,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 11
+          java-version: 17
 
       - name: Install Dependencies
         run: ./gradlew clean assemble
