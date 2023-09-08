@@ -22,9 +22,6 @@ jobs:
         with:
           java-version: 17
 
-      - name: Install Dependencies
-        run: ./gradlew clean assemble
-
       - name: Spotless Check
         run: ./gradlew spotlessCheck
 
