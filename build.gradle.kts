@@ -30,7 +30,7 @@ subprojects {
         kotlin {
             target("**/*.kt")
             targetExclude("**/RateReminderActions.kt")
-            ktlint()
+            ktlint("0.40.0")
         }
     }
 }
