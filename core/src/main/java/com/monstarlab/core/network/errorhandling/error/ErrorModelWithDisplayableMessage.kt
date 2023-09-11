@@ -1,4 +1,4 @@
-package com.monstarlab.core.error
+package com.monstarlab.core.network.errorhandling.error
 
 val ErrorModel.displayableMessage: String
     get() {

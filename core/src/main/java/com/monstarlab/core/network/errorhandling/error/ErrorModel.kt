@@ -1,4 +1,4 @@
-package com.monstarlab.core.error
+package com.monstarlab.core.network.errorhandling.error
 
 import com.monstarlab.core.network.errorhandling.ApiException
 import java.io.IOException
@@ -14,6 +14,7 @@ sealed interface ErrorModel {
         object IOError : Connection()
         object UnknownHost : Connection()
     }
+
     data class Unknown(val throwable: Throwable) : ErrorModel
 }
 
