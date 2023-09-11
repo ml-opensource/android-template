@@ -11,7 +11,7 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import com.monstarlab.core.extensions.castAs
+import com.monstarlab.core.network.errorhandling.extensions.castAs
 
 fun Context.openSettings() {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)

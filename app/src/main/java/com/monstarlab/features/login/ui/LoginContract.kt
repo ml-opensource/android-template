@@ -1,6 +1,6 @@
 package com.monstarlab.features.login.ui
 
-import com.monstarlab.core.error.ErrorModel
+import com.monstarlab.core.network.errorhandling.error.ErrorModel
 
 /**
  * UI State that represents LoginScreen

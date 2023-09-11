@@ -14,7 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import com.monstarlab.core.error.displayableMessage
+import com.monstarlab.core.network.errorhandling.error.displayableMessage
 import com.monstarlab.core.ui.previews.LightDarkPreview
 import com.monstarlab.designsystem.components.AppTopBar
 import com.monstarlab.designsystem.components.appbutton.AppButton

@@ -1,4 +1,4 @@
-package com.monstarlab.core.injection
+package com.monstarlab.core.network.errorhandling.injection
 
 import dagger.Module
 import dagger.Provides

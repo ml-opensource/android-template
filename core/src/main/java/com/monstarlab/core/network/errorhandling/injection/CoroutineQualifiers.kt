@@ -1,4 +1,4 @@
-package com.monstarlab.core.injection
+package com.monstarlab.core.network.errorhandling.injection
 
 import javax.inject.Qualifier
 

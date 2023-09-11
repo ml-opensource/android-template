@@ -2,7 +2,7 @@ package com.monstarlab.features.login.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.monstarlab.core.error.toError
+import com.monstarlab.core.network.errorhandling.error.toError
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
