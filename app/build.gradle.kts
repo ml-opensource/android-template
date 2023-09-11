@@ -135,4 +135,5 @@ dependencies {
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
 
+    implementation(project(":core"))
 }
