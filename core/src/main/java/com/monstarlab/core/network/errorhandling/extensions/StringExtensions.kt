@@ -1,4 +1,4 @@
-package com.monstarlab.core.extensions
+package com.monstarlab.core.network.errorhandling.extensions
 
 fun String.without(value: String) = replace(value, "")
 
