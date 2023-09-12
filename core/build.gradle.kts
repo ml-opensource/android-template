@@ -40,6 +40,9 @@ dependencies {
     implementation(libs.bundles.kotlin)
     implementation(libs.kotlin.serialization.json)
 
+    // Android
+    implementation(libs.android.datastore.preferences)
+
     // Injection
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
