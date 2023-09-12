@@ -28,7 +28,7 @@ fun ResourcesScreen(
 ) {
     Scaffold(
         topBar = {
-            AppTopBar(
+            com.monstarlab.designsystem.components.AppTopBar(
                 title = "Resources",
                 modifier = Modifier.statusBarsPadding()
             )
@@ -38,9 +38,9 @@ fun ResourcesScreen(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize(),
-            contentPadding = PaddingValues(Theme.dimensions.medium1),
+            contentPadding = PaddingValues(com.monstarlab.designsystem.theme.Theme.dimensions.medium1),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1)
+            verticalArrangement = Arrangement.spacedBy(com.monstarlab.designsystem.theme.Theme.dimensions.medium1)
         ) {
             animatedVisibilityItem("progress-indicator", state.isLoading) {
                 CircularProgressIndicator()
@@ -61,7 +61,7 @@ fun ResourcesScreen(
 @Composable
 @LightDarkPreview
 private fun ResourcesScreenPreview() {
-    AppTheme {
+    com.monstarlab.designsystem.theme.AppTheme {
         ResourcesScreen(state = ResourcesState(resources = List(4) { Resource.Mock }))
     }
 }

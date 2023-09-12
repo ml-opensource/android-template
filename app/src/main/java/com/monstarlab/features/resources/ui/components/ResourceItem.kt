@@ -29,8 +29,8 @@ fun ResourceItem(
 ) {
     Card {
         Row(
-            modifier = modifier.fillMaxWidth().padding(Theme.dimensions.medium2),
-            horizontalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1),
+            modifier = modifier.fillMaxWidth().padding(com.monstarlab.designsystem.theme.Theme.dimensions.medium2),
+            horizontalArrangement = Arrangement.spacedBy(com.monstarlab.designsystem.theme.Theme.dimensions.medium1),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Box(
@@ -57,7 +57,7 @@ fun ResourceItem(
 @Preview(name = "ResourceItem")
 @Composable
 private fun PreviewResourceItem() {
-    AppTheme {
+    com.monstarlab.designsystem.theme.AppTheme {
         ResourceItem(Resource.Mock)
     }
 }

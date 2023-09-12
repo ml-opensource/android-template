@@ -28,7 +28,7 @@ fun LoginScreen(
     actions: LoginActions = LoginActions(),
 ) = Scaffold(
     topBar = {
-        AppTopBar(
+        com.monstarlab.designsystem.components.AppTopBar(
             modifier = Modifier.systemBarsPadding(),
             title = "Login"
         )
@@ -38,21 +38,21 @@ fun LoginScreen(
         modifier = Modifier
             .padding(it)
             .fillMaxSize()
-            .padding(Theme.dimensions.big1)
+            .padding(com.monstarlab.designsystem.theme.Theme.dimensions.big1)
             .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        AppTextField(
+        com.monstarlab.designsystem.components.apptextfield.AppTextField(
             value = state.email,
             onValueChange = actions.onEmailChange,
             modifier = Modifier.fillMaxWidth(),
             placeholder = "E-Mail"
         )
 
-        Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
+        Spacer(modifier = Modifier.size(com.monstarlab.designsystem.theme.Theme.dimensions.medium3))
 
-        AppTextField(
+        com.monstarlab.designsystem.components.apptextfield.AppTextField(
             value = state.password,
             onValueChange = actions.onPasswordChange,
             modifier = Modifier.fillMaxWidth(),
@@ -60,9 +60,9 @@ fun LoginScreen(
             visualTransformation = PasswordVisualTransformation(),
             placeholder = "Password"
         )
-        Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
+        Spacer(modifier = Modifier.size(com.monstarlab.designsystem.theme.Theme.dimensions.medium3))
 
-        AppButton(
+        com.monstarlab.designsystem.components.appbutton.AppButton(
             text = "Login",
             onClick = actions.onLoginClick,
             modifier = Modifier.fillMaxWidth(),
@@ -74,7 +74,7 @@ fun LoginScreen(
 @Composable
 @LightDarkPreview
 private fun LoginScreenPreview() {
-    AppTheme {
+    com.monstarlab.designsystem.theme.AppTheme {
         LoginScreen()
     }
 }

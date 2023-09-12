@@ -25,7 +25,7 @@ fun LoginRoute(
     val actions = rememberLoginActions(coordinator)
 
     // UI Rendering
-    AppTheme {
+    com.monstarlab.designsystem.theme.AppTheme {
         LoginScreen(uiState, actions)
     }
 }

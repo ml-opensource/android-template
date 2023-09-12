@@ -17,7 +17,7 @@ fun ResourcesRoute(
     val actions = rememberResourcesActions(coordinator)
 
     // UI Rendering
-    AppTheme {
+    com.monstarlab.designsystem.theme.AppTheme {
         ResourcesScreen(uiState, actions)
     }
 }
