@@ -14,11 +14,12 @@ android {
     defaultConfig {
         minSdk = 23
     }
-
+    buildFeatures {
+        compose = true
+    }
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -42,6 +43,12 @@ dependencies {
 
     // Android
     implementation(libs.android.datastore.preferences)
+
+    // Compose
+    implementation(platform(libs.android.compose.bom))
+    implementation(libs.bundles.android.compose.core)
+    implementation(libs.bundles.google.accompanist)
+    debugImplementation(libs.android.compose.ui.tooling)
 
     // Injection
     implementation(libs.hilt.android)
