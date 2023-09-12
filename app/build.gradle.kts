@@ -136,4 +136,5 @@ dependencies {
     androidTestImplementation(libs.bundles.android.test)
 
     implementation(project(":core"))
+    implementation(project(":designsystem"))
 }

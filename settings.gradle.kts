@@ -16,3 +16,4 @@ rootProject.name = "android-template"
 
 include(":app")
 include(":core")
+include(":designsystem")
