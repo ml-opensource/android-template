@@ -5,25 +5,11 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.convention.android.library)
 }
 
 android {
-    compileSdk = 34
     namespace = "com.monstarlab.core"
-    flavorDimensions += "default"
-    defaultConfig {
-        minSdk = 23
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
 }
 
 kotlin {
