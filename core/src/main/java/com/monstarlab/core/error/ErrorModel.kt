@@ -1,4 +1,4 @@
-package com.monstarlab.core.network.errorhandling.error
+package com.monstarlab.core.error
 
 import com.monstarlab.core.network.errorhandling.ApiException
 import java.io.IOException

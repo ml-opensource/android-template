@@ -1,7 +1,7 @@
 package com.monstarlab.features.nstack.domain.usecase
 
-import com.monstarlab.core.network.errorhandling.injection.IoDispatcher
-import com.monstarlab.core.network.errorhandling.extensions.suspendRunCatching
+import com.monstarlab.core.injection.IoDispatcher
+import com.monstarlab.core.extensions.suspendRunCatching
 import dk.nodes.nstack.kotlin.NStack
 import dk.nodes.nstack.kotlin.models.AppOpenData
 import kotlinx.coroutines.CoroutineDispatcher

@@ -1,6 +1,6 @@
 package com.monstarlab.features.resources.domain.usecase
 
-import com.monstarlab.core.network.errorhandling.extensions.suspendRunCatching
+import com.monstarlab.core.extensions.suspendRunCatching
 import com.monstarlab.features.resources.domain.repository.ResourceRepository
 import kotlinx.coroutines.delay
 import javax.inject.Inject

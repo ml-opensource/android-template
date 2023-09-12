@@ -1,4 +1,4 @@
-package com.monstarlab.core.network.errorhandling.extensions
+package com.monstarlab.core.extensions
 
 import kotlinx.coroutines.CancellationException
 

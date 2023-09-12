@@ -1,6 +1,6 @@
 package com.monstarlab.features.resources.ui
 
-import com.monstarlab.core.network.errorhandling.error.ErrorModel
+import com.monstarlab.core.error.ErrorModel
 import com.monstarlab.features.resources.domain.model.Resource
 
 /**

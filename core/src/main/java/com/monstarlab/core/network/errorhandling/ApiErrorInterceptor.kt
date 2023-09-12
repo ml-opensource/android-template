@@ -1,6 +1,5 @@
 package com.monstarlab.core.network.errorhandling
 
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType

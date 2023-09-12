@@ -3,7 +3,7 @@ package com.monstarlab.core.network
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.monstarlab.BuildConfig
+import com.monstarlab.core.BuildConfig
 import com.monstarlab.core.network.errorhandling.ApiErrorInterceptor
 import dagger.Module
 import dagger.Provides

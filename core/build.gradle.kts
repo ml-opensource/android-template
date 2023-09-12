@@ -4,6 +4,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -37,8 +38,19 @@ kapt {
 dependencies {
     // Kotlin
     implementation(libs.bundles.kotlin)
+    implementation(libs.kotlin.serialization.json)
 
     // Injection
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    // Networking
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter)
+    implementation(libs.okhttp.logger)
+
+    // Other
+    implementation(libs.timber)
+    debugImplementation(libs.chucker.op)
+    releaseImplementation(libs.chucker.noop)
 }
