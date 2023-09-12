@@ -11,6 +11,7 @@ buildscript {
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.convention.android.library) apply false
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.spotless)
 }

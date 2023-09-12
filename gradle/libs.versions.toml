@@ -24,6 +24,7 @@ kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
 android_library = { id = "com.android.library", version.ref = "android_gradle" }
 kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+convention-android-library = { id = "convention.android.library", version = "unspecified" }
 
 [libraries]
 #-------------------------
