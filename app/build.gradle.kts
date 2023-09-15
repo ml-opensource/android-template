@@ -3,12 +3,12 @@
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     id("dk.nstack.translation.plugin")
-    id("dagger.hilt.android.plugin")
 }
 
 val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
@@ -85,10 +85,6 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 configurations {
     create("devDebugImplementation")
 }
@@ -120,7 +116,7 @@ dependencies {
 
     // Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // Networking
     implementation(libs.retrofit.converter)
