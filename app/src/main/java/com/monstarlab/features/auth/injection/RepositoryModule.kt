@@ -14,5 +14,5 @@ interface RepositoryModule {
 
     @Binds
     @Singleton
-    fun bindAuthRepository(repositoryImpl: AuthRepositoryImpl) : AuthRepository
+    fun bindAuthRepository(repositoryImpl: AuthRepositoryImpl): AuthRepository
 }

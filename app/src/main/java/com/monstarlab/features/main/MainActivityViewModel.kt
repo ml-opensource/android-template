@@ -35,5 +35,4 @@ class MainActivityViewModel @Inject constructor(
             )
         }
     }
-
 }

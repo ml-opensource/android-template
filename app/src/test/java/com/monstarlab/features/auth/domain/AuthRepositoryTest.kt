@@ -51,7 +51,5 @@ internal class AuthRepositoryTest {
         // Assert
         assertEquals(expectedTokenResponseDTO.toAuthToken(), actualAuthToken)
         coVerify(exactly = 1) { mockAuthApi.postLogin(email, password) }
-
     }
-
 }

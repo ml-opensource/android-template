@@ -10,7 +10,7 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val api: UsersApi,
     private val userPreferenceStore: UserPreferenceStore,
-)  : UserRepository {
+) : UserRepository {
 
     override suspend fun get(): User {
         return api.getUser().data.toUser().also {
