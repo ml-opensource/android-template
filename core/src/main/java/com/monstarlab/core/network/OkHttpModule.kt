@@ -47,10 +47,10 @@ class OkHttpModule {
     @ExperimentalSerializationApi
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient, baseUrl: String): Retrofit {
+    fun provideRetrofit(client: OkHttpClient, networkConfig: NetworkConfig): Retrofit {
         return Retrofit.Builder()
             .client(client)
-            .baseUrl(baseUrl)
+            .baseUrl(networkConfig.baseUrl)
             .addConverterFactory(
                 json.asConverterFactory("application/json".toMediaType())
             )
