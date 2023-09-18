@@ -108,6 +108,8 @@ dependencies {
     // Compose
     implementation(platform(libs.android.compose.bom))
     implementation(libs.bundles.android.compose.core)
+    implementation(libs.android.compose.material)
+    implementation(libs.android.compose.material.windowsize)
     implementation(libs.android.activity.compose)
     implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(libs.bundles.google.accompanist)
