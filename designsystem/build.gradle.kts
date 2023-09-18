@@ -19,6 +19,8 @@ dependencies {
     // Compose
     implementation(platform(libs.android.compose.bom))
     implementation(libs.bundles.android.compose.core)
+    implementation(libs.android.compose.material)
+    implementation(libs.android.compose.material.windowsize)
     debugImplementation(libs.android.compose.ui.tooling)
 
     implementation(project(":core"))
