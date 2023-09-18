@@ -25,10 +25,10 @@ import com.monstarlab.designsystem.theme.Theme
 @Composable
 fun LoginScreen(
     state: LoginState = LoginState(),
-    actions: LoginActions = LoginActions(),
+    actions: LoginActions = LoginActions()
 ) = Scaffold(
     topBar = {
-        com.monstarlab.designsystem.components.AppTopBar(
+        AppTopBar(
             modifier = Modifier.systemBarsPadding(),
             title = "Login"
         )
@@ -38,21 +38,21 @@ fun LoginScreen(
         modifier = Modifier
             .padding(it)
             .fillMaxSize()
-            .padding(com.monstarlab.designsystem.theme.Theme.dimensions.big1)
+            .padding(Theme.dimensions.big1)
             .imePadding(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        com.monstarlab.designsystem.components.apptextfield.AppTextField(
+        AppTextField(
             value = state.email,
             onValueChange = actions.onEmailChange,
             modifier = Modifier.fillMaxWidth(),
             placeholder = "E-Mail"
         )
 
-        Spacer(modifier = Modifier.size(com.monstarlab.designsystem.theme.Theme.dimensions.medium3))
+        Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
 
-        com.monstarlab.designsystem.components.apptextfield.AppTextField(
+        AppTextField(
             value = state.password,
             onValueChange = actions.onPasswordChange,
             modifier = Modifier.fillMaxWidth(),
@@ -60,9 +60,9 @@ fun LoginScreen(
             visualTransformation = PasswordVisualTransformation(),
             placeholder = "Password"
         )
-        Spacer(modifier = Modifier.size(com.monstarlab.designsystem.theme.Theme.dimensions.medium3))
+        Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
 
-        com.monstarlab.designsystem.components.appbutton.AppButton(
+        AppButton(
             text = "Login",
             onClick = actions.onLoginClick,
             modifier = Modifier.fillMaxWidth(),
@@ -74,7 +74,7 @@ fun LoginScreen(
 @Composable
 @LightDarkPreview
 private fun LoginScreenPreview() {
-    com.monstarlab.designsystem.theme.AppTheme {
+    AppTheme {
         LoginScreen()
     }
 }

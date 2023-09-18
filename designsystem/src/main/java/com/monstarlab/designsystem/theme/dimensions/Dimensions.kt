@@ -12,7 +12,7 @@ class Dimensions(
     val medium2: Dp,
     val medium3: Dp,
     val big1: Dp,
-    val big2: Dp,
+    val big2: Dp
 ) {
     companion object {
         val Small = Dimensions(

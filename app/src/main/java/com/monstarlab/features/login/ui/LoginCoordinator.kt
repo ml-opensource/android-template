@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onEach
 class LoginCoordinator(
     val viewModel: LoginViewModel,
     val navController: NavController,
-    val scope: CoroutineScope,
+    val scope: CoroutineScope
 ) {
     val screenStateFlow = viewModel.stateFlow
 
@@ -40,7 +40,7 @@ class LoginCoordinator(
 fun rememberLoginCoordinator(
     viewModel: LoginViewModel,
     navController: NavController,
-    scope: CoroutineScope = rememberCoroutineScope(),
+    scope: CoroutineScope = rememberCoroutineScope()
 ): LoginCoordinator {
     return remember(viewModel, navController, scope) {
         LoginCoordinator(

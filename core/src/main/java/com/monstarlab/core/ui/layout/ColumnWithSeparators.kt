@@ -8,7 +8,7 @@ import androidx.compose.ui.layout.SubcomposeLayout
 fun ColumnWithSeparators(
     modifier: Modifier = Modifier,
     separator: @Composable () -> Unit = {},
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     SubcomposeLayout(modifier) { constraints ->
         val contentsMesuarebles = subcompose("content", content)

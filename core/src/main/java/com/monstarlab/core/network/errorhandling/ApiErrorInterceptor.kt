@@ -1,12 +1,12 @@
 package com.monstarlab.core.network.errorhandling
 
+import javax.inject.Inject
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import timber.log.Timber
-import javax.inject.Inject
 
 /**
  * Intercepts API errors and converts them into [ApiException] by decoding the Error response body
@@ -14,7 +14,7 @@ import javax.inject.Inject
  *
  */
 class ApiErrorInterceptor @Inject constructor(
-    private val json: Json,
+    private val json: Json
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {

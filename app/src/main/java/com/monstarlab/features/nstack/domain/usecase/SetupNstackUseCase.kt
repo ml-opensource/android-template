@@ -1,18 +1,18 @@
 package com.monstarlab.features.nstack.domain.usecase
 
-import com.monstarlab.core.injection.IoDispatcher
 import com.monstarlab.core.extensions.suspendRunCatching
+import com.monstarlab.core.injection.IoDispatcher
 import dk.nodes.nstack.kotlin.NStack
 import dk.nodes.nstack.kotlin.models.AppOpenData
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
+import dk.nodes.nstack.kotlin.models.Result as NstackResult
 import javax.inject.Inject
 import kotlin.Exception
 import kotlin.Result
-import dk.nodes.nstack.kotlin.models.Result as NstackResult
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
 
 class SetupNstackUseCase @Inject constructor(
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
 
     suspend operator fun invoke(): Result<AppOpenData> = suspendRunCatching {

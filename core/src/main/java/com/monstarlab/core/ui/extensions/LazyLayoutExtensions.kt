@@ -17,7 +17,7 @@ fun LazyListScope.animatedVisibilityItem(
     visible: Boolean,
     enter: EnterTransition = fadeIn() + expandIn(),
     exit: ExitTransition = fadeOut() + shrinkOut(),
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     item(
         key = key,
@@ -39,7 +39,7 @@ fun LazyListScope.animatedVisibilityHeader(
     modifier: Modifier = Modifier,
     enter: EnterTransition = fadeIn() + expandIn(),
     exit: ExitTransition = fadeOut() + shrinkOut(),
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     stickyHeader(
         key = key,

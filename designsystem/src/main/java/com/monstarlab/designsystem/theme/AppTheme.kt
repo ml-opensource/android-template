@@ -24,7 +24,7 @@ import com.monstarlab.designsystem.theme.typography.Typography
 fun AppTheme(
     isDarkMode: Boolean = isSystemInDarkTheme(),
     isSmallDevice: Boolean = isSmallDevice(),
-    content: @Composable () -> Unit,
+    content: @Composable () -> Unit
 ) {
     val dimensions = if (isSmallDevice) Dimensions.Small else Dimensions.Default
     ProvideDimensions(dimensions = dimensions) {

@@ -38,7 +38,6 @@ internal class AuthRepositoryTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testLoginReturnsExpectedAuthToken() = runTest {
-
         // Arrange
         val email = "aslam@test.com"
         val password = "password"

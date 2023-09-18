@@ -9,7 +9,7 @@ import com.monstarlab.features.resources.domain.model.Resource
 data class ResourcesState(
     val isLoading: Boolean = false,
     val resources: List<Resource> = emptyList(),
-    val error: ErrorModel? = null,
+    val error: ErrorModel? = null
 )
 
 /**
@@ -17,5 +17,5 @@ data class ResourcesState(
  * passed to the coordinator to handle
  **/
 data class ResourcesActions(
-    val onResourceClick: (Resource) -> Unit = {},
+    val onResourceClick: (Resource) -> Unit = {}
 )

@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val api: UsersApi,
-    private val userPreferenceStore: UserPreferenceStore,
+    private val userPreferenceStore: UserPreferenceStore
 ) : UserRepository {
 
     override suspend fun get(): User {

@@ -11,9 +11,9 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 
-abstract class SingleSharedPreferenceDataStore<T> constructor(
+abstract class SingleSharedPreferenceDataStore<T>(
     private val dataStore: DataStore<Preferences>,
-    private val serializer: KSerializer<T>,
+    private val serializer: KSerializer<T>
 ) : SingleDataSource<T> {
 
     private val key = stringPreferencesKey(this.javaClass.simpleName)

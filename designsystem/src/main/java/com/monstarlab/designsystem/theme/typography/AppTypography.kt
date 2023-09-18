@@ -15,7 +15,7 @@ data class AppTypography(
     val headline2: TextStyle,
     val body1: TextStyle,
     val body2: TextStyle,
-    val button: TextStyle,
+    val button: TextStyle
 ) {
 
     constructor(typography: Typography) : this(

@@ -45,7 +45,7 @@ fun Context.checkPermission(permission: String): Boolean {
 fun Context.openShareSheet(
     title: String,
     message: String,
-    intentTitle: String = title,
+    intentTitle: String = title
 ) {
     val shareIntent = Intent().apply {
         action = Intent.ACTION_SEND

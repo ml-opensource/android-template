@@ -9,5 +9,5 @@ import java.io.IOException
  */
 data class ApiException(
     val code: Int,
-    val displayableMessage: String,
+    val displayableMessage: String
 ) : IOException(displayableMessage)

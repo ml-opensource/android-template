@@ -11,7 +11,7 @@ import com.monstarlab.designsystem.theme.AppTheme
 
 @Composable
 fun LoginRoute(
-    coordinator: LoginCoordinator,
+    coordinator: LoginCoordinator
 ) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsStateWithLifecycle(LoginState())
@@ -25,7 +25,7 @@ fun LoginRoute(
     val actions = rememberLoginActions(coordinator)
 
     // UI Rendering
-    com.monstarlab.designsystem.theme.AppTheme {
+    AppTheme {
         LoginScreen(uiState, actions)
     }
 }

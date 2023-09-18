@@ -24,11 +24,11 @@ import com.monstarlab.features.resources.ui.components.ResourceItem
 @Composable
 fun ResourcesScreen(
     state: ResourcesState = ResourcesState(),
-    actions: ResourcesActions = ResourcesActions(),
+    actions: ResourcesActions = ResourcesActions()
 ) {
     Scaffold(
         topBar = {
-            com.monstarlab.designsystem.components.AppTopBar(
+            AppTopBar(
                 title = "Resources",
                 modifier = Modifier.statusBarsPadding()
             )
@@ -38,9 +38,13 @@ fun ResourcesScreen(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize(),
-            contentPadding = PaddingValues(com.monstarlab.designsystem.theme.Theme.dimensions.medium1),
+            contentPadding = PaddingValues(
+                Theme.dimensions.medium1
+            ),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(com.monstarlab.designsystem.theme.Theme.dimensions.medium1)
+            verticalArrangement = Arrangement.spacedBy(
+                Theme.dimensions.medium1
+            )
         ) {
             animatedVisibilityItem("progress-indicator", state.isLoading) {
                 CircularProgressIndicator()
@@ -61,7 +65,7 @@ fun ResourcesScreen(
 @Composable
 @LightDarkPreview
 private fun ResourcesScreenPreview() {
-    com.monstarlab.designsystem.theme.AppTheme {
+    AppTheme {
         ResourcesScreen(state = ResourcesState(resources = List(4) { Resource.Mock }))
     }
 }
