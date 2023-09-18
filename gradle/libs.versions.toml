@@ -1,29 +1,31 @@
 [versions]
 nstack = "3.2.9"
 kotlin = "1.9.10"
+ksp = "1.9.10-1.0.13"
 kotlin_coroutines = "1.7.3"
 retrofit = "2.9.0"
 okhttp = "5.0.0-alpha.10"
-compose_bom = "2023.08.00"
+compose_bom = "2023.09.00"
 compose_compiler = "1.5.3"
-hilt = "2.47"
-lifecycle = "2.6.1"
-navigation = "2.7.0"
+hilt = "2.48"
+lifecycle = "2.6.2"
+navigation = "2.7.2"
 datastore = "1.0.0"
 google_accompanist = "0.32.0"
 androidx_appcompat = "1.6.1"
 androidx_core = "1.9.0"
-android_gradle = "8.1.0"
+android_gradle = "8.1.1"
 chucker = "4.0.0"
 mockk = "1.13.7"
 
 [plugins]
-spotless = { id = "com.diffplug.spotless", version = "5.9.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.20.0" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
-android_library = { id = "com.android.library", version.ref = "android_gradle" }
-kotlin_jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 convention-android-library = { id = "convention.android.library", version = "unspecified" }
 
 [libraries]
@@ -71,6 +73,7 @@ android_compose_ui = { module = "androidx.compose.ui:ui" }
 android_compose_material = { module = "androidx.compose.material:material" }
 android_compose_ui_util = { module = "androidx.compose.ui:ui-util" }
 android_compose_ui_tooling = { module = "androidx.compose.ui:ui-tooling" }
+android_compose_ui_tooling_preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 android_compose_runtime = { module = "androidx.compose.runtime:runtime-livedata" }
 android_compose_ui_test = { module = "androidx.compose.ui:ui-test-junit4" }
 android_compose_ui_test_manifest = { module = "androidx.compose.ui:ui-test-manifest" }

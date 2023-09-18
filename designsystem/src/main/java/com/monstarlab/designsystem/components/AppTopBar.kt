@@ -17,7 +17,7 @@ import com.monstarlab.designsystem.theme.Theme
 fun AppTopBar(
     title: String,
     modifier: Modifier = Modifier,
-    onBackButtonClick: (() -> Unit)? = null,
+    onBackButtonClick: (() -> Unit)? = null
 ) {
     TopAppBar(
         modifier = modifier,

@@ -3,12 +3,12 @@
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     id("dk.nstack.translation.plugin")
-    id("dagger.hilt.android.plugin")
 }
 
 val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
@@ -71,22 +71,18 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
         jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.toString()))
+            languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_17.toString()))
         }
     }
 
     packaging {
         resources.excludes.add("META-INF/versions/9/previous-compilation-data.bin")
     }
-}
-
-kapt {
-    correctErrorTypes = true
 }
 
 configurations {
@@ -116,11 +112,12 @@ dependencies {
     implementation(libs.android.activity.compose)
     implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(libs.bundles.google.accompanist)
+    implementation (libs.android.compose.ui.tooling.preview)
     debugImplementation(libs.android.compose.ui.tooling)
 
     // Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // Networking
     implementation(libs.retrofit.converter)

@@ -23,5 +23,4 @@ class SetupNstackUseCase @Inject constructor(
             }
         }
     }
-
 }
