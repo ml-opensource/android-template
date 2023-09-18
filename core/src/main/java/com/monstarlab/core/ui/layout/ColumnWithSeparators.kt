@@ -1,16 +1,13 @@
 package com.monstarlab.core.ui.layout
 
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.SubcomposeLayout
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ColumnWithSeparators(
     modifier: Modifier = Modifier,
-    separator: @Composable () -> Unit = { Divider() },
+    separator: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     SubcomposeLayout(modifier) { constraints ->
@@ -44,11 +41,3 @@ fun ColumnWithSeparators(
 }
 
 private data class ContentChild(val height: Int)
-
-@Preview(name = "Column With Separators", showBackground = true)
-@Composable
-private fun PreviewColumnWithSeparators() {
-    ColumnWithSeparators() {
-        repeat(10) { Text(text = "Hello $it") }
-    }
-}
