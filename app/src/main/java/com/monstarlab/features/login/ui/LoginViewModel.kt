@@ -38,8 +38,8 @@ class LoginViewModel @Inject constructor(
             _stateFlow.update { it.copy(isLoading = true) }
             val state = _stateFlow.value
             val result = loginUseCase(state.email, state.password)
-            _stateFlow.update { state ->
-                state.copy(
+            _stateFlow.update { loginState ->
+                loginState.copy(
                     error = result.exceptionOrNull()?.toError(),
                     isLoading = false,
                     isLoggedIn = result.isSuccess

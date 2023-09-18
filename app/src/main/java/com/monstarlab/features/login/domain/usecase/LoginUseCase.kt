@@ -14,5 +14,4 @@ class LoginUseCase @Inject constructor(
         authRepository.login(email, password)
         userRepository.get()
     }
-
 }
