@@ -147,6 +147,7 @@ android_compose_core = [
     "android_compose_animation",
     "android_compose_ui_util",
     "android_compose_runtime",
+    "android_compose_ui_tooling_preview"
 ]
 
 android_lifecycle = [
