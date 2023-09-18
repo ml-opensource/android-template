@@ -1,9 +1,9 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.library")
-    id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.convention.android.library)
 }
@@ -16,10 +16,6 @@ kotlin {
     jvmToolchain {
         languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_11.toString()))
     }
-}
-
-kapt {
-    correctErrorTypes = true
 }
 
 dependencies {
@@ -38,7 +34,7 @@ dependencies {
 
     // Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 
     // Networking
     implementation(libs.retrofit)
