@@ -23,6 +23,7 @@ spotless = { id = "com.diffplug.spotless", version = "6.20.0" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
+android_library = { id = "com.android.library", version.ref = "android_gradle" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
