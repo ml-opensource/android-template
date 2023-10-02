@@ -11,24 +11,29 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import timber.log.Timber
 
-abstract class SingleSharedPreferenceDataStore<T> constructor(
+abstract class SinglePreferenceDataStore<T> constructor(
     private val dataStore: DataStore<Preferences>,
     private val serializer: KSerializer<T>,
-) : SingleDataSource<T> {
+) : DataSource<T> {
 
     private val key = stringPreferencesKey(this.javaClass.simpleName)
 
-    override suspend fun get(): T? {
+    /**
+     * @return the stored object or null, if no object was stored
+     */
+    override suspend fun load(): T? {
         return try {
             val json = dataStore.data.map { it[key] ?: "" }.first()
-            val entries = Json.decodeFromString(serializer, json)
-            entries
+            Json.decodeFromString(serializer, json)
         } catch (e: SerializationException) {
             null
         }
     }
 
-    override suspend fun add(item: T) {
+    /**
+     * Write [item] to storage, replacing any existing ones
+     */
+    override suspend fun save(item: T) {
         try {
             val json = Json.encodeToString(serializer, item)
             dataStore.edit {
@@ -39,7 +44,12 @@ abstract class SingleSharedPreferenceDataStore<T> constructor(
         }
     }
 
+    /**
+     * Remove the storage
+     */
     override suspend fun clear() {
-        dataStore.edit { it[key] = "" }
+        dataStore.edit {
+            it.remove(key)
+        }
     }
 }
