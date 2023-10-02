@@ -14,7 +14,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun get(): User {
         return api.getUser().data.toUser().also {
-            userPreferenceStore.add(it)
+            userPreferenceStore.save(it)
         }
     }
 }

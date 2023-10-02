@@ -11,38 +11,48 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
-abstract class SharedPreferenceDataStore<T> constructor(
+abstract class ListPreferenceDataStore<T> constructor(
     private val dataStore: DataStore<Preferences>,
     private val serializer: KSerializer<T>,
-) : DataSource<T> {
+) : ListDataSource<T> {
 
     private val key = stringPreferencesKey(this.javaClass.simpleName)
 
-    override suspend fun getAll(): List<T> {
+    /**
+     * @return the stored collection of objects or an empty list, if no object was stored
+     */
+    override suspend fun load(): List<T> {
         return try {
             val json = dataStore.data.map { it[key] ?: "" }.first()
             Json.decodeFromString(ListSerializer(serializer), json)
         } catch (e: SerializationException) {
-            emptyList<T>()
+            emptyList()
         }
     }
 
+    /**
+     * Add a single [item] to the collection of stored elements
+     */
     override suspend fun add(item: T) {
-        val list = getAll().toMutableList()
-        list.add(item)
-        addAll(list)
+        save(load().plus(item))
     }
 
-    override suspend fun addAll(items: List<T>) {
+    /**
+     * Write [items] to storage, replacing any current ones
+     */
+    override suspend fun save(items: List<T>) {
         val json = Json.encodeToString(ListSerializer(serializer), items)
         dataStore.edit {
             it[key] = json
         }
     }
 
+    /**
+     * Remove the storage
+     */
     override suspend fun clear() {
         dataStore.edit {
-            it[key] = ""
+            it.remove(key)
         }
     }
 }
