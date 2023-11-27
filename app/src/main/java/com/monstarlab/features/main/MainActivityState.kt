@@ -4,5 +4,5 @@ import dk.nodes.nstack.kotlin.models.AppOpenData
 
 data class MainActivityState(
     val showSplash: Boolean = true,
-    val nstackData: AppOpenData? = null
+    val nstackData: AppOpenData? = null,
 )

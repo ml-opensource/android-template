@@ -7,9 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.monstarlab.designsystem.theme.AppTheme
 
 @Composable
-fun ResourcesRoute(
-    coordinator: ResourcesCoordinator
-) {
+fun ResourcesRoute(coordinator: ResourcesCoordinator) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsStateWithLifecycle(ResourcesState())
 

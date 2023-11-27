@@ -23,53 +23,51 @@ import com.monstarlab.designsystem.theme.AppTheme
 import com.monstarlab.designsystem.theme.Theme
 
 @Composable
-fun LoginScreen(
-    state: LoginState = LoginState(),
-    actions: LoginActions = LoginActions()
-) = Scaffold(
-    topBar = {
-        AppTopBar(
-            modifier = Modifier.systemBarsPadding(),
-            title = "Login"
-        )
-    }
-) {
-    Column(
-        modifier = Modifier
-            .padding(it)
-            .fillMaxSize()
-            .padding(Theme.dimensions.big1)
-            .imePadding(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+fun LoginScreen(state: LoginState = LoginState(), actions: LoginActions = LoginActions()) =
+    Scaffold(
+        topBar = {
+            AppTopBar(
+                modifier = Modifier.systemBarsPadding(),
+                title = "Login",
+            )
+        },
     ) {
-        AppTextField(
-            value = state.email,
-            onValueChange = actions.onEmailChange,
-            modifier = Modifier.fillMaxWidth(),
-            placeholder = "E-Mail"
-        )
+        Column(
+            modifier = Modifier
+                .padding(it)
+                .fillMaxSize()
+                .padding(Theme.dimensions.big1)
+                .imePadding(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+        ) {
+            AppTextField(
+                value = state.email,
+                onValueChange = actions.onEmailChange,
+                modifier = Modifier.fillMaxWidth(),
+                placeholder = "E-Mail",
+            )
 
-        Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
+            Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
 
-        AppTextField(
-            value = state.password,
-            onValueChange = actions.onPasswordChange,
-            modifier = Modifier.fillMaxWidth(),
-            error = state.error?.displayableMessage,
-            visualTransformation = PasswordVisualTransformation(),
-            placeholder = "Password"
-        )
-        Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
+            AppTextField(
+                value = state.password,
+                onValueChange = actions.onPasswordChange,
+                modifier = Modifier.fillMaxWidth(),
+                error = state.error?.displayableMessage,
+                visualTransformation = PasswordVisualTransformation(),
+                placeholder = "Password",
+            )
+            Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
 
-        AppButton(
-            text = "Login",
-            onClick = actions.onLoginClick,
-            modifier = Modifier.fillMaxWidth(),
-            isLoading = state.isLoading
-        )
+            AppButton(
+                text = "Login",
+                onClick = actions.onLoginClick,
+                modifier = Modifier.fillMaxWidth(),
+                isLoading = state.isLoading,
+            )
+        }
     }
-}
 
 @Composable
 @LightDarkPreview

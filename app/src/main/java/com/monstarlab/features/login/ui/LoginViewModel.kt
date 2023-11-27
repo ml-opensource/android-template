@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(
                 loginState.copy(
                     error = result.exceptionOrNull()?.toError(),
                     isLoading = false,
-                    isLoggedIn = result.isSuccess
+                    isLoggedIn = result.isSuccess,
                 )
             }
         }

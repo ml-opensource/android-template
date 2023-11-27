@@ -29,7 +29,7 @@ class ResourcesViewModel @Inject constructor(
                 state.copy(
                     isLoading = false,
                     resources = result.getOrDefault(emptyList()),
-                    error = result.exceptionOrNull()?.toError()
+                    error = result.exceptionOrNull()?.toError(),
                 )
             }
         }

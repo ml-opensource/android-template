@@ -24,27 +24,23 @@ import com.monstarlab.features.resources.ui.components.ResourceItem
 @Composable
 fun ResourcesScreen(
     state: ResourcesState = ResourcesState(),
-    actions: ResourcesActions = ResourcesActions()
+    actions: ResourcesActions = ResourcesActions(),
 ) {
     Scaffold(
         topBar = {
             AppTopBar(
                 title = "Resources",
-                modifier = Modifier.statusBarsPadding()
+                modifier = Modifier.statusBarsPadding(),
             )
-        }
+        },
     ) {
         LazyColumn(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize(),
-            contentPadding = PaddingValues(
-                Theme.dimensions.medium1
-            ),
+            contentPadding = PaddingValues(Theme.dimensions.medium1),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(
-                Theme.dimensions.medium1
-            )
+            verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1),
         ) {
             animatedVisibilityItem("progress-indicator", state.isLoading) {
                 CircularProgressIndicator()
@@ -55,7 +51,7 @@ fun ResourcesScreen(
                     resource = resource,
                     modifier = Modifier.clickable {
                         actions.onResourceClick(resource)
-                    }
+                    },
                 )
             }
         }

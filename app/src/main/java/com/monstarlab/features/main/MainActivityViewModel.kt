@@ -31,7 +31,7 @@ class MainActivityViewModel @Inject constructor(
         _stateFlow.update {
             it.copy(
                 nstackData = data,
-                showSplash = false
+                showSplash = false,
             )
         }
     }

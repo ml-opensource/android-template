@@ -33,7 +33,7 @@ fun AppTheme(
                 typography = Typography,
                 shapes = Shapes,
                 content = content,
-                colors = if (isDarkMode) DarkColors else LightColors
+                colors = if (isDarkMode) DarkColors else LightColors,
             )
         }
     }
@@ -58,7 +58,7 @@ private val LightColors = lightColors(
     onBackground = DarkGrey,
     onSurface = Black,
     surface = White,
-    error = Red
+    error = Red,
 )
 
 private val DarkColors = darkColors(
@@ -68,7 +68,7 @@ private val DarkColors = darkColors(
     onBackground = White,
     onSurface = White,
     surface = Black,
-    error = Red
+    error = Red,
 )
 
 @Composable

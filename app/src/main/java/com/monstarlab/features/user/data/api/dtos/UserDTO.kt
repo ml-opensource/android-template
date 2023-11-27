@@ -20,6 +20,6 @@ fun UserDTO.toUser(): User {
         email = email,
         firstName = firstName,
         lastName = lastName,
-        avatar = avatar
+        avatar = avatar,
     )
 }

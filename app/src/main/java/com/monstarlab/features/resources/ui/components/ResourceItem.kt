@@ -23,36 +23,29 @@ import com.monstarlab.designsystem.theme.Theme
 import com.monstarlab.features.resources.domain.model.Resource
 
 @Composable
-fun ResourceItem(
-    resource: Resource,
-    modifier: Modifier = Modifier
-) {
+fun ResourceItem(resource: Resource, modifier: Modifier = Modifier) {
     Card {
         Row(
-            modifier = modifier.fillMaxWidth().padding(
-                Theme.dimensions.medium2
-            ),
-            horizontalArrangement = Arrangement.spacedBy(
-                Theme.dimensions.medium1
-            ),
-            verticalAlignment = Alignment.CenterVertically
+            modifier = modifier.fillMaxWidth().padding(Theme.dimensions.medium2),
+            horizontalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Box(
                 modifier = Modifier
                     .size(32.dp)
                     .background(
                         brush = Brush.verticalGradient(
-                            listOf(Color.DarkGray, Color.fromHex(resource.color))
+                            listOf(Color.DarkGray, Color.fromHex(resource.color)),
                         ),
-                        shape = RoundedCornerShape(8.dp)
-                    )
+                        shape = RoundedCornerShape(8.dp),
+                    ),
             )
             Text(
                 text = buildString {
                     append(resource.name)
                     append(' ')
                     append(resource.year)
-                }
+                },
             )
         }
     }

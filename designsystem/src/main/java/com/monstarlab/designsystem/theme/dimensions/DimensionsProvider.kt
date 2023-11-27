@@ -9,10 +9,7 @@ val LocalDimensions = staticCompositionLocalOf {
 }
 
 @Composable
-fun ProvideDimensions(
-    dimensions: Dimensions,
-    content: @Composable () -> Unit
-) {
+fun ProvideDimensions(dimensions: Dimensions, content: @Composable () -> Unit) {
     CompositionLocalProvider(LocalDimensions provides dimensions) {
         content.invoke()
     }
