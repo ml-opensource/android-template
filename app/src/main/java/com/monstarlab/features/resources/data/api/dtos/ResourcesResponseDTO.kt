@@ -11,5 +11,5 @@ data class ResourcesResponseDTO(
     val total: Int,
     @SerialName("total_pages")
     val totalPages: Int,
-    val data: List<ResourceDTO>,
+    val data: List<ResourceDTO>
 )

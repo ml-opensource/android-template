@@ -8,7 +8,7 @@ data class Resource(
     val name: String,
     val year: Int,
     val color: String,
-    val pantoneValue: String,
+    val pantoneValue: String
 ) {
     companion object {
         val Mock = Resource(0, "Cyberpunk", 2077, "#f2e900", "")

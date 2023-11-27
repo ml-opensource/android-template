@@ -11,7 +11,7 @@ data class LoginState(
     val isLoading: Boolean = false,
     val error: ErrorModel? = null,
     val loginButtonEnabled: Boolean = false,
-    val isLoggedIn: Boolean = false,
+    val isLoggedIn: Boolean = false
 )
 
 /**
@@ -21,5 +21,5 @@ data class LoginState(
 data class LoginActions(
     val onPasswordChange: (String) -> Unit = {},
     val onEmailChange: (String) -> Unit = {},
-    val onLoginClick: () -> Unit = {},
+    val onLoginClick: () -> Unit = {}
 )

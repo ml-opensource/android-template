@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val setupNstackUseCase: SetupNstackUseCase,
+    private val setupNstackUseCase: SetupNstackUseCase
 ) : ViewModel() {
 
     private val _stateFlow = MutableStateFlow(MainActivityState())
