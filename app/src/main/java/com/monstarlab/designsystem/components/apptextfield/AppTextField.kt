@@ -36,7 +36,7 @@ fun AppTextField(
     maxLines: Int = Int.MAX_VALUE,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     trailingIcon: @Composable (() -> Unit)? = null,
-    leadingIcon: @Composable (() -> Unit)? = null
+    leadingIcon: @Composable (() -> Unit)? = null,
 ) {
     Column {
         OutlinedTextField(
@@ -55,13 +55,13 @@ fun AppTextField(
             leadingIcon = leadingIcon,
             label = { Text(text = label) },
             placeholder = { Text(text = placeholder) },
-            isError = error != null
+            isError = error != null,
         )
 
         AnimatedVisibility(visible = error != null) {
             Text(
                 text = error ?: "",
-                color = Theme.colors.error
+                color = Theme.colors.error,
             )
         }
     }
@@ -78,7 +78,7 @@ private fun PreviewTextField() {
                 onValueChange = { value = it },
                 placeholder = "Placeholder",
                 label = "Label",
-                error = if (value == "error") "This is error" else null
+                error = if (value == "error") "This is error" else null,
             )
         }
     }

@@ -84,15 +84,15 @@ fun MainActivity.startPlayStore() {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=$packageName")
-            )
+                Uri.parse("market://details?id=$packageName"),
+            ),
         )
     } catch (anfe: android.content.ActivityNotFoundException) {
         startActivity(
             Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("https://play.google.com/store/apps/details?id=$packageName")
-            )
+                Uri.parse("https://play.google.com/store/apps/details?id=$packageName"),
+            ),
         )
     }
 }

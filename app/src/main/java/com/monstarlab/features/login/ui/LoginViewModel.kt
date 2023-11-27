@@ -5,12 +5,12 @@ import androidx.lifecycle.viewModelScope
 import com.monstarlab.core.error.toError
 import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -42,7 +42,7 @@ class LoginViewModel @Inject constructor(
                 loginState.copy(
                     error = result.exceptionOrNull()?.toError(),
                     isLoading = false,
-                    isLoggedIn = result.isSuccess
+                    isLoggedIn = result.isSuccess,
                 )
             }
         }

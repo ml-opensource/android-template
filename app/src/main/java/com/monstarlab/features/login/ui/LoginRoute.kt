@@ -10,9 +10,7 @@ import com.monstarlab.core.ui.effects.SystemUISideEffect
 import com.monstarlab.designsystem.theme.AppTheme
 
 @Composable
-fun LoginRoute(
-    coordinator: LoginCoordinator,
-) {
+fun LoginRoute(coordinator: LoginCoordinator) {
     // State observing and declarations
     val uiState by coordinator.screenStateFlow.collectAsStateWithLifecycle(LoginState())
 
@@ -36,7 +34,7 @@ fun rememberLoginActions(coordinator: LoginCoordinator): LoginActions {
         LoginActions(
             onEmailChange = coordinator.viewModel::onEmailChange,
             onLoginClick = coordinator.viewModel::login,
-            onPasswordChange = coordinator.viewModel::onPasswordChange
+            onPasswordChange = coordinator.viewModel::onPasswordChange,
         )
     }
 }

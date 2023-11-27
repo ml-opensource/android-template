@@ -27,14 +27,14 @@ fun AppButton(
     enabled: Boolean = true,
     isLoading: Boolean = false,
     type: AppButtonType = AppButtonType.Filled,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     when (type) {
         AppButtonType.Filled -> PrimaryButton(
             modifier = modifier,
             onClick = onClick,
             enabled = enabled && !isLoading,
-            content = { ButtonContent(text = text, isLoading = isLoading) }
+            content = { ButtonContent(text = text, isLoading = isLoading) },
         )
 
         AppButtonType.Outlined -> OutlinedButton(
@@ -44,9 +44,9 @@ fun AppButton(
             content = { ButtonContent(text = text, isLoading = isLoading) },
             colors = ButtonDefaults.outlinedButtonColors(
                 contentColor = Theme.colors.secondary,
-                backgroundColor = Color.Transparent
+                backgroundColor = Color.Transparent,
             ),
-            border = BorderStroke(1.dp, Theme.colors.secondary)
+            border = BorderStroke(1.dp, Theme.colors.secondary),
         )
 
         AppButtonType.Text -> {
@@ -56,7 +56,7 @@ fun AppButton(
                 enabled = enabled && !isLoading,
                 content = {
                     ButtonContent(text = text, isLoading = isLoading)
-                }
+                },
             )
         }
     }
@@ -67,7 +67,7 @@ private fun PrimaryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     enabled: Boolean = false,
-    content: @Composable RowScope.() -> Unit
+    content: @Composable RowScope.() -> Unit,
 ) {
     val colors = ButtonDefaults.buttonColors()
     Button(
@@ -76,7 +76,7 @@ private fun PrimaryButton(
         enabled = enabled,
         content = content,
         colors = colors,
-        contentPadding = PaddingValues(vertical = Theme.dimensions.medium2)
+        contentPadding = PaddingValues(vertical = Theme.dimensions.medium2),
     )
 }
 
@@ -87,12 +87,12 @@ private fun RowScope.ButtonContent(text: String, isLoading: Boolean) {
             CircularProgressIndicator(
                 color = Theme.colors.primary,
                 modifier = Modifier.size(24.dp),
-                strokeWidth = 1.dp
+                strokeWidth = 1.dp,
             )
         } else {
             Text(
                 text = text,
-                style = Theme.typography.button
+                style = Theme.typography.button,
             )
         }
     }
@@ -105,7 +105,7 @@ private fun PreviewButtonPrimary() {
         AppButton(
             text = "Primary",
             onClick = {},
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
@@ -118,7 +118,7 @@ private fun PreviewButtonPrimaryWithLoading() {
             text = "Primary",
             onClick = {},
             isLoading = true,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }

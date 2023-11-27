@@ -20,6 +20,6 @@ fun ResourceDTO.toResource(): Resource {
         name = name,
         year = year,
         color = color,
-        pantoneValue = pantoneValue
+        pantoneValue = pantoneValue,
     )
 }
