@@ -23,6 +23,6 @@ data class AppTypography(
         headline2 = typography.h2,
         body1 = typography.body1,
         body2 = typography.body2,
-        button = typography.button
+        button = typography.button,
     )
 }

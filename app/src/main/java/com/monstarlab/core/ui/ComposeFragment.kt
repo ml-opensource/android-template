@@ -21,7 +21,7 @@ abstract class ComposeFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 setViewCompositionStrategy(
-                    ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
+                    ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed,
                 )
                 content.invoke()
             }

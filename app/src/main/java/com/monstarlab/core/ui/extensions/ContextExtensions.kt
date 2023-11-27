@@ -42,11 +42,7 @@ fun Context.checkPermission(permission: String): Boolean {
         PackageManager.PERMISSION_GRANTED
 }
 
-fun Context.openShareSheet(
-    title: String,
-    message: String,
-    intentTitle: String = title,
-) {
+fun Context.openShareSheet(title: String, message: String, intentTitle: String = title) {
     val shareIntent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(Intent.EXTRA_TITLE, title)
@@ -64,6 +60,6 @@ fun Context.openBrowser(url: String) {
     startActivity(
         Intent(Intent.ACTION_VIEW).apply {
             data = url.toUri()
-        }
+        },
     )
 }

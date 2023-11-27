@@ -7,7 +7,7 @@ import com.monstarlab.features.auth.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val api: AuthApi
+    private val api: AuthApi,
 ) : AuthRepository {
 
     override suspend fun login(email: String, password: String): AuthToken {

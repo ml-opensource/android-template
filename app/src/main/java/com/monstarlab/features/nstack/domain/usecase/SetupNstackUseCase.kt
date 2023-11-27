@@ -4,9 +4,9 @@ import com.monstarlab.core.extensions.suspendRunCatching
 import com.monstarlab.core.injection.IoDispatcher
 import dk.nodes.nstack.kotlin.NStack
 import dk.nodes.nstack.kotlin.models.AppOpenData
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 import dk.nodes.nstack.kotlin.models.Result as NstackResult
 
 class SetupNstackUseCase @Inject constructor(

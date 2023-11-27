@@ -17,25 +17,25 @@ import com.monstarlab.designsystem.theme.Theme
 fun AppTopBar(
     title: String,
     modifier: Modifier = Modifier,
-    onBackButtonClick: (() -> Unit)? = null
+    onBackButtonClick: (() -> Unit)? = null,
 ) {
     TopAppBar(
         modifier = modifier,
         backgroundColor = Theme.colors.primary,
-        contentColor = Theme.colors.onPrimary
+        contentColor = Theme.colors.onPrimary,
     ) {
         onBackButtonClick?.let { onBackClick ->
             IconButton(onClick = onBackClick) {
                 Icon(
                     imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "back"
+                    contentDescription = "back",
                 )
             }
         }
 
         Text(
             text = title,
-            style = Theme.typography.headline2.bold
+            style = Theme.typography.headline2.bold,
         )
     }
 }
@@ -54,7 +54,7 @@ private fun PreviewAppTopBarWithBackButton() {
     AppTheme {
         AppTopBar(
             title = "Top Bar",
-            onBackButtonClick = { }
+            onBackButtonClick = { },
         )
     }
 }

@@ -30,7 +30,7 @@ fun rememberResourcesCoordinator(
     return remember(viewModel, context) {
         ResourcesCoordinator(
             viewModel = viewModel,
-            context = context
+            context = context,
         )
     }
 }
