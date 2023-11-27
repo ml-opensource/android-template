@@ -29,7 +29,7 @@ class LoginCoordinator(
                 navController.navigate(
                     R.id.resourceFragment,
                     navOptions = NavOptions.Builder().setPopUpTo(R.id.loginFragment, true).build(),
-                    args = null
+                    args = null,
                 )
             }
             .launchIn(scope)
@@ -46,7 +46,7 @@ fun rememberLoginCoordinator(
         LoginCoordinator(
             viewModel = viewModel,
             navController = navController,
-            scope = scope
+            scope = scope,
         )
     }
 }

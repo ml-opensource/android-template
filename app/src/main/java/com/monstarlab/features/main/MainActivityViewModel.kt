@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.monstarlab.features.nstack.domain.usecase.SetupNstackUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
@@ -31,7 +31,7 @@ class MainActivityViewModel @Inject constructor(
         _stateFlow.update {
             it.copy(
                 nstackData = data,
-                showSplash = false
+                showSplash = false,
             )
         }
     }

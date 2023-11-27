@@ -22,10 +22,10 @@ class DataStoreModule {
             listOf(
                 SharedPreferencesMigration(
                     context,
-                    "preferences"
-                )
+                    "preferences",
+                ),
             )
-        }
+        },
     )
 
     @Singleton

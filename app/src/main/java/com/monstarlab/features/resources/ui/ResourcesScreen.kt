@@ -30,9 +30,9 @@ fun ResourcesScreen(
         topBar = {
             AppTopBar(
                 title = "Resources",
-                modifier = Modifier.statusBarsPadding()
+                modifier = Modifier.statusBarsPadding(),
             )
-        }
+        },
     ) {
         LazyColumn(
             modifier = Modifier
@@ -40,7 +40,7 @@ fun ResourcesScreen(
                 .fillMaxSize(),
             contentPadding = PaddingValues(Theme.dimensions.medium1),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1)
+            verticalArrangement = Arrangement.spacedBy(Theme.dimensions.medium1),
         ) {
             animatedVisibilityItem("progress-indicator", state.isLoading) {
                 CircularProgressIndicator()
@@ -51,7 +51,7 @@ fun ResourcesScreen(
                     resource = resource,
                     modifier = Modifier.clickable {
                         actions.onResourceClick(resource)
-                    }
+                    },
                 )
             }
         }

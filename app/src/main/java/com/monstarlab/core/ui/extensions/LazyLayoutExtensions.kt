@@ -26,9 +26,9 @@ fun LazyListScope.animatedVisibilityItem(
                 visible = visible,
                 enter = enter,
                 exit = exit,
-                content = { content.invoke() }
+                content = { content.invoke() },
             )
-        }
+        },
     )
 }
 
@@ -49,8 +49,8 @@ fun LazyListScope.animatedVisibilityHeader(
                 visible = visible,
                 enter = enter,
                 exit = exit,
-                content = { content.invoke() }
+                content = { content.invoke() },
             )
-        }
+        },
     )
 }
