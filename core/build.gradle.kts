@@ -29,8 +29,8 @@ dependencies {
     // Compose
     implementation(platform(libs.android.compose.bom))
     implementation(libs.bundles.android.compose.core)
+    implementation(libs.android.compose.material)
     implementation(libs.bundles.google.accompanist)
-    debugImplementation(libs.android.compose.ui.tooling)
 
     // Injection
     implementation(libs.hilt.android)
