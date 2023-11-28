@@ -2,12 +2,8 @@ plugins {
     `kotlin-dsl`
 }
 
-group = "com.monstarlab.modularization.buildlogic"
+group = "com.monstarlab.buildlogic"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
 
 dependencies {
     compileOnly(libs.android.gradle.plugin)
@@ -19,9 +15,14 @@ gradlePlugin {
      * Register convention plugins so they are available in the build scripts of the application
      */
     plugins {
-        register("conventionAndroidLibrary") {
+        register("conventionAndroidLib") {
             id = "convention.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
+            implementationClass = "com.monstarlab.convention.AndroidLibConventionPlugin"
+        }
+
+        register("conventionAndroidApp") {
+            id = "convention.android.application"
+            implementationClass = "com.monstarlab.convention.AndroidAppConventionPlugin"
         }
     }
 }
