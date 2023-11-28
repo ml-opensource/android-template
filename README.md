@@ -50,23 +50,27 @@ After installing, creating new features in the correct template structure should
 
 
 ## Project Structure & Modules
-Android template project has a modular structure and has following: `:core`, `:designsystem` and `:app`. The `:core` and `:designsystem` modules represent shared modules that are most likely gonna be used by multiple features. This
+Android template project has a modular structure and has following mopdules: `:core`, `:designsystem` and `:app`. The intention is to make this template as flexible as possible by introducing shared modules while having the all the features reside in `:app` module. In case project grows, this allows to easily decouple features from `:app` module and/or introduce new features as part of separate module.
 
-
+![](./resources/moduels.svg)
 
 ### `core` module
-Core package is meant to be Domain-agnostic. It means that it should never reference anything project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are behavioural rather then UI emitting
+Core module is meant to be Domain-agnostic. It means that it should never reference anything project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are behavioural rather then UI emitting
+
 
 ### `designsystem` module
-The design system package contains the building blocks  for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
+The design system module contains the building blocks for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
 
-Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project. [Learn more about design system here](resources/DESIGN_SYSTEM.md)
+Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project.
 
 
 ### `app` module
-Features package contains the most important part of any project. A Feature typically contains all the necessary code(and resources + assets if migrated to multi module) required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. [Each feature is following Clean Architecture Principles and has a three-layer split](#architecture)
+This is a main modules that contains feature packages - the meat of any project. A Feature typically contains all the necessary code, resources and assets required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features.
 
+#### Feature modules
+While the template doesn't really have feature modules and every feature is part of the `:app` module, it is adviced to make use of feature modules in case the you see there is good candidate for it. It will especially benefit mid to large sized projects under active development
 
+ Each feature (module or not) is following [Clean Architecture Principles and has a three-layer split](#architecture)
 
 ## Architecture
 Template implements [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and follows [best practices](https://developer.android.com/topic/architecture) provided by Google with some tweaks here and there
