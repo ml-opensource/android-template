@@ -1,5 +1,5 @@
 package com.monstarlab.core.network
 
 data class NetworkConfig(
-    val baseUrl: String
+    val baseUrl: String,
 )

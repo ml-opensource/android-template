@@ -13,7 +13,7 @@ import kotlinx.serialization.json.Json
 
 abstract class SharedPreferenceDataStore<T>(
     private val dataStore: DataStore<Preferences>,
-    private val serializer: KSerializer<T>
+    private val serializer: KSerializer<T>,
 ) : DataSource<T> {
 
     private val key = stringPreferencesKey(this.javaClass.simpleName)

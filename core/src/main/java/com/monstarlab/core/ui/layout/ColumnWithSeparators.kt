@@ -10,7 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun ColumnWithSeparators(
     modifier: Modifier = Modifier,
     separator: @Composable () -> Unit = {},
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     SubcomposeLayout(modifier) { constraints ->
         val contentsMesuarebles = subcompose("content", content)

@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TokenResponseDTO(
-    val token: String
+    val token: String,
 )
 
 fun TokenResponseDTO.toAuthToken() = AuthToken(token)

@@ -11,7 +11,7 @@ val LocalAppTypography = staticCompositionLocalOf {
 @Composable
 fun ProvideAppTypography(
     typography: AppTypography = AppTypography(Typography),
-    content: @Composable () -> Unit = {}
+    content: @Composable () -> Unit = {},
 ) {
     CompositionLocalProvider(LocalAppTypography provides typography) {
         content.invoke()

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class ResourcesViewModel @Inject constructor(
-    private val getResourcesUseCase: GetResourcesUseCase
+    private val getResourcesUseCase: GetResourcesUseCase,
 ) : ViewModel() {
 
     private val _stateFlow: MutableStateFlow<ResourcesState> = MutableStateFlow(ResourcesState())

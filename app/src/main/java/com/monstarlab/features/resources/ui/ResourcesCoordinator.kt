@@ -13,7 +13,7 @@ import com.monstarlab.features.resources.domain.model.Resource
  */
 class ResourcesCoordinator(
     val viewModel: ResourcesViewModel,
-    val context: Context
+    val context: Context,
 ) {
     val screenStateFlow = viewModel.stateFlow
 
@@ -25,7 +25,7 @@ class ResourcesCoordinator(
 @Composable
 fun rememberResourcesCoordinator(
     viewModel: ResourcesViewModel,
-    context: Context = LocalContext.current
+    context: Context = LocalContext.current,
 ): ResourcesCoordinator {
     return remember(viewModel, context) {
         ResourcesCoordinator(

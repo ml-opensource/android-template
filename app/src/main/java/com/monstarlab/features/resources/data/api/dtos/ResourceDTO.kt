@@ -11,7 +11,7 @@ data class ResourceDTO(
     val year: Int,
     val color: String,
     @SerialName("pantone_value")
-    val pantoneValue: String
+    val pantoneValue: String,
 )
 
 fun ResourceDTO.toResource(): Resource {
