@@ -49,35 +49,21 @@ After installing, creating new features in the correct template structure should
 
 
 
-## Project Structure
-Android template project has three top-level packages: `core`, `designsystem` and `features`. Overall package structure looks like following
-- `core`
-  - `extensions`
-  - `injection`
-  - `network`
-  - `persistence`
-  - `ui`
-- `designsystem`
-  - `components`
-  - `theme`
-- `features`
-  - `nstack`
-  - `feature1`
-    - `data`
-    - `domain`  
-    - `injection`
-    - `ui`
-  
-### `core` package
+## Project Structure & Modules
+Android template project has a modular structure and has following: `:core`, `:designsystem` and `:app`. The `:core` and `:designsystem` modules represent shared modules that are most likely gonna be used by multiple features. This
+
+
+
+### `core` module
 Core package is meant to be Domain-agnostic. It means that it should never reference anything project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are behavioural rather then UI emitting
 
-### `designsystem` package
+### `designsystem` module
 The design system package contains the building blocks  for your application's UI. The main thing you will find here is `Theme`. This template is using custom `Theme` provider for Jetpack Compose while having `Material Theme` as its foundation. This allows to tweak `Colors` and `Typography` so it reflects actual Design System that is used on the project and supply custom properties like `Dimensions`
 
-Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project. [Learn more about design system here](./docs/DESIGN_SYSTEM.md)
+Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project. [Learn more about design system here](resources/DESIGN_SYSTEM.md)
 
 
-### `features` package
+### `app` module
 Features package contains the most important part of any project. A Feature typically contains all the necessary code(and resources + assets if migrated to multi module) required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features. [Each feature is following Clean Architecture Principles and has a three-layer split](#architecture)
 
 
@@ -95,7 +81,7 @@ The domain layer contains the application's business logic. This layer should on
 The data layer is where the actual interactions happen between different data sources. This layer “implements” parts of the Domain layer and communicates with the APIs, Databases, and other services and SDKs.
 
 
-![](/docs/assets/arch.svg)
+![](/resources/arch.svg)
 
 
 ## Flavors
