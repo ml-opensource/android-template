@@ -4,6 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.monstarlab.core.BuildConfig
+import com.monstarlab.core.config.BuildConfiguration
 import com.monstarlab.core.network.errorhandling.ApiErrorInterceptor
 import dagger.Module
 import dagger.Provides
@@ -47,10 +48,10 @@ class OkHttpModule {
     @ExperimentalSerializationApi
     @Provides
     @Singleton
-    fun provideRetrofit(client: OkHttpClient, networkConfig: NetworkConfig): Retrofit {
+    fun provideRetrofit(client: OkHttpClient, buildConfiguration: BuildConfiguration): Retrofit {
         return Retrofit.Builder()
             .client(client)
-            .baseUrl(networkConfig.baseUrl)
+            .baseUrl(buildConfiguration.networkConfig.baseUrl)
             .addConverterFactory(
                 json.asConverterFactory("application/json".toMediaType()),
             )
