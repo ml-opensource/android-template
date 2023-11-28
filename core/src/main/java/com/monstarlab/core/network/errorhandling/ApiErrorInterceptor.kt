@@ -24,15 +24,15 @@ class ApiErrorInterceptor @Inject constructor(
         if (response.isSuccessful) {
             return response
         }
-        val errorBody = response.body.string()
+        val errorBody = response.body?.string()
         val errorDtoResult = runCatching {
-            json.decodeFromString<ApiErrorDTO>(errorBody)
+            json.decodeFromString<ApiErrorDTO>(checkNotNull(errorBody))
         }
 
         if (errorDtoResult.isSuccess) {
             throw errorDtoResult.getOrThrow().toApiError(response.code)
         } else {
-            val newErrorBody = errorBody.toResponseBody("application/json".toMediaType())
+            val newErrorBody = errorBody?.toResponseBody("application/json".toMediaType())
             Timber.e("Failed to deserialize error body: ${errorDtoResult.exceptionOrNull()}")
             return response.newBuilder().body(newErrorBody).build()
         }
