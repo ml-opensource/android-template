@@ -1,31 +1,34 @@
 [versions]
 nstack = "3.2.9"
-kotlin = "1.9.10"
+kotlin = "1.9.20"
 ksp = "1.9.10-1.0.13"
 kotlin_coroutines = "1.7.3"
 retrofit = "2.9.0"
-okhttp = "5.0.0-alpha.10"
-compose_bom = "2023.09.00"
-compose_compiler = "1.5.3"
+okhttp = "4.12.0"
+compose_bom = "2023.10.01"
+compose_compiler = "1.5.4"
 hilt = "2.48"
 lifecycle = "2.6.2"
-navigation = "2.7.2"
+navigation = "2.7.5"
 datastore = "1.0.0"
 google_accompanist = "0.32.0"
 androidx_appcompat = "1.6.1"
 androidx_core = "1.9.0"
-android_gradle = "8.1.1"
+android_gradle = "8.1.4"
 chucker = "4.0.0"
-mockk = "1.13.7"
+mockk = "1.13.8"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "6.22.0" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.1" }
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
+android_library = { id = "com.android.library", version.ref = "android_gradle" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+convention-android-library = { id = "convention.android.library", version = "unspecified" }
+convention-android-application = { id = "convention.android.application", version = "unspecified" }
 
 [libraries]
 #-------------------------
@@ -41,12 +44,12 @@ kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 # Android
 #-------------------------
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle" }
-android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.6.1" }
-android_material = { group = "com.google.android.material", name = "material", version = "1.9.0" }
+android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.6.2" }
+android_material = { group = "com.google.android.material", name = "material", version = "1.10.0" }
 android_contraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.1.4" }
 android_appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 android_core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
-android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.7.2" }
+android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.8.1" }
 android_splash = { module = "androidx.core:core-splashscreen", version = "1.0.1"}
 #-------------------------
 # Android - Lifecycle
@@ -57,7 +60,7 @@ android_lifecycle_common = { module = "androidx.lifecycle:lifecycle-common-java8
 android_lifecycle_viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 android_lifecycle_livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle" }
 android_lifecycle_viewmodel_compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-android_lifecycle_runtime_compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version = "2.7.0-alpha01" }
+android_lifecycle_runtime_compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version = "2.7.0-rc01" }
 #-------------------------
 # Android - Hilt
 #-------------------------
@@ -73,10 +76,12 @@ android_compose_material = { module = "androidx.compose.material:material" }
 android_compose_ui_util = { module = "androidx.compose.ui:ui-util" }
 android_compose_ui_tooling = { module = "androidx.compose.ui:ui-tooling" }
 android_compose_ui_tooling_preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+android_compose_foundation = { module = "androidx.compose.animation:animation" }
+android_compose_animation = { module = "androidx.compose.foundation:foundation" }
 android_compose_runtime = { module = "androidx.compose.runtime:runtime-livedata" }
 android_compose_ui_test = { module = "androidx.compose.ui:ui-test-junit4" }
 android_compose_ui_test_manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.1.1"
+android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.1.2"
 #-------------------------
 # Android - Navigation
 #-------------------------
@@ -139,10 +144,11 @@ android_core = [
 
 android_compose_core = [
     "android_compose_ui",
-    "android_compose_material",
+    "android_compose_foundation",
+    "android_compose_animation",
     "android_compose_ui_util",
     "android_compose_runtime",
-    "android_compose_material_windowsize"
+    "android_compose_ui_tooling_preview"
 ]
 
 android_lifecycle = [

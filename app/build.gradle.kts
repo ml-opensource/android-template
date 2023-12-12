@@ -1,4 +1,3 @@
-
 @file:Suppress("UnstableApiUsage")
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -9,6 +8,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     id("dk.nstack.translation.plugin")
+    alias(libs.plugins.convention.android.application)
 }
 
 val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
@@ -21,14 +21,11 @@ translation {
 }
 
 android {
-    compileSdk = 34
     namespace = "com.monstarlab"
     flavorDimensions += "default"
     defaultConfig {
         manifestPlaceholders += mapOf("appId" to nStackAppId, "apiKey" to nStackKey)
         applicationId = "com.monstarlab"
-        minSdk = 23
-        targetSdk = 34
         versionCode = 1
         versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -63,26 +60,15 @@ android {
             buildConfigField("String", "API_URL", "\"https://reqres.in/api/\"")
         }
     }
-    buildFeatures {
-        viewBinding = true
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(JavaVersion.VERSION_17.toString()))
-        }
-    }
+
 
     packaging {
         resources.excludes.add("META-INF/versions/9/previous-compilation-data.bin")
     }
+}
+
+kotlin {
+    jvmToolchain(17)
 }
 
 configurations {
@@ -109,6 +95,8 @@ dependencies {
     // Compose
     implementation(platform(libs.android.compose.bom))
     implementation(libs.bundles.android.compose.core)
+    implementation(libs.android.compose.material)
+    implementation(libs.android.compose.material.windowsize)
     implementation(libs.android.activity.compose)
     implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(libs.bundles.google.accompanist)
@@ -132,4 +120,6 @@ dependencies {
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
 
+    implementation(project(":core"))
+    implementation(project(":designsystem"))
 }

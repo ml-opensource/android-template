@@ -1,4 +1,5 @@
 pluginManagement {
+    includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
         google()
@@ -12,5 +13,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-include(":app")
 rootProject.name = "android-template"
+
+include(":app")
+include(":core")
+include(":designsystem")
