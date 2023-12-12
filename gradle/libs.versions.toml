@@ -39,7 +39,7 @@ kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", v
 kotlin_coroutines_android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin_coroutines" }
 kotlin_coroutines_jdk = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "kotlin_coroutines" }
 kotlin_coroutines_test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3"
-kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
+kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2"
 #-------------------------
 # Android
 #-------------------------
