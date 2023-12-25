@@ -1,7 +1,7 @@
 [versions]
 nstack = "3.2.9"
 kotlin = "1.9.20"
-ksp = "1.9.10-1.0.13"
+ksp = "1.9.22-1.0.16"
 kotlin_coroutines = "1.7.3"
 retrofit = "2.9.0"
 okhttp = "4.12.0"
