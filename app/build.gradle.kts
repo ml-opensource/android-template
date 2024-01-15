@@ -76,6 +76,9 @@ configurations {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":designsystem"))
+
     // Kotlin
     implementation(libs.bundles.kotlin)
     implementation(libs.kotlin.serialization.json)
@@ -119,7 +122,4 @@ dependencies {
     releaseImplementation(libs.chucker.noop)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
-
-    implementation(project(":core"))
-    implementation(project(":designsystem"))
 }
