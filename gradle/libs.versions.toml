@@ -19,7 +19,7 @@ chucker = "4.0.0"
 mockk = "1.13.9"
 
 [plugins]
-spotless = { id = "com.diffplug.spotless", version = "6.24.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version = "1.23.4" }
 kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 android-application = { id = "com.android.application", version.ref = "android_gradle" }
