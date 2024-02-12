@@ -1,5 +1,5 @@
 [versions]
-nstack = "3.2.9"
+nstack = "3.3.0"
 kotlin = "1.9.22"
 ksp = "1.9.22-1.0.17"
 kotlin_coroutines = "1.7.3"
