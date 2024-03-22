@@ -81,7 +81,7 @@ android_compose_animation = { module = "androidx.compose.foundation:foundation" 
 android_compose_runtime = { module = "androidx.compose.runtime:runtime-livedata" }
 android_compose_ui_test = { module = "androidx.compose.ui:ui-test-junit4" }
 android_compose_ui_test_manifest = { module = "androidx.compose.ui:ui-test-manifest" }
-android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.1.2"
+android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.2.1"
 #-------------------------
 # Android - Navigation
 #-------------------------
