@@ -49,7 +49,7 @@ android_material = { group = "com.google.android.material", name = "material", v
 android_contraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.1.4" }
 android_appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 android_core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
-android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.8.1" }
+android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.8.2" }
 android_splash = { module = "androidx.core:core-splashscreen", version = "1.0.1"}
 #-------------------------
 # Android - Lifecycle
