@@ -6,7 +6,7 @@ import androidx.startup.Initializer
 import com.monstarlab.localization.BuildConfig
 import dk.nodes.nstack.kotlin.NStack
 
-class NStackInitializer: Initializer<NStack> {
+class NStackInitializer : Initializer<NStack> {
 
     @SuppressLint("AppOpenMissing")
     override fun create(context: Context): NStack {
