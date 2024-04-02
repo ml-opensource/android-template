@@ -21,5 +21,6 @@ dependencies {
     implementation(libs.android.compose.material.windowsize)
     debugImplementation(libs.android.compose.ui.tooling)
 
+    implementation(project(":localization"))
     implementation(project(":core"))
 }

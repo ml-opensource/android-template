@@ -2,7 +2,7 @@ package com.monstarlab
 
 import android.annotation.SuppressLint
 import android.app.Application
-import com.monstarlab.features.nstack.Translation
+import io.monstarlab.localization.Translation
 import dagger.hilt.android.HiltAndroidApp
 import dk.nodes.nstack.kotlin.NStack
 import timber.log.Timber

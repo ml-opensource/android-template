@@ -27,6 +27,7 @@ android_library = { id = "com.android.library", version.ref = "android_gradle" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+nstack = { id = "dk.nodes.nstack.plugin", version.ref = "nstack" }
 convention-android-library = { id = "convention.android.library", version = "unspecified" }
 convention-android-application = { id = "convention.android.application", version = "unspecified" }
 
