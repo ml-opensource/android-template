@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.convention.android.library)
+    alias(libs.plugins.convention.android.compose)
+
 }
 
 android {

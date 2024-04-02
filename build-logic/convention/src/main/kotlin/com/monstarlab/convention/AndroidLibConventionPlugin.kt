@@ -15,11 +15,7 @@ class AndroidLibConventionPlugin : Plugin<Project> {
                     minSdk = AndroidConfiguration.MIN_SDK
                 }
                 buildFeatures {
-                    compose = true
                     buildConfig = true
-                }
-                composeOptions {
-                    kotlinCompilerExtensionVersion = target.rootProject.libs.findVersion("compose_compiler").get().toString()
                 }
             }
         }
