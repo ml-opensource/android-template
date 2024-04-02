@@ -31,6 +31,7 @@ kotlin {
 
 dependencies {
     implementation(libs.nstack)
+    implementation(libs.android.startup)
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.android)
     androidTestImplementation(libs.espresso.core)
