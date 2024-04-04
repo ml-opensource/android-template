@@ -7,24 +7,15 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
-    id("dk.nstack.translation.plugin")
     alias(libs.plugins.convention.android.application)
+    alias(libs.plugins.convention.android.compose)
 }
 
-val nStackKey = "LqWLm621BwIxNRzdrei88pKhIIEI2EE8ni8r"
-val nStackAppId = "IXmpT4N7MJbGEXvDfGqGH4UKHrmV0EOqFeK0"
-
-translation {
-    appId = nStackAppId
-    apiKey = nStackKey
-    acceptHeader = "en-GB"
-}
 
 android {
     namespace = "com.monstarlab"
     flavorDimensions += "default"
     defaultConfig {
-        manifestPlaceholders += mapOf("appId" to nStackAppId, "apiKey" to nStackKey)
         applicationId = "com.monstarlab"
         versionCode = 1
         versionName = "1.0.0"
@@ -78,6 +69,7 @@ configurations {
 dependencies {
     implementation(project(":core"))
     implementation(project(":designsystem"))
+    implementation(project(":localization"))
 
     // Kotlin
     implementation(libs.bundles.kotlin)

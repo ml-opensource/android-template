@@ -1,4 +1,4 @@
-package com.monstarlab.features.nstack;
+package io.monstarlab.localization;
 
 /**
  * Created by nstack.io gradle translation plugin

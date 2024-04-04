@@ -27,8 +27,10 @@ android_library = { id = "com.android.library", version.ref = "android_gradle" }
 kotlin_android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+nstack = { id = "dk.nodes.nstack.plugin", version.ref = "nstack" }
 convention-android-library = { id = "convention.android.library", version = "unspecified" }
 convention-android-application = { id = "convention.android.application", version = "unspecified" }
+convention-android-compose = { id = "convention.android.compose", version = "unspecified" }
 
 [libraries]
 #-------------------------
@@ -51,6 +53,7 @@ android_appcompat = { group = "androidx.appcompat", name = "appcompat", version.
 android_core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
 android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.8.2" }
 android_splash = { module = "androidx.core:core-splashscreen", version = "1.0.1"}
+android_startup = { module = "androidx.startup:startup-runtime", version = "1.1.1" }
 #-------------------------
 # Android - Lifecycle
 #-------------------------

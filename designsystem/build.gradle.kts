@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.convention.android.library)
+    alias(libs.plugins.convention.android.compose)
+
 }
 
 android {
@@ -21,5 +23,6 @@ dependencies {
     implementation(libs.android.compose.material.windowsize)
     debugImplementation(libs.android.compose.ui.tooling)
 
+    implementation(project(":localization"))
     implementation(project(":core"))
 }
