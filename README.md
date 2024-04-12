@@ -52,7 +52,10 @@ After installing, creating new features in the correct template structure should
 ## Project Structure & Modules
 Android template project has a modular structure and has following mopdules: `:core`, `:designsystem` and `:app`. The intention is to make this template as flexible as possible by introducing shared modules while having the all the features reside in `:app` module. In case project grows, this allows to easily decouple features from `:app` module and/or introduce new features as part of separate module.
 
-![](./resources/moduels.svg)
+![](./resources/modules.svg)
+
+### `build-logics` module
+Build logics module contains all the build logic that is shared across the project. That includes min sdk, target sdk, compose setup, and so on. This module provides convention plugins that are used in other modules to apply these common settings.
 
 ### `core` module
 Core module is meant to be Domain-agnostic. It means that it should never reference anything project specific. Instead, it serves as a home for components that can be part of any project. This includes extensions on Kotlin Classes, Utility classes, Base classes, Compose layouts and Compose Effects and Modifiers that are behavioural rather then UI emitting
