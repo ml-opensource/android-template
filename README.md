@@ -50,7 +50,7 @@ After installing, creating new features in the correct template structure should
 
 
 ## Project Structure & Modules
-Android template project has a modular structure and has following mopdules: `:core`, `:designsystem` and `:app`. The intention is to make this template as flexible as possible by introducing shared modules while having the all the features reside in `:app` module. In case project grows, this allows to easily decouple features from `:app` module and/or introduce new features as part of separate module.
+Android template project has a modular structure and has following modules: `:core`, `:designsystem`, `localization` and `:app`. The intention is to make this template as flexible as possible by introducing shared modules while having the all the features reside in `:app` module. In case project grows, this allows to easily decouple features from `:app` module and/or introduce new features as part of separate module.
 
 ![](./resources/modules.svg)
 
@@ -66,7 +66,7 @@ The design system module contains the building blocks for your application's UI.
 
 Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project.
 
-### `localization module`
+### `localization` module
 Localization module contains NStack configuration and Translations.java file so that all localization is in one place. This module is meant to be used in the `app` module to prvoide translations for the `app` and `designsystem` module to provide translations for the design system components (such as accesaibility labels)
 The NStack is configured in its `build.gradle.kts` and initilized using androidx Startup library. 
 
