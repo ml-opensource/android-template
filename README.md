@@ -63,6 +63,9 @@ The design system module contains the building blocks for your application's UI.
 
 Another part of the design system are components. Examples of `designsystem` components are Buttons, TopBars, TextFields and so on. The template provides `AppButton` `AppTextField` and `AppTopBar` that you can modify and tweak and use throughout the project.
 
+### `localization module`
+Localization module contains NStack configuration and Translations.java file so that all localization is in one place. This module is meant to be used in the `app` module to prvoide translations for the `app` and `designsystem` module to provide translations for the design system components (such as accesaibility labels)
+The NStack is configured in its `build.gradle.kts` and initilized using androidx Startup library. 
 
 ### `app` module
 This is a main modules that contains feature packages - the meat of any project. A Feature typically contains all the necessary code, resources and assets required to implement a specific application functionality, such as a login screen, shopping cart, or authentication.  It may also have its own sets of dependencies, like third-party libraries or other features.
