@@ -100,7 +100,7 @@ android_datastore_preferences = { module = "androidx.datastore:datastore-prefere
 # Networking
 #-------------------------
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-retrofit_converter = { module = "com.retrofit_converte.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
+retrofit_converter = { module = "com.squareup.retrofit2:converter-kotlinx-serialization", version.ref = "retrofit" }
 okhttp_logger = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 okhttp_mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
 #-------------------------
