@@ -2,7 +2,6 @@ package com.monstarlab.core.network
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.monstarlab.core.BuildConfig
 import com.monstarlab.core.config.BuildConfiguration
 import com.monstarlab.core.network.errorhandling.ApiErrorInterceptor
@@ -15,6 +14,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import kotlinx.serialization.ExperimentalSerializationApi
