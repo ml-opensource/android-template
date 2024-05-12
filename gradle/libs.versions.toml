@@ -17,6 +17,7 @@ androidx_core = "1.9.0"
 android_gradle = "8.2.2"
 chucker = "4.0.0"
 mockk = "1.13.10"
+turbine = "1.1.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
@@ -122,6 +123,7 @@ junit_android = { group = "androidx.test.ext", name = "junit", version = "1.1.5"
 espresso_core = { group = "androidx.test.espresso", name = "espresso-core", version = "3.5.1" }
 mock_android = { module = "io.mockk:mockk-android", version.ref = "mockk"}
 mockk_agent = { module = "io.mockk:mockk-agent", version.ref = "mockk"}
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 #-------------------------
 # Others
 #-------------------------
@@ -173,7 +175,8 @@ test = [
     "okhttp_mockwebserver",
     "kotlin_coroutines_test",
     "mock_android",
-    "mockk_agent"
+    "mockk_agent",
+    "turbine"
 ]
 
 android_test = [
