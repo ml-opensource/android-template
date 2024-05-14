@@ -22,7 +22,6 @@ class LoginScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
-
     private val mockActions: LoginActions = mockk(relaxed = true)
 
     @Before
