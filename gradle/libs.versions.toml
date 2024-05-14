@@ -17,6 +17,7 @@ androidx_core = "1.9.0"
 android_gradle = "8.2.2"
 chucker = "4.0.0"
 mockk = "1.13.10"
+robolectric = "4.12.1"
 turbine = "1.1.0"
 
 [plugins]
@@ -121,8 +122,10 @@ junit_android = { group = "androidx.test.ext", name = "junit", version = "1.1.5"
 android_compose_ui_test_manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version = "1.6.7" }
 android_compose_ui_test = { group = "androidx.compose.ui", name = "ui-test-junit4", version = "1.6.7" }
 espresso_core = { group = "androidx.test.espresso", name = "espresso-core", version = "3.5.1" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 mockk_android = { module = "io.mockk:mockk-android", version.ref = "mockk"}
 mockk_agent = { module = "io.mockk:mockk-agent", version.ref = "mockk"}
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 #-------------------------
 # Others
@@ -174,13 +177,16 @@ test = [
     "junit",
     "okhttp_mockwebserver",
     "kotlin_coroutines_test",
-    "mockk_android",
+    "mockk",
     "mockk_agent",
     "turbine",
+    "robolectric",
+    "android_compose_ui_test"
 ]
 
 android_test = [
     "junit_android",
     "espresso_core",
     "android_compose_ui_test",
+    "mockk_android",
 ]
