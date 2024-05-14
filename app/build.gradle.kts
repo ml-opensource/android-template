@@ -114,4 +114,5 @@ dependencies {
     releaseImplementation(libs.chucker.noop)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
+    debugImplementation(libs.android.compose.ui.test.manifest)
 }
