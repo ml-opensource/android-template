@@ -7,6 +7,12 @@ import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -17,12 +23,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
 
 class LoginViewModelTest {
 
@@ -83,7 +83,6 @@ class LoginViewModelTest {
         val state = viewModel.stateFlow.value
         assertEquals(testEmail, state.email)
     }
-
 
     /**
      * GIVEN
@@ -253,5 +252,4 @@ class LoginViewModelTest {
             assertEquals(LoginState(isLoading = false, isLoggedIn = true), awaitItem())
         }
     }
-
 }

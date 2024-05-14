@@ -33,11 +33,14 @@ class LoginScreenTest {
     fun setUp() {
         state = mutableStateOf(LoginState())
         composeTestRule.setContent {
-            LoginScreen(state = state.value, actions = LoginActions(
-                onEmailChange = { state.value = state.value.copy(email = it) },
-                onPasswordChange = { state.value = state.value.copy(password = it) },
-                onLoginClick = { state.value = state.value.copy(isLoading = true) }
-            ))
+            LoginScreen(
+                state = state.value,
+                actions = LoginActions(
+                    onEmailChange = { state.value = state.value.copy(email = it) },
+                    onPasswordChange = { state.value = state.value.copy(password = it) },
+                    onLoginClick = { state.value = state.value.copy(isLoading = true) },
+                ),
+            )
         }
     }
 

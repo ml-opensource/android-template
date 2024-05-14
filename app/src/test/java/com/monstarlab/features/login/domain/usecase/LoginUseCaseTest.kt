@@ -6,11 +6,11 @@ import com.monstarlab.features.user.domain.repository.UserRepository
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
+import kotlinx.coroutines.test.runTest
 
 class LoginUseCaseTest {
 
