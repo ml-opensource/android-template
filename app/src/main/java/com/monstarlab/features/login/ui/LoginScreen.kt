@@ -46,7 +46,7 @@ fun LoginScreen(state: LoginState = LoginState(), actions: LoginActions = LoginA
                 onValueChange = actions.onEmailChange,
                 placeholder = "E-Mail",
                 label = "E-Mail",
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
 
             Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
