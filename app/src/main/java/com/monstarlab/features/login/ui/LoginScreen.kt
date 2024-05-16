@@ -13,7 +13,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import com.monstarlab.core.error.displayableMessage
 import com.monstarlab.core.ui.previews.LightDarkPreview
@@ -46,9 +45,8 @@ fun LoginScreen(state: LoginState = LoginState(), actions: LoginActions = LoginA
                 value = state.email,
                 onValueChange = actions.onEmailChange,
                 placeholder = "E-Mail",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("email"),
+                label = "E-Mail",
+                modifier = Modifier.fillMaxWidth()
             )
 
             Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
@@ -59,19 +57,17 @@ fun LoginScreen(state: LoginState = LoginState(), actions: LoginActions = LoginA
                 error = state.error?.displayableMessage,
                 visualTransformation = PasswordVisualTransformation(),
                 placeholder = "Password",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("password"),
+                label = "Password",
+                modifier = Modifier.fillMaxWidth(),
             )
+
             Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
 
             AppButton(
                 text = "Login",
                 onClick = actions.onLoginClick,
                 isLoading = state.isLoading,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .testTag("login"),
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }

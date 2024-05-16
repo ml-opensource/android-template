@@ -3,9 +3,10 @@ package com.monstarlab.features.login.ui
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
+import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextReplacement
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -44,18 +45,18 @@ class LoginScreenTest {
     @Test
     fun testInitialState() {
         composeTestRule
-            .onNodeWithTag("email")
+            .onNodeWithText("E-Mail")
             .assertIsEnabled()
             .assertIsDisplayed()
             .assert(hasText("eve.holt@reqres.in"))
 
         composeTestRule
-            .onNodeWithTag("password")
+            .onNodeWithText("Password")
             .assertIsEnabled()
             .assertIsDisplayed()
 
         composeTestRule
-            .onNodeWithTag("login")
+            .onNode(hasText("Login") and hasClickAction())
             .assertIsEnabled()
             .assertIsDisplayed()
     }
@@ -72,7 +73,7 @@ class LoginScreenTest {
     @Test
     fun testEmailInput() {
         composeTestRule
-            .onNodeWithTag("email")
+            .onNodeWithText("E-Mail")
             .performTextReplacement("test@test.com")
 
         verify { mockActions.onEmailChange("test@test.com") }
@@ -90,7 +91,7 @@ class LoginScreenTest {
     @Test
     fun testPasswordInput() {
         composeTestRule
-            .onNodeWithTag("password")
+            .onNodeWithText("Password")
             .performTextReplacement("secret")
 
         verify { mockActions.onPasswordChange("secret") }
@@ -106,7 +107,9 @@ class LoginScreenTest {
      */
     @Test
     fun testLoginButtonClick() {
-        composeTestRule.onNodeWithTag("login").performClick()
+        composeTestRule
+            .onNode(hasText("Login") and hasClickAction())
+            .performClick()
 
         verify { mockActions.onLoginClick() }
     }
