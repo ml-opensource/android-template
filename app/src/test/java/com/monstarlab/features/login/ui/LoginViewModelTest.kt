@@ -7,12 +7,6 @@ import com.monstarlab.features.login.domain.usecase.LoginUseCase
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
-import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Before
-import org.junit.Test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -23,6 +17,12 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
 
 class LoginViewModelTest {
 
@@ -230,10 +230,10 @@ class LoginViewModelTest {
      * GIVEN
      * - The initial state is: not loading & not logged in
      * - The login use case always returns a successful result
+     * - The initial state is: not loading & not logged in
      * WHEN
      * - User logs in
      * THEN
-     * - The initial state is: not loading & not logged in
      * - The state changes to: loading & not logged in
      * - The state changes to: not loading & logged in
      */
@@ -242,12 +242,13 @@ class LoginViewModelTest {
         // GIVEN
         coEvery { loginUseCase(any(), any()) } returns Result.success(mockk())
 
-        // WHEN
-        viewModel.login()
-
-        // THEN
         viewModel.stateFlow.test {
             assertEquals(LoginState(isLoading = false, isLoggedIn = false), awaitItem())
+
+            // WHEN
+            viewModel.login()
+
+            // THEN
             assertEquals(LoginState(isLoading = true, isLoggedIn = false), awaitItem())
             assertEquals(LoginState(isLoading = false, isLoggedIn = true), awaitItem())
         }
