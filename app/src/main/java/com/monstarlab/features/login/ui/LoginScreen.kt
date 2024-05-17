@@ -44,8 +44,9 @@ fun LoginScreen(state: LoginState = LoginState(), actions: LoginActions = LoginA
             AppTextField(
                 value = state.email,
                 onValueChange = actions.onEmailChange,
-                modifier = Modifier.fillMaxWidth(),
                 placeholder = "E-Mail",
+                label = "E-Mail",
+                modifier = Modifier.fillMaxWidth(),
             )
 
             Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
@@ -53,18 +54,20 @@ fun LoginScreen(state: LoginState = LoginState(), actions: LoginActions = LoginA
             AppTextField(
                 value = state.password,
                 onValueChange = actions.onPasswordChange,
-                modifier = Modifier.fillMaxWidth(),
                 error = state.error?.displayableMessage,
                 visualTransformation = PasswordVisualTransformation(),
                 placeholder = "Password",
+                label = "Password",
+                modifier = Modifier.fillMaxWidth(),
             )
+
             Spacer(modifier = Modifier.size(Theme.dimensions.medium3))
 
             AppButton(
                 text = "Login",
                 onClick = actions.onLoginClick,
-                modifier = Modifier.fillMaxWidth(),
                 isLoading = state.isLoading,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
     }

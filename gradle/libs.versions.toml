@@ -5,7 +5,7 @@ ksp = "1.9.23-1.0.19"
 kotlin_coroutines = "1.8.0"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
-compose_bom = "2024.04.00"
+compose_bom = "2024.05.00"
 compose_compiler = "1.5.11"
 hilt = "2.51.1"
 lifecycle = "2.7.0"
@@ -17,6 +17,8 @@ androidx_core = "1.9.0"
 android_gradle = "8.2.2"
 chucker = "4.0.0"
 mockk = "1.13.10"
+robolectric = "4.12.1"
+turbine = "1.1.0"
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version = "6.25.0" }
@@ -82,8 +84,6 @@ android_compose_ui_tooling_preview = { module = "androidx.compose.ui:ui-tooling-
 android_compose_foundation = { module = "androidx.compose.animation:animation" }
 android_compose_animation = { module = "androidx.compose.foundation:foundation" }
 android_compose_runtime = { module = "androidx.compose.runtime:runtime-livedata" }
-android_compose_ui_test = { module = "androidx.compose.ui:ui-test-junit4" }
-android_compose_ui_test_manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 android_compose_material_windowsize = "androidx.compose.material3:material3-window-size-class:1.2.1"
 #-------------------------
 # Android - Navigation
@@ -119,9 +119,14 @@ google_accompanist_permissions = { module = "com.google.accompanist:accompanist-
 #-------------------------
 junit = { group = "junit", name = "junit", version = "4.13.2" }
 junit_android = { group = "androidx.test.ext", name = "junit", version = "1.1.5" }
+android_compose_ui_test_manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version = "1.6.7" }
+android_compose_ui_test = { group = "androidx.compose.ui", name = "ui-test-junit4", version = "1.6.7" }
 espresso_core = { group = "androidx.test.espresso", name = "espresso-core", version = "3.5.1" }
-mock_android = { module = "io.mockk:mockk-android", version.ref = "mockk"}
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk_android = { module = "io.mockk:mockk-android", version.ref = "mockk"}
 mockk_agent = { module = "io.mockk:mockk-agent", version.ref = "mockk"}
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 #-------------------------
 # Others
 #-------------------------
@@ -172,11 +177,16 @@ test = [
     "junit",
     "okhttp_mockwebserver",
     "kotlin_coroutines_test",
-    "mock_android",
-    "mockk_agent"
+    "mockk",
+    "mockk_agent",
+    "turbine",
+    "robolectric",
+    "android_compose_ui_test"
 ]
 
 android_test = [
     "junit_android",
-    "espresso_core"
+    "espresso_core",
+    "android_compose_ui_test",
+    "mockk_android",
 ]
