@@ -10,9 +10,9 @@ sealed interface ErrorModel {
     data class ApiError(val exception: ApiException) : ErrorModel
 
     sealed class Connection : ErrorModel {
-        object Timeout : Connection()
-        object IOError : Connection()
-        object UnknownHost : Connection()
+        data object Timeout : Connection()
+        data object IOError : Connection()
+        data object UnknownHost : Connection()
     }
 
     data class Unknown(val throwable: Throwable) : ErrorModel

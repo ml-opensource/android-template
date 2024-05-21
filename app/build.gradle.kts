@@ -1,4 +1,5 @@
 @file:Suppress("UnstableApiUsage")
+
 // TODO: Remove once https://youtrack.jetbrains.com/issue/KTIJ-19369 is fixed
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -52,9 +53,16 @@ android {
         }
     }
 
+    testOptions.unitTests {
+        isIncludeAndroidResources = true
+    }
 
     packaging {
-        resources.excludes.add("META-INF/versions/9/previous-compilation-data.bin")
+        resources {
+            excludes.add("META-INF/versions/9/previous-compilation-data.bin")
+            excludes.add("META-INF/LICENSE.md")
+            excludes.add("META-INF/LICENSE-notice.md")
+        }
     }
 }
 
@@ -95,7 +103,7 @@ dependencies {
     implementation(libs.android.activity.compose)
     implementation(libs.android.lifecycle.viewmodel.compose)
     implementation(libs.bundles.google.accompanist)
-    implementation (libs.android.compose.ui.tooling.preview)
+    implementation(libs.android.compose.ui.tooling.preview)
     debugImplementation(libs.android.compose.ui.tooling)
 
     // Injection
@@ -114,4 +122,5 @@ dependencies {
     releaseImplementation(libs.chucker.noop)
     testImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.android.test)
+    debugImplementation(libs.android.compose.ui.test.manifest)
 }
