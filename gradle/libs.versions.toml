@@ -1,19 +1,19 @@
 [versions]
 nstack = "3.3.0"
-kotlin = "1.9.23"
-ksp = "1.9.23-1.0.19"
+kotlin = "1.9.24"
+ksp = "1.9.24-1.0.20"
 kotlin_coroutines = "1.8.0"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
 compose_bom = "2024.05.00"
-compose_compiler = "1.5.11"
+compose_compiler = "1.5.14"
 hilt = "2.51.1"
 lifecycle = "2.7.0"
 navigation = "2.7.7"
-datastore = "1.0.0"
+datastore = "1.1.1"
 google_accompanist = "0.34.0"
-androidx_appcompat = "1.6.1"
-androidx_core = "1.9.0"
+androidx-appcompat = "1.6.1"
+androidx-core = "1.13.1"
 android_gradle = "8.2.2"
 chucker = "4.0.0"
 mockk = "1.13.10"
@@ -49,11 +49,11 @@ kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 #-------------------------
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle" }
 android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.6.2" }
-android_material = { group = "com.google.android.material", name = "material", version = "1.11.0" }
+android_material = { group = "com.google.android.material", name = "material", version = "1.12.0" }
 android_contraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.1.4" }
 android_appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
 android_core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core" }
-android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.8.2" }
+android_activity_compose = { module = "androidx.activity:activity-compose", version = "1.9.0" }
 android_splash = { module = "androidx.core:core-splashscreen", version = "1.0.1"}
 android_startup = { module = "androidx.startup:startup-runtime", version = "1.1.1" }
 #-------------------------
