@@ -6,13 +6,14 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.convention.android.library)
-    alias(libs.plugins.convention.android.compose)
-
+    alias(libs.plugins.kotlin.compose.compiler)
 }
 
 android {
     namespace = "com.monstarlab.core"
+    buildFeatures.compose = true
 }
+
 
 kotlin {
     jvmToolchain(17)

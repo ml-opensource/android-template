@@ -3,12 +3,13 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.convention.android.library)
-    alias(libs.plugins.convention.android.compose)
-
+    alias(libs.plugins.kotlin.compose.compiler)
 }
 
 android {
     namespace = "com.monstarlab.designsystem"
+    buildFeatures.compose = true
+
 }
 
 kotlin {
