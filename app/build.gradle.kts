@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.convention.android.application)
-    alias(libs.plugins.convention.android.compose)
+    alias(libs.plugins.kotlin.compose.compiler)
 }
 
 
@@ -63,6 +63,10 @@ android {
             excludes.add("META-INF/LICENSE.md")
             excludes.add("META-INF/LICENSE-notice.md")
         }
+    }
+
+    buildFeatures {
+        compose = true
     }
 }
 

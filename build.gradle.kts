@@ -15,11 +15,11 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.convention.android.library) apply false
     alias(libs.plugins.convention.android.application) apply false
-    alias(libs.plugins.convention.android.compose) apply false
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.spotless)
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.kotlin.compose.compiler) apply false
 }
 
 allprojects {
