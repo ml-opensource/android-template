@@ -15,7 +15,7 @@ androidx-appcompat = "1.6.1"
 androidx-core = "1.13.1"
 android_gradle = "8.2.2"
 chucker = "4.0.0"
-mockk = "1.13.10"
+mockk = "1.13.11"
 robolectric = "4.12.1"
 turbine = "1.1.0"
 
