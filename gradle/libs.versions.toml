@@ -49,7 +49,7 @@ kotlin_serialization_json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.
 # Android
 #-------------------------
 android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle" }
-android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.6.2" }
+android_fragment = { module = "androidx.fragment:fragment-ktx", version = "1.8.1" }
 android_material = { group = "com.google.android.material", name = "material", version = "1.12.0" }
 android_contraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version = "2.1.4" }
 android_appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
